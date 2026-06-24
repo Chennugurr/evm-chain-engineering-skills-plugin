@@ -1,0 +1,9 @@
+{
+  "platform": "codex",
+  "expected_status": "block",
+  "event": {
+    "tool_input": {
+      "command": "forge script Deploy.s.sol --rpc-url ethereum-mainnet --broadcast"
+    }
+  }
+}

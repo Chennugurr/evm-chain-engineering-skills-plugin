@@ -1,0 +1,9 @@
+{
+  "platform": "codex",
+  "expected_status": "allow",
+  "event": {
+    "tool_input": {
+      "command": "python3 scripts/validate_artifact_bundle.py --path fixtures/artifact-bundles/op-stack-public-testnet"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "platform": "claude",
+  "expected_status": "block",
+  "event": {
+    "tool_name": "Bash",
+    "tool_input": {
+      "command": "npx hardhat run scripts/deploy.js --network mainnet --broadcast"
+    }
+  }
+}
