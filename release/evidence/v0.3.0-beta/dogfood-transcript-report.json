@@ -6,10 +6,10 @@
   "skipped": [],
   "summary": {
     "findings": 0,
-    "live_claude_transcripts": "pending",
-    "live_codex_transcripts": "pending",
+    "live_claude_transcripts": 1,
+    "live_codex_transcripts": 1,
     "mode": "bootstrap",
-    "transcripts_checked": 0
+    "transcripts_checked": 2
   },
   "target": "dogfood/transcripts",
   "version": "v0.2.0-alpha"

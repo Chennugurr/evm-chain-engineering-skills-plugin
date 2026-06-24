@@ -3,17 +3,17 @@
 - Version: v0.2.0-alpha
 - Mode: strict
 - Git branch: v0.3-beta-strict-live-evidence
-- Git commit: 7dbda5c
+- Git commit: 3bbaeec
 - Git tag status: v0.2.0-alpha
-- Validation summary: FAIL
-- Release ready: false
+- Validation summary: PASS
+- Release ready: true
 
 ## Checks
 
 - acceptance: pass
 - artifact-bundle: pass
 - behavior-evals: pass
-- clean-install: fail
+- clean-install: pass
 - generated-config: pass
 - hook-fixture: pass
 - secret-scan: pass

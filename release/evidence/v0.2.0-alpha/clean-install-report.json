@@ -1,25 +1,14 @@
 {
   "checked_at": null,
-  "findings": [
-    {
-      "level": "error",
-      "message": "unexpected absolute local path",
-      "path": "dogfood/live-runs/codex/01-op-stack-public-testnet/CODEX_STREAM_REDACTED.jsonl"
-    },
-    {
-      "level": "error",
-      "message": "exit code 1",
-      "path": "/usr/bin/python3 scripts/release_check.py --strict"
-    }
-  ],
-  "ok": false,
+  "findings": [],
+  "ok": true,
   "script": "scripts/clean_install_test.py",
   "skipped": [
     "claude plugin validate skipped"
   ],
   "summary": {
     "commands_checked": 11,
-    "findings": 2
+    "findings": 0
   },
   "target": "committed-only",
   "version": "v0.2.0-alpha"

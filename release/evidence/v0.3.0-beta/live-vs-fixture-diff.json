@@ -1,5 +1,12 @@
 {
-  "comparisons": [],
+  "comparisons": [
+    {
+      "findings": 0,
+      "fixture": "fixtures/artifact-bundles/op-stack-public-testnet",
+      "live": "dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS",
+      "prompt_id": "01-op-stack-public-testnet"
+    }
+  ],
   "findings": [],
   "status": "pass"
 }

@@ -1,6 +1,6 @@
 {
-  "confidence": "low",
-  "overall_score": 0,
+  "confidence": "medium",
+  "overall_score": 100,
   "platforms": {
     "claude": {
       "confidence": "low",
@@ -8,12 +8,19 @@
       "score": 0
     },
     "codex": {
-      "confidence": "low",
-      "runs": 0,
-      "score": 0
+      "confidence": "medium",
+      "runs": 1,
+      "score": 100
     }
   },
-  "prompts": {},
+  "prompts": {
+    "01-op-stack-public-testnet": {
+      "irrelevant_skills": [],
+      "missing_expected_skills": [],
+      "notes": [],
+      "score": 100
+    }
+  },
   "recommendations": [
     {
       "reason": "Keep security review required for sensitive live workflows.",

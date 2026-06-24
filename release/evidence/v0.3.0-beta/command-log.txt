@@ -1,3 +1,5 @@
+$ /usr/bin/python3 scripts/clean_install_test.py --json-out release/evidence/v0.3.0-beta/clean-install-report.json --skip-claude-plugin-validate
+exit_code=0
 $ /usr/bin/python3 scripts/lint_dogfood_prompts.py --strict --json-out release/evidence/v0.3.0-beta/dogfood-prompt-lint-report.json
 exit_code=0
 $ /usr/bin/python3 scripts/validate_dogfood_transcripts.py --bootstrap --json-out release/evidence/v0.3.0-beta/dogfood-transcript-report.json
@@ -17,8 +19,6 @@ exit_code=0
 $ /usr/bin/python3 scripts/check_bad_output_patterns.py --path tests/known_bad_outputs --expect-bad --json-out release/evidence/v0.3.0-beta/known-bad-output-check.json
 exit_code=0
 $ /usr/bin/python3 scripts/check_bad_output_patterns.py --path dogfood/live-runs --strict --json-out release/evidence/v0.3.0-beta/live-output-safety-check.json
-exit_code=0
-$ /usr/bin/python3 scripts/clean_install_test.py --json-out release/evidence/v0.3.0-beta/clean-install-report.json --skip-claude-plugin-validate
 exit_code=0
 $ /usr/bin/python3 plugins/evm-chain-engineering-pro/scripts/scan_secrets.py --path . --strict --json
 exit_code=0

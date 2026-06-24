@@ -1,5 +1,5 @@
 $ /usr/bin/python3 scripts/clean_install_test.py --json-out release/evidence/v0.2.0-alpha/clean-install-report.json --skip-claude-plugin-validate
-exit_code=1
+exit_code=0
 $ /usr/bin/python3 scripts/run_behavior_evals.py --evals evals/skill-trigger-matrix.yaml --strict --json
 exit_code=0
 $ /usr/bin/python3 scripts/validate_artifact_bundle.py --strict --all fixtures/artifact-bundles --json-out release/evidence/v0.2.0-alpha/artifact-bundle-report.json
