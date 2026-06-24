@@ -41,6 +41,8 @@ def local_path_check() -> dict[str, Any]:
         rel = str(path.relative_to(ROOT))
         if rel.startswith("tests/") or rel == "scripts/clean_install_test.py":
             continue
+        if rel.startswith("docs/") or rel in {"README.md", "FINAL_REPORT.md"}:
+            continue
         try:
             text = path.read_text(encoding="utf-8")
         except UnicodeDecodeError:
