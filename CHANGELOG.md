@@ -1,5 +1,33 @@
 # Changelog
 
+## v0.2.0-alpha
+
+Added:
+- machine-checkable artifact bundle contract
+- stack profiles and validators
+- safe artifact generators
+- validated fixture artifact bundles
+- generated config validator
+- acceptance suite
+- hook fixture tests
+- clean install test
+- release evidence builder
+- internal adoption docs
+- known limitations
+- contributor workflow for new stacks
+
+Changed:
+- Makefile includes `validate-v02` targets
+- README documents artifact workflows
+
+Security:
+- stronger validation against committed secrets and unsafe deployment commands
+- stricter fixture validation
+
+Limitations:
+- no live deployment, no MCP servers, no mainnet approval workflow, and live Codex/Claude dogfood remains manual
+
+
 ## v0.1.0-internal
 
 Internal hardening release for `evm-chain-engineering-pro`.

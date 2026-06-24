@@ -1,4 +1,4 @@
-.PHONY: test validate scripts-help scan-secrets validate-all behavior-evals hooks-validate upstream-check release-check golden-demos-check scripts-help-check
+.PHONY: test validate scripts-help scan-secrets validate-all behavior-evals hooks-validate upstream-check release-check golden-demos-check scripts-help-check validate-profiles validate-artifacts validate-configs acceptance hook-fixtures clean-install-test release-evidence validate-v02 validate-v02-full
 
 test:
 	PYTHONPATH=src python3 -m pytest
@@ -36,3 +36,37 @@ golden-demos-check:
 
 scripts-help-check:
 	for f in plugins/evm-chain-engineering-pro/scripts/*.py scripts/*.py; do [ -f "$$f" ] && python3 "$$f" --help >/dev/null; done
+
+validate-profiles:
+	python3 scripts/validate_stack_profiles.py --strict --all profiles
+
+validate-artifacts:
+	python3 scripts/validate_artifact_bundle.py --strict --all fixtures/artifact-bundles
+
+validate-configs:
+	python3 scripts/validate_generated_configs.py --strict --all fixtures/artifact-bundles
+
+acceptance:
+	python3 scripts/run_acceptance_suite.py --strict
+
+hook-fixtures:
+	python3 scripts/test_hook_fixtures.py --strict
+
+clean-install-test:
+	python3 scripts/clean_install_test.py
+
+release-evidence:
+	python3 scripts/build_release_evidence.py --version v0.2.0-alpha --strict
+
+validate-v02:
+	$(MAKE) validate
+	$(MAKE) validate-profiles
+	$(MAKE) validate-artifacts
+	$(MAKE) validate-configs
+	$(MAKE) acceptance
+	$(MAKE) hook-fixtures
+	$(MAKE) release-evidence
+	$(MAKE) clean-install-test
+
+validate-v02-full:
+	$(MAKE) validate-v02

@@ -1,0 +1,42 @@
+stack_id: new-stack
+  # Replace with lowercase hyphen-case stack id.
+display_name: New Stack
+status: experimental-alpha
+chain_types:
+  - appchain
+execution:
+  evm: partial
+  clients:
+    - VERIFY_CURRENT_DOCS
+settlement:
+  supported:
+    - VERIFY_CURRENT_DOCS
+  notes:
+    - Verify against current upstream docs before production.
+data_availability:
+  supported:
+    - VERIFY_CURRENT_DOCS
+  notes:
+    - Document DA failure assumptions.
+proof_models:
+  supported:
+    - VERIFY_CURRENT_DOCS
+  notes:
+    - Document proof/trust assumptions.
+required_roles:
+  - rpc-node
+optional_roles:
+  - explorer
+security_required:
+  - admin-key-policy
+  - source-version-verification
+forbidden_defaults:
+  - private-key-in-env
+  - mnemonic-in-repo
+  - public-admin-rpc
+  - unpinned-docker-image
+  - mainnet-broadcast-without-approval
+source_refs:
+  - docs/upstream-sources.md#new-stack
+notes:
+  - Planning profile only.

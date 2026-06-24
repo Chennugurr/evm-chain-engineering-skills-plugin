@@ -74,3 +74,17 @@ make validate-all
 ## Known limitations
 
 Exact deployment commands, server requirements, client versions, bridge instructions, and stack modes remain version-sensitive and require `VERIFY_CURRENT_DOCS` before production-like use.
+
+## v0.2.0-alpha Workflow Acceptance
+
+v0.2 adds a machine-checkable artifact bundle contract, stack profiles, safe artifact generators, validated fixture bundles, generated config validation, workflow acceptance cases, hook fixture tests, clean install validation, and release evidence.
+
+Quick commands:
+
+```bash
+make validate-v02
+python3 scripts/render_artifact_bundle.py --workflow op-stack-public-testnet --stack op-stack --chain-type l2 --environment public-testnet --settlement sepolia --output generated/op-stack-public-testnet --overwrite
+python3 scripts/validate_artifact_bundle.py --strict --path generated/op-stack-public-testnet
+```
+
+The layer remains planning-only: no deployment, no real secrets, no cloud/provider calls, no MCP servers, and no production certification. See `KNOWN_LIMITATIONS.md`.
