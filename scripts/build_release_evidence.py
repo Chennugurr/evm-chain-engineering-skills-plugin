@@ -14,7 +14,7 @@ from lib.reports import Finding, Report, write_json_report, write_markdown_repor
 ROOT = find_repo_root(Path(__file__))
 
 CHECKS = [
-    ("behavior-evals", [sys.executable, "scripts/run_behavior_evals.py", "--evals", "evals/skill-trigger-matrix.yaml", "--strict", "--json-out", "{out}/behavior-evals.json"]),
+    ("behavior-evals", [sys.executable, "scripts/run_behavior_evals.py", "--evals", "evals/skill-trigger-matrix.yaml", "--strict", "--json"]),
     ("artifact-bundle", [sys.executable, "scripts/validate_artifact_bundle.py", "--strict", "--all", "fixtures/artifact-bundles", "--json-out", "{out}/artifact-bundle-report.json"]),
     ("stack-profile", [sys.executable, "scripts/validate_stack_profiles.py", "--strict", "--all", "profiles", "--json-out", "{out}/stack-profile-report.json"]),
     ("generated-config", [sys.executable, "scripts/validate_generated_configs.py", "--strict", "--all", "fixtures/artifact-bundles", "--json-out", "{out}/generated-config-report.json"]),
@@ -46,8 +46,12 @@ def run_checks(out: Path, collect_only: bool) -> tuple[dict[str, str], list[Find
         checks[name] = "pass" if result.returncode == 0 else "fail"
         command_log.append("$ " + " ".join(cmd))
         command_log.append(f"exit_code={result.returncode}")
-        if name in {"upstream-freshness", "secret-scan"}:
-            report_name = "upstream-freshness-report.json" if name == "upstream-freshness" else "secret-scan-report.json"
+        if name in {"behavior-evals", "upstream-freshness", "secret-scan"}:
+            report_name = {
+                "behavior-evals": "behavior-evals.json",
+                "upstream-freshness": "upstream-freshness-report.json",
+                "secret-scan": "secret-scan-report.json",
+            }[name]
             try:
                 (out / report_name).write_text(result.stdout if result.stdout.strip().startswith("{") else json.dumps({"ok": result.returncode == 0, "output": result.stdout[-1000:]}, indent=2), encoding="utf-8")
             except Exception:

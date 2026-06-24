@@ -30,7 +30,13 @@ COMMANDS = [
 
 def git_clean() -> bool:
     result = subprocess.run(["git", "status", "--short"], cwd=ROOT, text=True, stdout=subprocess.PIPE)
-    return result.stdout.strip() == ""
+    dirty = []
+    for line in result.stdout.splitlines():
+        path = line[3:] if len(line) > 3 else line
+        if path.startswith("release/evidence/"):
+            continue
+        dirty.append(line)
+    return not dirty
 
 
 def clone_repo(target: Path, mode: str) -> tuple[Path, list[str]]:
