@@ -1,0 +1,1 @@
+Compare Polygon CDK validium, sovereign mode, and zkRollup mode for an enterprise payments chain. Include Agglayer, DA, bridge/interoperability, prover/aggregator needs, compliance-friendly ops, server setup, governance, security risks, and a launch checklist.

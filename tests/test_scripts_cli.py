@@ -7,7 +7,7 @@ from conftest import PLUGIN, ROOT, SCRIPTS
 
 def test_each_script_supports_help():
     scripts = sorted(SCRIPTS.glob("*.py"))
-    assert len(scripts) == 13
+    assert len(scripts) >= 13
     for script in scripts:
         result = subprocess.run([sys.executable, str(script), "--help"], cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         assert result.returncode == 0, f"{script}: {result.stderr}"

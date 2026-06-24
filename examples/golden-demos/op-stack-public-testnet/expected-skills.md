@@ -1,0 +1,6 @@
+- blockchain-architect
+- op-stack-engineer
+- chain-infra-ops
+- chain-security-reviewer
+- observability-sre
+- chain-launch-manager

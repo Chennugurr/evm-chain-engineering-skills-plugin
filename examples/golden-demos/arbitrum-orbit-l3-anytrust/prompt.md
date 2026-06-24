@@ -1,0 +1,1 @@
+I want an Arbitrum Orbit L3 settling to Arbitrum One, with a custom gas token and AnyTrust-style data availability. Give me the architecture, parent-chain assumptions, server setup, bridge path, validation checklist, monitoring, launch gates, and operational risks. Do not deploy anything.

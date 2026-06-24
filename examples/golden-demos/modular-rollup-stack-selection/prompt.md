@@ -1,0 +1,1 @@
+I need a modular EVM-compatible appchain or rollup for a high-throughput gaming app. Compare Rollkit, Dymension RollApps, Sovereign SDK, OP Stack Alt-DA, Arbitrum Orbit AnyTrust, and Polygon CDK validium. Include DA, settlement, sequencing, bridge, maturity, operational risk, and server setup.

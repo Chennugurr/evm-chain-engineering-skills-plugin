@@ -1,0 +1,1 @@
+Build a plan for a new EVM L1 similar to BNB Smart Chain or an Avalanche-style appchain. Include consensus, validator set, genesis, native token, chain ID, bootnodes, RPC, explorer, monitoring, validator economics, governance, upgrade process, and mainnet launch gates. Do not generate secrets.

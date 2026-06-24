@@ -1,0 +1,5 @@
+- blockchain-architect
+- zksync-zk-stack-engineer
+- chain-infra-ops
+- observability-sre
+- chain-security-reviewer

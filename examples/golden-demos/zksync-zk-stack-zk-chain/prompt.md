@@ -1,0 +1,1 @@
+Plan a ZKsync ZK Stack ZK Chain. Compare rollup and validium modes, include custom base token constraints, sequencer/server roles, prover topology, proof latency monitoring, L1 proof submission, bridge assumptions, hardware caveats, and dry-run validation steps.

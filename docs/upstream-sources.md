@@ -13,7 +13,7 @@ Use official docs as primary sources. Exact commands, supported versions, server
 
 ## Codex plugin validator reference
 
-- URL: file:///home/iljanemesis/.codex/skills/.system/plugin-creator/references/plugin-json-spec.md
+- URL: local-codex-plugin-creator://references/plugin-json-spec.md
 - Used for: Codex manifest and marketplace validation shape
 - Confidence: High
 - Notes: Local system skill reference. Treat as current for this Codex install.
@@ -157,3 +157,16 @@ Use official docs as primary sources. Exact commands, supported versions, server
 - Used for: Shared sequencing and confirmation-layer assumptions
 - Confidence: Medium
 - Notes: The docs distinguish Espresso from a full shared sequencer; verify integrations.
+
+## Structured Source Records
+
+| stack | topic | url | source_type | dependent_skills | volatility | last_checked | checked_by | notes |
+|---|---|---|---|---|---|---|---|---|
+| codex | plugin hooks | https://developers.openai.com/codex/hooks | official docs | plugin-creator, chain-security-reviewer | volatile | 2026-06-24 | Codex | Codex plugin-bundled hook discovery and output shape. |
+| codex | build plugins | https://developers.openai.com/codex/plugins/build | official docs | plugin-creator | volatile | 2026-06-24 | Codex | Codex manifest and marketplace packaging. |
+| claude | plugin hooks | https://code.claude.com/docs/en/hooks | official docs | plugin-creator, chain-security-reviewer | volatile | 2026-06-24 | Codex | Claude hooks/hookSpecificOutput compatibility. |
+| claude | plugins reference | https://code.claude.com/docs/en/plugins-reference | official docs | plugin-creator | volatile | 2026-06-24 | Codex | Claude plugin component defaults including hooks/hooks.json. |
+| op-stack | deployment tutorials | https://docs.optimism.io/ | official docs | op-stack-engineer | volatile | 2026-06-23 | Codex | Exact commands require current-doc verification. |
+| arbitrum-orbit | Orbit chains | https://docs.arbitrum.io/launch-arbitrum-chain/overview/introduction | official docs | arbitrum-orbit-engineer | volatile | 2026-06-23 | Codex | Chain SDK details change. |
+| polygon-cdk | CDK overview | https://docs.polygon.technology/chain-development/cdk/get-started/overview | official docs | polygon-cdk-engineer | volatile | 2026-06-23 | Codex | Modes and managed deployment details change. |
+| zksync | prover setup | https://docs.zksync.io/zk-stack/running/proving | official docs | zksync-zk-stack-engineer | volatile | 2026-06-23 | Codex | Hardware and prover stack are version-sensitive. |

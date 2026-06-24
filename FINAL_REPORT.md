@@ -1,85 +1,79 @@
-# Final Report
+# Final Report: v0.1 Internal Hardening
 
 ## Summary
 
-Implemented the initial repository structure for `evm-chain-engineering-pro` on 2026-06-23. The repository now contains dual Codex/Claude packaging, 14 focused skills, shared and per-skill references, safe helper scripts, infrastructure templates, docs, tests, and eval scenarios.
+Implemented v0.1 internal hardening for `evm-chain-engineering-pro` on top of the `v0.1.0-baseline` artifact. The hardening layer adds dogfood workflows, deterministic behavior evals, safety hooks, policy guard checks, upstream freshness checks, golden demos, subagent prompts, release documentation, and expanded tests.
 
-## Files Created
+## Files added
 
-- Root project metadata, docs, manifests, plugin files, skills, references, scripts, templates, examples, tests, and evals.
-- Codex marketplace: `.agents/plugins/marketplace.json`.
-- Claude marketplace: `.claude-plugin/marketplace.json`.
-- Plugin root: `plugins/evm-chain-engineering-pro`.
+- `scripts/policy_guard.py`, `scripts/run_behavior_evals.py`, `scripts/check_upstream_freshness.py`, `scripts/validate_hooks.py`, `scripts/release_check.py`, `scripts/check_docs_quality.py`.
+- `plugins/evm-chain-engineering-pro/hooks/hooks.json` and plugin-local policy guard wrapper.
+- `evals/skill-trigger-matrix.yaml` and `evals/README.md`.
+- `examples/golden-demos/` with six complete demos.
+- `agents/` with six subagent handoff prompts.
+- Hardening docs including preflight, inventory, dogfood, usage review, freshness policy, safety content review, and release checklist.
 
-## Skills Created
+## Files changed
 
-- `blockchain-architect`
-- `evm-l1-builder`
-- `op-stack-engineer`
-- `arbitrum-orbit-engineer`
-- `polygon-cdk-engineer`
-- `zksync-zk-stack-engineer`
-- `modular-rollup-engineer`
-- `data-availability-engineer`
-- `bridge-interop-engineer`
-- `chain-infra-ops`
-- `observability-sre`
-- `chain-security-reviewer`
-- `chain-launch-manager`
-- `explorer-indexer-engineer`
+- `README.md`, `CHANGELOG.md`, `Makefile`, `docs/release-process.md`, `docs/upstream-sources.md`, and tests.
 
-## Scripts Created
+## Validation results
 
-- `check_host_requirements.py`
-- `validate_genesis.py`
-- `validate_rollup_config.py`
-- `scan_secrets.py`
-- `render_docker_compose.py`
-- `render_systemd_units.py`
-- `render_prometheus_alerts.py`
-- `validate_firewall_policy.py`
-- `validate_chain_metadata.py`
-- `dry_run_deploy_plan.py`
-- `compare_stack_versions.py`
-- `generate_adr.py`
-- `backup_restore_check.py`
+- `python3 -m pytest`: PASS, 30 tests passed.
+- `make validate`: PASS, including pytest, 14 script help pages, strict secret scan, and Codex plugin validator.
+- `python3 scripts/run_behavior_evals.py --evals evals/skill-trigger-matrix.yaml --strict --markdown-report docs/behavior-eval-report.md`: PASS, 16 eval rows checked.
+- `python3 scripts/validate_hooks.py --plugin-root plugins/evm-chain-engineering-pro --strict`: PASS.
+- `python3 scripts/check_upstream_freshness.py --sources docs/upstream-sources.md --markdown-report docs/upstream-freshness-report.md --allow-offline`: PASS.
+- `python3 scripts/release_check.py --strict --markdown-report docs/release-readiness-report.md`: PASS, 12 checks passed.
+- `claude plugin validate plugins/evm-chain-engineering-pro --strict`: PASS with the local Claude CLI.
 
-## Templates Created
+Generated reports:
 
-Docker Compose, systemd, Terraform, Ansible, Kubernetes, Helm, Prometheus, Grafana, Loki, Nginx, HAProxy, chain registry, token lists, explorer, faucet, bridge, runbooks, ADR, and CI templates.
+- `docs/behavior-eval-report.md`
+- `docs/upstream-freshness-report.md`
+- `docs/release-readiness-report.md`
 
-## Upstream Sources Checked
+## Behavior eval coverage
 
-See `docs/upstream-sources.md`.
+`evals/skill-trigger-matrix.yaml` covers all 14 actual skills at least twice as expected or forbidden skills.
 
-## Safety Controls Implemented
+## Hook/safety coverage
 
-No real secrets, no deployment scripts, dry-run helpers, validators, secret scanning, production safety docs, security review triggers, and tests for unsafe patterns.
+Policy guard covers secret output, private material flags, mainnet-like broadcast, destructive filesystem, admin RPC exposure, unpinned images, curl-pipe-shell, unsafe env storage, production without dry-run, and chain ID collision omissions.
 
-## Known Limitations
+## Golden demos created
 
-Many stack-specific command details remain `VERIFY_CURRENT_DOCS` by design until a concrete stack version and target environment are selected.
+- OP Stack public testnet.
+- Arbitrum Orbit L3 AnyTrust.
+- Polygon CDK enterprise validium comparison.
+- ZKsync ZK Stack ZK Chain.
+- EVM L1 validator network.
+- Modular rollup stack selection.
 
-## Items Marked VERIFY_CURRENT_DOCS
+## Upstream freshness status
 
-All version-sensitive stack references and templates include verification notes.
+Structured source records were added to `docs/upstream-sources.md`. The offline freshness check passed and wrote `docs/upstream-freshness-report.md`; exact stack commands and version-sensitive facts remain governed by `VERIFY_CURRENT_DOCS`.
 
-## Test Results
+## Release readiness
 
-- `python3 -m pytest`: 14 passed.
-- `make validate`: passed.
-- Codex plugin validation: passed with `/home/iljanemesis/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py`.
-- Skill frontmatter validation: all 14 skills passed `quick_validate.py`.
-- Script help sweep: all 13 scripts returned help successfully.
-- Strict secret scan: passed with zero findings.
-- Claude plugin validation: passed with `claude plugin validate plugins/evm-chain-engineering-pro --strict`.
+Release readiness passed. Baseline tag `v0.1.0-baseline` was created before hardening. The internal hardening tag is `v0.1.0-internal`.
 
-## Recommended Next Work
+## Known limitations
 
-- Replace selected `VERIFY_CURRENT_DOCS` notes with version-pinned command references when a concrete target stack and environment are chosen.
-- Add richer fixtures for real OP Stack, Orbit, CDK, ZK Stack, and L1 configs.
-- Forward-test the skills in fresh agent sessions against the eval scenarios.
+No live deployment functionality is included. Hook coverage is a guardrail, not a full sandbox. The docs-quality check reports non-blocking warnings for existing production/mainnet language that should keep receiving human review. Exact stack commands and server requirements remain `VERIFY_CURRENT_DOCS` until a target stack version and environment are chosen.
 
-## Maintainer Notes
+## Next recommended milestone
 
-The v1 repository intentionally avoids MCP servers, hooks, apps, monitors, deploy scripts, signing, key generation, and mainnet execution paths. The helper scripts validate, render placeholders, scan, and produce dry-run outputs only.
+Forward-test the skills in fresh Codex/Claude sessions using the dogfood prompts and add saved responses for deterministic scoring.
+
+## Exact commands to verify
+
+```bash
+python3 -m pytest
+make validate
+python3 scripts/run_behavior_evals.py --evals evals/skill-trigger-matrix.yaml --strict --markdown-report docs/behavior-eval-report.md
+python3 scripts/validate_hooks.py --plugin-root plugins/evm-chain-engineering-pro --strict
+python3 scripts/check_upstream_freshness.py --sources docs/upstream-sources.md --markdown-report docs/upstream-freshness-report.md --allow-offline
+python3 scripts/release_check.py --strict --markdown-report docs/release-readiness-report.md
+claude plugin validate plugins/evm-chain-engineering-pro --strict
+```

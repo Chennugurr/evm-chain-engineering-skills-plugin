@@ -1,0 +1,1 @@
+Design a production-ish OP Stack public testnet. Include sequencer, op-node, execution client, batcher, proposer, challenger/validator considerations, RPC nodes, explorer, bridge UI/backend, faucet, monitoring, firewall rules, server sizing, secrets policy, upgrade/admin policy, validation commands, and launch gates. Do not deploy anything. Produce a dry-run plan only.
