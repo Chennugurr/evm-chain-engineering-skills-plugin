@@ -1,0 +1,63 @@
+stack_id: op-stack
+display_name: OP Stack
+status: supported-alpha
+chain_types:
+- l2
+- l3
+- optimistic-rollup
+execution:
+  evm: true
+  clients:
+  - op-geth
+  - op-reth
+settlement:
+  supported:
+  - ethereum
+  - ethereum-testnet
+  - custom-l1
+  - l2-parent
+  notes:
+  - Verify parent-chain and Superchain constraints against selected upstream release.
+data_availability:
+  supported:
+  - ethereum-calldata
+  - ethereum-blobs
+  - alt-da
+  notes:
+  - Alt-DA choices change trust assumptions and must be reviewed.
+proof_models:
+  supported:
+  - optimistic
+  notes:
+  - Fault proof and challenger assumptions are version-dependent.
+required_roles:
+- sequencer
+- execution-client
+- op-node
+- batcher
+- proposer
+- rpc-node
+- explorer
+- monitoring
+optional_roles:
+- challenger
+- archive-node
+- bridge-frontend
+- bridge-backend
+security_required:
+- admin-key-policy
+- l1-contract-upgrade-review
+- bridge-risk-review
+- sequencer-censorship-review
+- batcher-proposer-funding-policy
+- source-version-verification
+forbidden_defaults:
+- private-key-in-env
+- mnemonic-in-repo
+- public-admin-rpc
+- unpinned-docker-image
+- mainnet-broadcast-without-approval
+source_refs:
+- docs/upstream-sources.md#op-stack
+notes:
+- Planning profile only. Verify against current upstream docs before production.

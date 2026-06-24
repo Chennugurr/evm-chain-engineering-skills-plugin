@@ -1,0 +1,53 @@
+stack_id: dymension-rollapp
+display_name: Dymension RollApp
+status: experimental-alpha
+chain_types:
+- appchain
+- sovereign-rollup
+execution:
+  evm: partial
+  clients:
+  - rollapp-runtime
+settlement:
+  supported:
+  - dymension-hub
+  - custom-hub
+  notes:
+  - Hub, settlement, and operator assumptions must be explicit.
+data_availability:
+  supported:
+  - modular-da
+  - hub-configured-da
+  notes:
+  - DA mode depends on RollApp setup.
+proof_models:
+  supported:
+  - rollapp-operator-assumptions
+  notes:
+  - Fraud/proof details must be verified against current docs.
+required_roles:
+- sequencer-or-operator
+- full-node
+- rpc-node
+- explorer
+- monitoring
+optional_roles:
+- ibc-relayer
+- da-node
+- faucet
+security_required:
+- operator-risk-review
+- hub-risk-review
+- da-risk-review
+- ibc-risk-review
+- source-version-verification
+forbidden_defaults:
+- private-key-in-env
+- mnemonic-in-repo
+- public-admin-rpc
+- unpinned-docker-image
+- mainnet-broadcast-without-approval
+source_refs:
+- docs/upstream-sources.md#dymension
+notes:
+- Planning profile only. Verify against current upstream docs before production.

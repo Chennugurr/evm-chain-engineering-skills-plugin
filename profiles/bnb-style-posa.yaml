@@ -1,0 +1,53 @@
+stack_id: bnb-style-posa
+display_name: BNB-style PoSA EVM L1
+status: reference-alpha
+chain_types:
+- l1
+- appchain
+- public-testnet
+execution:
+  evm: true
+  clients:
+  - geth-derived-client
+settlement:
+  supported:
+  - native-l1
+  notes:
+  - PoSA-style validator governance must be verified against implementation.
+data_availability:
+  supported:
+  - native-chain
+  notes:
+  - DA depends on validator/full-node availability.
+proof_models:
+  supported:
+  - validator-consensus
+  notes:
+  - Staking, election, and slashing details are design-critical.
+required_roles:
+- validator
+- rpc-node
+- bootnode
+- explorer
+- monitoring
+- governance-operator
+optional_roles:
+- archive-node
+- faucet
+- bridge
+security_required:
+- validator-key-custody
+- staking-election-review
+- slashing-review
+- short-block-time-risk-review
+- governance-review
+forbidden_defaults:
+- private-key-in-env
+- mnemonic-in-repo
+- public-admin-rpc
+- unpinned-docker-image
+- mainnet-broadcast-without-approval
+source_refs:
+- docs/upstream-sources.md#bnb-style-posa
+notes:
+- Planning profile only. Verify against current upstream docs before production.

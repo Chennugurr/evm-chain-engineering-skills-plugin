@@ -1,0 +1,55 @@
+stack_id: zksync-zk-stack
+display_name: ZKsync ZK Stack
+status: supported-alpha
+chain_types:
+- l2
+- validium
+- zkrollup
+execution:
+  evm: true
+  clients:
+  - zksync-era-node
+settlement:
+  supported:
+  - ethereum
+  - elastic-chain
+  notes:
+  - Settlement and interoperability details are release-dependent.
+data_availability:
+  supported:
+  - ethereum
+  - validium-da
+  notes:
+  - Validium DA assumptions must be disclosed.
+proof_models:
+  supported:
+  - validity-proof
+  notes:
+  - Prover hardware and latency assumptions are version-dependent.
+required_roles:
+- sequencer
+- server
+- rpc-node
+- explorer
+- monitoring
+- prover-or-proof-service
+optional_roles:
+- gateway
+- validium-da-operator
+- archive-node
+security_required:
+- prover-risk-review
+- bridge-risk-review
+- admin-key-policy
+- proof-latency-review
+- source-version-verification
+forbidden_defaults:
+- private-key-in-env
+- mnemonic-in-repo
+- public-admin-rpc
+- unpinned-docker-image
+- mainnet-broadcast-without-approval
+source_refs:
+- docs/upstream-sources.md#zksync
+notes:
+- Planning profile only. Verify against current upstream docs before production.

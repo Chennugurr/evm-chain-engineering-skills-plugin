@@ -1,0 +1,53 @@
+stack_id: avalanche-l1-subnet-evm
+display_name: Avalanche L1/Subnet EVM
+status: reference-alpha
+chain_types:
+- l1
+- appchain
+- sidechain
+execution:
+  evm: true
+  clients:
+  - subnet-evm
+settlement:
+  supported:
+  - avalanche-primary-network
+  - native-l1
+  notes:
+  - Validator and permissioning model must be selected.
+data_availability:
+  supported:
+  - native-chain
+  notes:
+  - DA depends on validator and archival policy.
+proof_models:
+  supported:
+  - validator-consensus
+  notes:
+  - Precompile and permissioning choices change trust assumptions.
+required_roles:
+- validator
+- rpc-node
+- bootnode
+- explorer
+- monitoring
+optional_roles:
+- permissioned-validator-admin
+- archive-node
+- faucet
+security_required:
+- validator-key-custody
+- permissioning-review
+- precompile-review
+- custom-gas-token-review
+- rpc-security-review
+forbidden_defaults:
+- private-key-in-env
+- mnemonic-in-repo
+- public-admin-rpc
+- unpinned-docker-image
+- mainnet-broadcast-without-approval
+source_refs:
+- docs/upstream-sources.md#avalanche-l1-subnet-evm
+notes:
+- Planning profile only. Verify against current upstream docs before production.

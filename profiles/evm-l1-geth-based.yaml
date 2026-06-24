@@ -1,0 +1,55 @@
+stack_id: evm-l1-geth-based
+display_name: Ethereum-like Geth-based L1
+status: reference-alpha
+chain_types:
+- l1
+- appchain
+- private-testnet
+- public-testnet
+execution:
+  evm: true
+  clients:
+  - geth-compatible-execution-client
+settlement:
+  supported:
+  - native-l1
+  notes:
+  - Consensus model must be explicitly selected.
+data_availability:
+  supported:
+  - native-chain
+  notes:
+  - DA is provided by the L1 validator/full-node network.
+proof_models:
+  supported:
+  - consensus-finality
+  notes:
+  - Security derives from selected consensus and validator set.
+required_roles:
+- validator
+- execution-client
+- consensus-client
+- bootnode
+- rpc-node
+- explorer
+- monitoring
+optional_roles:
+- archive-node
+- faucet
+- bridge
+security_required:
+- chain-id-collision-check
+- genesis-review
+- validator-key-custody
+- fork-schedule-review
+- rpc-security-review
+forbidden_defaults:
+- private-key-in-env
+- mnemonic-in-repo
+- public-admin-rpc
+- unpinned-docker-image
+- mainnet-broadcast-without-approval
+source_refs:
+- docs/upstream-sources.md#ethereum-nodes-and-clients
+notes:
+- Planning profile only. Verify against current upstream docs before production.

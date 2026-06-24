@@ -1,0 +1,59 @@
+stack_id: polygon-cdk
+display_name: Polygon CDK
+status: supported-alpha
+chain_types:
+- l2
+- validium
+- zkrollup
+- sovereign-rollup
+execution:
+  evm: true
+  clients:
+  - op-geth
+  - op-reth
+settlement:
+  supported:
+  - ethereum
+  - agglayer-connected
+  - sovereign
+  notes:
+  - Agglayer and mode-specific settlement assumptions must be verified.
+data_availability:
+  supported:
+  - offchain-da
+  - dac
+  - ethereum
+  notes:
+  - Validium and sovereign modes have different DA risk profiles.
+proof_models:
+  supported:
+  - validity-proof
+  - sovereign-mode-varies
+  notes:
+  - Proof and aggregator roles depend on selected CDK release.
+required_roles:
+- sequencer
+- rpc-node
+- explorer
+- monitoring
+- bridge-or-interoperability-service
+optional_roles:
+- prover
+- aggregator
+- da-committee-member
+security_required:
+- agglayer-risk-review
+- da-committee-risk-review
+- bridge-risk-review
+- prover-risk-review
+- admin-key-policy
+forbidden_defaults:
+- private-key-in-env
+- mnemonic-in-repo
+- public-admin-rpc
+- unpinned-docker-image
+- mainnet-broadcast-without-approval
+source_refs:
+- docs/upstream-sources.md#polygon-cdk
+notes:
+- Planning profile only. Verify against current upstream docs before production.

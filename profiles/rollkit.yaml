@@ -1,0 +1,55 @@
+stack_id: rollkit
+display_name: Rollkit Modular Rollup
+status: experimental-alpha
+chain_types:
+- sovereign-rollup
+- appchain
+execution:
+  evm: partial
+  clients:
+  - evm-execution-layer-if-integrated
+settlement:
+  supported:
+  - sovereign
+  - custom-settlement
+  notes:
+  - Settlement choice is architecture-specific.
+data_availability:
+  supported:
+  - celestia
+  - avail
+  - eigenda
+  - custom-da
+  notes:
+  - DA integration determines recoverability and trust assumptions.
+proof_models:
+  supported:
+  - sovereign
+  - fraud-or-validity-if-integrated
+  notes:
+  - Proof model depends on integrated execution and settlement.
+required_roles:
+- sequencer-or-block-producer
+- full-node
+- rpc-node
+- monitoring
+optional_roles:
+- da-node
+- bridge
+- explorer
+security_required:
+- da-risk-review
+- settlement-risk-review
+- sequencer-review
+- bridge-risk-review
+- source-version-verification
+forbidden_defaults:
+- private-key-in-env
+- mnemonic-in-repo
+- public-admin-rpc
+- unpinned-docker-image
+- mainnet-broadcast-without-approval
+source_refs:
+- docs/upstream-sources.md#rollkit
+notes:
+- Planning profile only. Verify against current upstream docs before production.

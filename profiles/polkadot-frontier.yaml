@@ -1,0 +1,54 @@
+stack_id: polkadot-frontier
+display_name: Polkadot SDK Frontier EVM
+status: experimental-alpha
+chain_types:
+- l1
+- appchain
+- sidechain
+execution:
+  evm: partial
+  clients:
+  - frontier-runtime
+settlement:
+  supported:
+  - substrate-native
+  - relay-chain-dependent
+  notes:
+  - Parachain/appchain settlement assumptions must be explicit.
+data_availability:
+  supported:
+  - substrate-native
+  - relay-chain-dependent
+  notes:
+  - DA model depends on chain architecture.
+proof_models:
+  supported:
+  - runtime-consensus
+  notes:
+  - Runtime upgrade governance is a critical security surface.
+required_roles:
+- validator-or-collator
+- rpc-node
+- explorer
+- monitoring
+- runtime-upgrade-operator
+optional_roles:
+- archive-node
+- bridge
+- faucet
+security_required:
+- runtime-upgrade-review
+- pallet-review
+- precompile-review
+- validator-key-custody
+- rpc-security-review
+forbidden_defaults:
+- private-key-in-env
+- mnemonic-in-repo
+- public-admin-rpc
+- unpinned-docker-image
+- mainnet-broadcast-without-approval
+source_refs:
+- docs/upstream-sources.md#polkadot-frontier
+notes:
+- Planning profile only. Verify against current upstream docs before production.

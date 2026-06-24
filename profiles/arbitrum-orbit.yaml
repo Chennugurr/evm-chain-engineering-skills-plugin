@@ -1,0 +1,58 @@
+stack_id: arbitrum-orbit
+display_name: Arbitrum Orbit
+status: supported-alpha
+chain_types:
+- l2
+- l3
+- optimistic-rollup
+- anytrust
+execution:
+  evm: true
+  clients:
+  - nitro
+settlement:
+  supported:
+  - ethereum
+  - arbitrum-parent
+  - custom-parent-chain
+  notes:
+  - L3 parent-chain bridge and settlement assumptions must be explicit.
+data_availability:
+  supported:
+  - parent-chain
+  - anytrust-dac
+  notes:
+  - DAC member policy is security-critical.
+proof_models:
+  supported:
+  - optimistic
+  - anytrust
+  notes:
+  - AnyTrust reduces onchain DA cost but adds DAC trust assumptions.
+required_roles:
+- sequencer
+- validator-or-staker
+- batch-poster
+- rpc-node
+- explorer
+- monitoring
+optional_roles:
+- dac-member
+- feed-relay
+- archive-node
+security_required:
+- parent-chain-risk-review
+- dac-risk-review
+- bridge-risk-review
+- custom-gas-token-review
+- sequencer-censorship-review
+forbidden_defaults:
+- private-key-in-env
+- mnemonic-in-repo
+- public-admin-rpc
+- unpinned-docker-image
+- mainnet-broadcast-without-approval
+source_refs:
+- docs/upstream-sources.md#arbitrum
+notes:
+- Planning profile only. Verify against current upstream docs before production.

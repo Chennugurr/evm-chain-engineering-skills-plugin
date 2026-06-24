@@ -1,0 +1,52 @@
+stack_id: sovereign-sdk
+display_name: Sovereign SDK
+status: experimental-alpha
+chain_types:
+- sovereign-rollup
+- appchain
+execution:
+  evm: partial
+  clients:
+  - sovereign-sdk-runtime
+settlement:
+  supported:
+  - sovereign
+  - custom-settlement
+  notes:
+  - EVM support is not assumed unless explicitly integrated.
+data_availability:
+  supported:
+  - modular-da
+  - custom-da
+  notes:
+  - DA adapter choice is security-critical.
+proof_models:
+  supported:
+  - zk-or-modular-assumptions
+  notes:
+  - Proof configuration is version- and app-dependent.
+required_roles:
+- sequencer-or-prover
+- full-node
+- rpc-node
+- monitoring
+optional_roles:
+- da-node
+- bridge
+- explorer
+security_required:
+- proof-system-review
+- da-risk-review
+- runtime-review
+- bridge-risk-review
+- source-version-verification
+forbidden_defaults:
+- private-key-in-env
+- mnemonic-in-repo
+- public-admin-rpc
+- unpinned-docker-image
+- mainnet-broadcast-without-approval
+source_refs:
+- docs/upstream-sources.md#sovereign-sdk
+notes:
+- Planning profile only. Verify against current upstream docs before production.
