@@ -1,0 +1,13 @@
+{
+  "checked_at": null,
+  "findings": [],
+  "ok": true,
+  "script": "scripts/run_acceptance_suite.py",
+  "skipped": [],
+  "summary": {
+    "cases_checked": 6,
+    "findings": 0
+  },
+  "target": "acceptance/expected",
+  "version": "v0.2.0-alpha"
+}

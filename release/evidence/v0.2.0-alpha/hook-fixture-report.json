@@ -1,0 +1,13 @@
+{
+  "checked_at": null,
+  "findings": [],
+  "ok": true,
+  "script": "scripts/test_hook_fixtures.py",
+  "skipped": [],
+  "summary": {
+    "findings": 0,
+    "fixtures_checked": 6
+  },
+  "target": "tests/fixtures/hooks",
+  "version": "v0.2.0-alpha"
+}

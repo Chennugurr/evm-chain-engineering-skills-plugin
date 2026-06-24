@@ -1,0 +1,13 @@
+{
+  "checked_at": null,
+  "findings": [],
+  "ok": true,
+  "script": "scripts/validate_artifact_bundle.py",
+  "skipped": [],
+  "summary": {
+    "bundles_checked": 6,
+    "findings": 0
+  },
+  "target": "fixtures/artifact-bundles",
+  "version": "v0.2.0-alpha"
+}

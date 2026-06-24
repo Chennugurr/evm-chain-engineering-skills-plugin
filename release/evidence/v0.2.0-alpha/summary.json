@@ -1,0 +1,27 @@
+{
+  "checks": {
+    "acceptance": "pass",
+    "artifact-bundle": "pass",
+    "behavior-evals": "pass",
+    "clean-install": "pass",
+    "generated-config": "pass",
+    "hook-fixture": "pass",
+    "secret-scan": "pass",
+    "stack-profile": "pass",
+    "upstream-freshness": "pass"
+  },
+  "git": {
+    "branch": "v0.2-alpha-workflow-acceptance",
+    "commit": "HEAD",
+    "tag": "v0.2.0-alpha",
+    "working_tree_clean": false
+  },
+  "known_limitations": [
+    "No live chain deployment performed.",
+    "No mainnet approval workflow implemented.",
+    "Live Codex/Claude hook activation must be manually verified.",
+    "Tracked evidence uses reproducible git labels; final response records exact commit hash."
+  ],
+  "ok": true,
+  "version": "v0.2.0-alpha"
+}

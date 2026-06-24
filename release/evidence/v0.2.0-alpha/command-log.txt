@@ -1,0 +1,18 @@
+$ /usr/bin/python3 scripts/run_behavior_evals.py --evals evals/skill-trigger-matrix.yaml --strict --json
+exit_code=0
+$ /usr/bin/python3 scripts/validate_artifact_bundle.py --strict --all fixtures/artifact-bundles --json-out release/evidence/v0.2.0-alpha/artifact-bundle-report.json
+exit_code=0
+$ /usr/bin/python3 scripts/validate_stack_profiles.py --strict --all profiles --json-out release/evidence/v0.2.0-alpha/stack-profile-report.json
+exit_code=0
+$ /usr/bin/python3 scripts/validate_generated_configs.py --strict --all fixtures/artifact-bundles --json-out release/evidence/v0.2.0-alpha/generated-config-report.json
+exit_code=0
+$ /usr/bin/python3 scripts/run_acceptance_suite.py --strict --json-out release/evidence/v0.2.0-alpha/acceptance-report.json
+exit_code=0
+$ /usr/bin/python3 scripts/test_hook_fixtures.py --strict --json-out release/evidence/v0.2.0-alpha/hook-fixture-report.json
+exit_code=0
+$ /usr/bin/python3 scripts/check_upstream_freshness.py --sources docs/upstream-sources.md --markdown-report release/evidence/v0.2.0-alpha/upstream-freshness-report.md --allow-offline --json
+exit_code=0
+$ /usr/bin/python3 plugins/evm-chain-engineering-pro/scripts/scan_secrets.py --path . --strict --json
+exit_code=0
+$ /usr/bin/python3 scripts/clean_install_test.py --json-out release/evidence/v0.2.0-alpha/clean-install-report.json --skip-claude-plugin-validate
+exit_code=0

@@ -1,0 +1,65 @@
+{
+  "coverage": {
+    "arbitrum-orbit-engineer": {
+      "expected": 1,
+      "forbidden": 6
+    },
+    "blockchain-architect": {
+      "expected": 4,
+      "forbidden": 1
+    },
+    "bridge-interop-engineer": {
+      "expected": 4,
+      "forbidden": 1
+    },
+    "chain-infra-ops": {
+      "expected": 7,
+      "forbidden": 0
+    },
+    "chain-launch-manager": {
+      "expected": 3,
+      "forbidden": 1
+    },
+    "chain-security-reviewer": {
+      "expected": 8,
+      "forbidden": 0
+    },
+    "data-availability-engineer": {
+      "expected": 4,
+      "forbidden": 0
+    },
+    "evm-l1-builder": {
+      "expected": 1,
+      "forbidden": 5
+    },
+    "explorer-indexer-engineer": {
+      "expected": 3,
+      "forbidden": 3
+    },
+    "modular-rollup-engineer": {
+      "expected": 2,
+      "forbidden": 0
+    },
+    "observability-sre": {
+      "expected": 3,
+      "forbidden": 0
+    },
+    "op-stack-engineer": {
+      "expected": 1,
+      "forbidden": 8
+    },
+    "polygon-cdk-engineer": {
+      "expected": 1,
+      "forbidden": 4
+    },
+    "zksync-zk-stack-engineer": {
+      "expected": 1,
+      "forbidden": 4
+    }
+  },
+  "errors": [],
+  "scores": {},
+  "status": "pass",
+  "total_evals": 16,
+  "warnings": []
+}

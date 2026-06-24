@@ -1,0 +1,13 @@
+{
+  "checked_at": null,
+  "findings": [],
+  "ok": true,
+  "script": "scripts/validate_stack_profiles.py",
+  "skipped": [],
+  "summary": {
+    "findings": 0,
+    "profiles_checked": 12
+  },
+  "target": "profiles",
+  "version": "v0.2.0-alpha"
+}
