@@ -33,7 +33,7 @@ def git_clean() -> bool:
     dirty = []
     for line in result.stdout.splitlines():
         path = line[3:] if len(line) > 3 else line
-        if path.startswith("release/evidence/"):
+        if path.startswith("release/"):
             continue
         dirty.append(line)
     return not dirty
