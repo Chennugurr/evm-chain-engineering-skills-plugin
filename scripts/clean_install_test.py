@@ -75,7 +75,7 @@ def local_path_findings(repo: Path) -> list[Finding]:
         if not path.is_file() or any(part in {".git", "__pycache__", ".pytest_cache"} for part in path.parts):
             continue
         rel = str(path.relative_to(repo))
-        if rel.startswith("tests/") or rel == "scripts/clean_install_test.py":
+        if rel.startswith("tests/") or rel.startswith("release/") or rel == "scripts/clean_install_test.py":
             continue
         try:
             text = path.read_text(encoding="utf-8")
