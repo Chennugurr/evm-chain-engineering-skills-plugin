@@ -10,3 +10,6 @@
 - This plugin does not include MCP servers yet.
 - This plugin does not provide financial or investment advice.
 - This plugin does not remove the need for human architecture, security, and legal review.
+- v0.3 bootstrap validation does not prove live Codex or Claude behavior by itself.
+- `v0.3.0-beta` is not release-ready until strict transcript-backed validation passes.
+- Pending hook observations are accepted only in bootstrap mode.

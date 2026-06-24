@@ -17,6 +17,22 @@ python3 scripts/release_check.py --strict --markdown-report docs/release-readine
 
 Use `docs/dogfood-plan.md` in Codex and Claude Code. Record results in `docs/usage-review.md` and update evals for false positives or false negatives.
 
+## v0.3 Live Evidence
+
+Run bootstrap validation while the harness is being prepared:
+
+```bash
+make validate-v03-bootstrap
+```
+
+Run strict validation only after real Codex and Claude live-run packages, transcript metadata, and hook observations exist:
+
+```bash
+make validate-v03
+```
+
+Do not create `v0.3.0-beta` unless strict validation passes. Bootstrap evidence must report release readiness as false.
+
 ## Upstream Freshness
 
 Update `docs/upstream-sources.md` structured records with last checked dates, volatility, dependent skills, and notes. Run the freshness checker offline by default; use online checks only as an explicit release review step.

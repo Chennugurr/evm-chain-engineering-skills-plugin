@@ -88,3 +88,21 @@ python3 scripts/validate_artifact_bundle.py --strict --path generated/op-stack-p
 ```
 
 The layer remains planning-only: no deployment, no real secrets, no cloud/provider calls, no MCP servers, and no production certification. See `KNOWN_LIMITATIONS.md`.
+
+## v0.3.0-beta Live Agent QA Harness
+
+v0.3 adds the evidence harness for live Codex and Claude dogfood: prompts, expected contracts, transcript schemas, live-run package validation, hook observation checks, skill routing scorecards, known-bad output checks, and release evidence.
+
+Bootstrap mode validates the harness without real live transcripts:
+
+```bash
+make validate-v03-bootstrap
+```
+
+Strict mode is intentionally blocked until real live evidence is captured:
+
+```bash
+make validate-v03
+```
+
+Do not tag `v0.3.0-beta` until strict validation passes with real Codex and Claude transcripts, hook observations, validated generated artifact bundles, and release evidence.

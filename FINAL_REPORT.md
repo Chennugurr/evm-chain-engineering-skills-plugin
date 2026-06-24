@@ -1,42 +1,44 @@
-# Final Report: v0.2.0-alpha Workflow Acceptance Layer
+# Final Report: v0.3.0-beta Live Agent QA Harness
 
 ## Summary
 
-Implemented the v0.2.0-alpha workflow acceptance layer on branch `v0.2-alpha-workflow-acceptance`. The release adds machine-checkable artifact bundle schemas, stack profiles, safe artifact renderers, validated fixture bundles, generated config validation, workflow acceptance cases, hook fixture tests, clean-install validation, release evidence, command prompts, internal adoption/admin docs, known limitations, and new-stack contribution templates.
+Implemented the v0.3.0-beta bootstrap harness on branch `v0.3-beta-live-agent-qa`. The release adds live dogfood prompts, expected behavior contracts, transcript and live-run schemas, validators, hook observation checks, skill routing scorecards, known-bad output checks, live-run package templates, platform compatibility docs, and release evidence support.
+
+This is not a strict v0.3 release yet. Real Codex and Claude transcripts, live hook observations, and strict acceptance evidence remain pending.
 
 ## Files Added or Changed
 
-- Added root contracts under `schemas/`, `profiles/`, `fixtures/artifact-bundles/`, `acceptance/`, `commands/`, `dogfood/`, `templates/`, `validation/`, and `release/evidence/v0.2.0-alpha/`.
-- Added v0.2 root scripts for artifact validation/rendering, profile validation, generated config validation, acceptance, hook fixtures, clean install, and release evidence.
-- Updated `README.md`, `CHANGELOG.md`, `Makefile`, `.gitignore`, and release/path hygiene checks.
+- Added v0.3 dogfood structure under `dogfood/`.
+- Added v0.3 root scripts for prompt linting, transcript validation, live-run package validation, live acceptance, skill routing, hook observations, subagent dogfood, fixture comparison, known-bad output detection, live-run package creation, and platform matrix updates.
+- Updated `Makefile`, `README.md`, `CHANGELOG.md`, `KNOWN_LIMITATIONS.md`, `docs/release-process.md`, and release evidence generation.
+- Added v0.3 docs for live dogfood, hook verification, transcript capture, platform compatibility, release planning, and operator workflow.
 
 ## Validation Results
 
-- `python3 -m pytest`: PASS, 48 tests passed.
-- `make validate`: PASS.
-- `python3 scripts/validate_stack_profiles.py --strict --all profiles`: PASS, 12 profiles checked.
-- `python3 scripts/validate_artifact_bundle.py --strict --all fixtures/artifact-bundles`: PASS, 6 bundles checked.
-- `python3 scripts/validate_generated_configs.py --strict --all fixtures/artifact-bundles`: PASS, 6 bundles checked.
-- `python3 scripts/run_acceptance_suite.py --strict`: PASS, 6 cases checked.
-- `python3 scripts/test_hook_fixtures.py --strict`: PASS, 6 fixtures checked.
-- `python3 scripts/build_release_evidence.py --version v0.2.0-alpha --strict`: PASS.
-- `python3 scripts/clean_install_test.py`: PASS, 12 commands checked.
-- `make validate-v02`: PASS.
-- `claude plugin validate plugins/evm-chain-engineering-pro --strict`: PASS.
-- Strict secret scan: PASS, zero findings.
-- New script `--help` checks: PASS.
+Pending final run:
+
+- `python3 -m pytest`
+- `make validate`
+- `make validate-v02`
+- `make validate-v03-bootstrap`
+- `make validate-v03 || true`
+
+Expected before live evidence:
+
+- Bootstrap validation: PASS.
+- Strict validation: FAIL for missing live Codex/Claude evidence and pending hook observations only.
 
 ## Git
 
-- Branch: `v0.2-alpha-workflow-acceptance`
-- Phase commits made for schemas/validators, profiles, generators/fixtures, generated config validation, acceptance, hook fixtures, clean install, release evidence tooling, docs/Makefile, evidence, and final reporting.
-- Tag: `v0.2.0-alpha` after final validation.
-- Push/publish/deploy: not performed.
+- Branch: `v0.3-beta-live-agent-qa`
+- Starting tag: `v0.2.0-alpha`
+- v0.3 tag: not created
+- Push/publish/deploy: not performed
 
 ## Known Limitations
 
-No live chain deployment, no real secrets, no MCP servers, no mainnet approval marker, no bridge certification, and no protocol audit replacement. Live Codex/Claude dogfood and platform hook activation are deferred to v0.3.0-beta. Release evidence uses reproducible git labels; the final response records the exact final commit hash and tag state.
+No live chain deployment, no real secrets, no MCP servers, no mainnet approval marker, no fabricated transcripts, no fabricated hook observations, and no strict v0.3 release claim.
 
 ## Next Recommended Milestone
 
-v0.3.0-beta: live agent dogfood, live platform hook verification, and transcript-backed workflow QA.
+Capture real Codex and Claude live-run packages, validate strict mode, then create `v0.3.0-beta` only if strict validation passes.

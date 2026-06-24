@@ -1,5 +1,30 @@
 # Changelog
 
+## v0.3.0-beta bootstrap harness
+
+Added:
+- live dogfood prompts and expected behavior contracts
+- transcript, live-run, hook observation, acceptance, and skill routing schemas
+- bootstrap and strict validators for live evidence
+- skill routing scorecard generation
+- known-bad output detection
+- live-run package templates
+- v0.3 release evidence support
+- live dogfood, hook verification, transcript capture, compatibility, and operator docs
+
+Changed:
+- Makefile includes `validate-v03-bootstrap` and `validate-v03`
+- release evidence distinguishes harness validation from strict release readiness
+
+Security:
+- strict mode rejects missing live transcripts, pending hook observations, unsafe outputs, and unvalidated live artifacts
+- bootstrap mode records live evidence as pending and release readiness as false
+
+Limitations:
+- no live evidence is fabricated
+- no `v0.3.0-beta` tag is created until strict live validation passes
+- no push, publish, deploy, real secrets, MCP servers, or mainnet approval marker
+
 ## v0.2.0-alpha
 
 Added:
