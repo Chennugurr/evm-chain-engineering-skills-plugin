@@ -4,6 +4,29 @@ Retrieval date: 2026-06-23
 
 Use official docs as primary sources. Exact commands, supported versions, server sizing, and deployment steps remain version-sensitive and should be marked `VERIFY_CURRENT_DOCS` unless freshly verified.
 
+## v0.3 strict live evidence doc refresh
+
+Retrieval date: 2026-06-25
+
+The v0.3 strict live evidence pass refreshed current platform docs before making plugin, hook, skill, or subagent claims.
+
+| platform | topic | url | source_type | use | confidence | unstable_details |
+|---|---|---|---|---|---|---|
+| codex | plugin overview | https://developers.openai.com/codex/plugins | official docs | Plugin install/use surface and marketplace expectations | High | UI and CLI install flows can change. |
+| codex | build plugins | https://developers.openai.com/codex/plugins/build | official docs and fetched Codex manual | Plugin packaging, marketplace shape, bundled hook behavior | High | Local validator behavior remains the final compatibility check. |
+| codex | hooks | https://developers.openai.com/codex/hooks | official docs and fetched Codex manual | Hook discovery, trust review, event names, command hook limits | High | Hook trust and supported handler types are active platform behavior and must be live-tested. |
+| codex | skills | https://developers.openai.com/codex/skills | official docs and fetched Codex manual | Skill package behavior and activation evidence expectations | High | Automatic activation telemetry can vary by surface. |
+| codex | subagents | https://developers.openai.com/codex/subagents | official docs and fetched Codex manual | Subagent availability and evidence expectations | High | UI/CLI visibility and non-interactive behavior can differ. |
+| codex | config reference | https://developers.openai.com/codex/config-reference | official docs and fetched Codex manual | Config and local runtime compatibility | High | Config keys evolve with CLI versions. |
+| codex | advanced config | https://developers.openai.com/codex/config-advanced | official docs and fetched Codex manual | Hook and runtime configuration details | High | Advanced behavior is version-sensitive. |
+| claude | plugins | https://code.claude.com/docs/en/plugins | official docs | Plugin packaging and live session install/use surface | High | CLI plugin loading and marketplace flows can change. |
+| claude | plugins reference | https://code.claude.com/docs/en/plugins-reference | official docs | Manifest and plugin component compatibility | High | Strict validator remains the local compatibility check. |
+| claude | hooks reference | https://code.claude.com/docs/en/hooks | official docs | Hook event schema and structured outputs | High | Event coverage and permission behavior can change. |
+| claude | hooks guide | https://code.claude.com/docs/en/hooks-guide | official docs | Hook setup, `/hooks` visibility, limitations, and troubleshooting | High | Interactive hook browser behavior needs live evidence. |
+| claude | skills | https://code.claude.com/docs/en/skills | official docs | Skill behavior in Claude Code | High | Skill invocation UI and telemetry can vary by version. |
+| claude | subagents | https://code.claude.com/docs/en/sub-agents | official docs | Subagent behavior and platform limitations | High | Subagent use must be evidenced, not inferred silently. |
+| claude | settings | https://code.claude.com/docs/en/settings | official docs | Settings and hook configuration locations | High | User/project/local setting precedence can change. |
+
 ## Codex manual - Agent Skills
 
 - URL: https://developers.openai.com/codex/codex-manual.md

@@ -11,8 +11,8 @@
     "upstream-freshness": "pass"
   },
   "git": {
-    "branch": "v0.3-beta-live-agent-qa",
-    "commit": "3c39320",
+    "branch": "v0.3-beta-strict-live-evidence",
+    "commit": "150557b",
     "tag": "v0.2.0-alpha",
     "working_tree_clean": false
   },

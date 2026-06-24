@@ -20,8 +20,8 @@
       "subagent-dogfood": "pass"
     },
     "git": {
-      "branch": "v0.3-beta-live-agent-qa",
-      "commit": "3c39320",
+      "branch": "v0.3-beta-strict-live-evidence",
+      "commit": "150557b",
       "tag": "not created",
       "working_tree_clean": false
     },

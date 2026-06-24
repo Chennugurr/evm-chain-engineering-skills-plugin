@@ -2,8 +2,8 @@
 
 - Version: v0.3.0-beta
 - Mode: bootstrap
-- Git branch: v0.3-beta-live-agent-qa
-- Git commit: 3c39320
+- Git branch: v0.3-beta-strict-live-evidence
+- Git commit: 150557b
 - Git tag status: not created
 - Validation summary: PASS
 - Release ready: false
