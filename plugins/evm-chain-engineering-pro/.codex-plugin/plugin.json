@@ -1,0 +1,42 @@
+{
+  "name": "evm-chain-engineering-pro",
+  "version": "0.1.0",
+  "description": "Blockchain engineering toolkit for EVM L1s, rollups, bridges, operations, and launch safety.",
+  "author": {
+    "name": "iljanemesis",
+    "email": "user@example.com"
+  },
+  "homepage": "https://example.com/evm-chain-engineering-pro",
+  "repository": "https://example.com/iljanemesis/evm-chain-engineering-plugin",
+  "license": "MIT",
+  "keywords": [
+    "evm",
+    "rollups",
+    "blockchain",
+    "op-stack",
+    "arbitrum",
+    "polygon-cdk",
+    "zksync"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "EVM Chain Engineering Pro",
+    "shortDescription": "Design and operate EVM chains safely",
+    "longDescription": "A production-minded agent toolkit for architecture, infrastructure, security review, and operations across EVM L1s, L2s, L3s, rollups, bridges, explorers, and launch workflows.",
+    "developerName": "iljanemesis",
+    "category": "Development",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://example.com/evm-chain-engineering-pro",
+    "privacyPolicyURL": "https://example.com/privacy",
+    "termsOfServiceURL": "https://example.com/terms",
+    "brandColor": "#2563EB",
+    "defaultPrompt": [
+      "Design an EVM chain architecture decision record.",
+      "Review my rollup launch plan for safety gaps.",
+      "Generate a dry-run infrastructure plan."
+    ]
+  }
+}

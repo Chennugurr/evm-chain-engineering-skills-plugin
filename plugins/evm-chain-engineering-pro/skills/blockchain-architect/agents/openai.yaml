@@ -1,0 +1,7 @@
+interface:
+  display_name: "Blockchain Architect"
+  short_description: "Architecture decisions for EVM chains"
+  brand_color: "#2563EB"
+  default_prompt: "Use $blockchain-architect to produce a safe chain engineering plan."
+policy:
+  allow_implicit_invocation: true

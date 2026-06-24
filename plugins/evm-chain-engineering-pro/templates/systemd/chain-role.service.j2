@@ -1,0 +1,22 @@
+[Unit]
+Description={{ chain_name }} {{ role }} service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User={{ service_user }}
+Group={{ service_user }}
+WorkingDirectory=/opt/{{ chain_name }}/{{ role }}
+EnvironmentFile=/etc/{{ chain_name }}/{{ role }}.env
+ExecStart=/usr/local/bin/{{ chain_name }}-{{ role }} --config /etc/{{ chain_name }}/{{ role }}.toml
+Restart=always
+RestartSec=5
+LimitNOFILE=1048576
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/{{ chain_name }}/{{ role }} /var/log/{{ chain_name }}
+
+[Install]
+WantedBy=multi-user.target

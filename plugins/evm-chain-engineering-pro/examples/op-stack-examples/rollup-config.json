@@ -1,0 +1,8 @@
+{
+  "stack": "op-stack",
+  "parentChainId": 11155111,
+  "daMode": "ethereum-blobs",
+  "batcherAddress": "0x1111111111111111111111111111111111111111",
+  "proposerAddress": "0x2222222222222222222222222222222222222222",
+  "sequencerAddress": "0x3333333333333333333333333333333333333333"
+}

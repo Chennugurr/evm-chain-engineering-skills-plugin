@@ -1,0 +1,7 @@
+interface:
+  display_name: "Modular Rollup Engineer"
+  short_description: "Rollkit, Sovereign SDK, Dymension"
+  brand_color: "#2563EB"
+  default_prompt: "Use $modular-rollup-engineer to produce a safe chain engineering plan."
+policy:
+  allow_implicit_invocation: true

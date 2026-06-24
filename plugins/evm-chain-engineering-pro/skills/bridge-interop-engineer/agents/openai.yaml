@@ -1,0 +1,7 @@
+interface:
+  display_name: "Bridge and Interoperability Engineer"
+  short_description: "Bridge, relayer, and token mapping design"
+  brand_color: "#2563EB"
+  default_prompt: "Use $bridge-interop-engineer to produce a safe chain engineering plan."
+policy:
+  allow_implicit_invocation: true

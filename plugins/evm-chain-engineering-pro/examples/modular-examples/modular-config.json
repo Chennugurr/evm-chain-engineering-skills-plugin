@@ -1,0 +1,5 @@
+{
+  "stack": "rollkit",
+  "settlement": "sovereign",
+  "daMode": "celestia"
+}

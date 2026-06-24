@@ -1,0 +1,20 @@
+{
+  "name": "evm-chain-engineering-pro",
+  "displayName": "EVM Chain Engineering Pro",
+  "version": "0.1.0",
+  "description": "Blockchain engineering toolkit covering EVM L1s, rollups, bridges, operations, and launch safety.",
+  "author": {
+    "name": "iljanemesis",
+    "email": "user@example.com"
+  },
+  "homepage": "https://example.com/evm-chain-engineering-pro",
+  "repository": "https://example.com/iljanemesis/evm-chain-engineering-plugin",
+  "license": "MIT",
+  "keywords": [
+    "evm",
+    "rollups",
+    "blockchain",
+    "infrastructure"
+  ],
+  "skills": "./skills/"
+}

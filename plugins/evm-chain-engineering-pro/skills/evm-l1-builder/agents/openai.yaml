@@ -1,0 +1,7 @@
+interface:
+  display_name: "EVM L1 Builder"
+  short_description: "EVM L1 genesis and validator design"
+  brand_color: "#2563EB"
+  default_prompt: "Use $evm-l1-builder to produce a safe chain engineering plan."
+policy:
+  allow_implicit_invocation: true

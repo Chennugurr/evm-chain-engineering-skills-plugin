@@ -1,0 +1,20 @@
+{
+  "name": "evm-chain-engineering",
+  "owner": {
+    "name": "iljanemesis",
+    "email": "user@example.com"
+  },
+  "plugins": [
+    {
+      "name": "evm-chain-engineering-pro",
+      "source": "./plugins/evm-chain-engineering-pro",
+      "description": "Blockchain engineering skills for EVM chains, rollups, infrastructure, and safety review.",
+      "version": "0.1.0",
+      "author": {
+        "name": "iljanemesis",
+        "email": "user@example.com"
+      },
+      "category": "development"
+    }
+  ]
+}

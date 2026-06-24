@@ -1,0 +1,6 @@
+min_cpu: 8
+min_ram_mb: 65536
+min_disk_gb: 1000
+required_tools:
+  - docker
+  - git

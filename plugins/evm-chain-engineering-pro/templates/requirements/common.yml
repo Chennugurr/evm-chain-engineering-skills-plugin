@@ -1,0 +1,8 @@
+min_cpu: 2
+min_ram_mb: 4096
+min_disk_gb: 50
+required_tools:
+  - python3
+  - git
+  - curl
+  - openssl

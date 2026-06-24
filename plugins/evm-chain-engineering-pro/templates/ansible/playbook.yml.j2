@@ -1,0 +1,8 @@
+- name: Prepare {{ chain_name }} hosts
+  hosts: chain_nodes
+  become: true
+  tasks:
+    - name: Ensure service user exists
+      ansible.builtin.user:
+        name: "{{ service_user }}"
+        system: true

@@ -1,0 +1,13 @@
+{
+  "config": {
+    "chainId": 123456,
+    "homesteadBlock": 0,
+    "londonBlock": 0
+  },
+  "gasLimit": "0x1c9c380",
+  "alloc": {
+    "0x1111111111111111111111111111111111111111": {
+      "balance": "0x3635C9ADC5DEA00000"
+    }
+  }
+}

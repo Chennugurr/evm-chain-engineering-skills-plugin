@@ -1,0 +1,7 @@
+interface:
+  display_name: "Polygon CDK Engineer"
+  short_description: "Polygon CDK and Agglayer chains"
+  brand_color: "#2563EB"
+  default_prompt: "Use $polygon-cdk-engineer to produce a safe chain engineering plan."
+policy:
+  allow_implicit_invocation: true

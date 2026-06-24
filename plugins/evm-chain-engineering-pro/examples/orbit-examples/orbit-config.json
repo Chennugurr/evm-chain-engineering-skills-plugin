@@ -1,0 +1,7 @@
+{
+  "stack": "orbit",
+  "parentChainId": 42161,
+  "daMode": "anytrust",
+  "validatorAddress": "0x1111111111111111111111111111111111111111",
+  "sequencerAddress": "0x2222222222222222222222222222222222222222"
+}

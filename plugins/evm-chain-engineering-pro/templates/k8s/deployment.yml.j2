@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ chain_name }}-{{ role }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ chain_name }}-{{ role }}
+  template:
+    metadata:
+      labels:
+        app: {{ chain_name }}-{{ role }}
+    spec:
+      containers:
+        - name: {{ role }}
+          image: ghcr.io/example/{{ stack }}-{{ role }}:{{ image_tag }}
+          ports:
+            - containerPort: 8545

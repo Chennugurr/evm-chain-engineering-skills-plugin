@@ -1,0 +1,6 @@
+{
+  "stack": "polygon-cdk",
+  "mode": "validium",
+  "daMode": "private-da",
+  "sequencerAddress": "0x1111111111111111111111111111111111111111"
+}

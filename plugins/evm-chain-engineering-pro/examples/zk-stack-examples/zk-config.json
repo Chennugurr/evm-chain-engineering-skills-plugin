@@ -1,0 +1,6 @@
+{
+  "stack": "zk-stack",
+  "baseToken": "ETH",
+  "proverMode": "dummy-executor",
+  "sequencerAddress": "0x1111111111111111111111111111111111111111"
+}

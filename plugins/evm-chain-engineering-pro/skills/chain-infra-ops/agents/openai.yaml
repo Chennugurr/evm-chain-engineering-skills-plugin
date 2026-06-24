@@ -1,0 +1,7 @@
+interface:
+  display_name: "Chain Infrastructure Operations"
+  short_description: "Server topology, hosts, and ops plans"
+  brand_color: "#2563EB"
+  default_prompt: "Use $chain-infra-ops to produce a safe chain engineering plan."
+policy:
+  allow_implicit_invocation: true

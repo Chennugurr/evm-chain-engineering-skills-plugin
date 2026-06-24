@@ -1,0 +1,7 @@
+interface:
+  display_name: "Chain Launch Manager"
+  short_description: "Testnet and mainnet launch orchestration"
+  brand_color: "#2563EB"
+  default_prompt: "Use $chain-launch-manager to produce a safe chain engineering plan."
+policy:
+  allow_implicit_invocation: true

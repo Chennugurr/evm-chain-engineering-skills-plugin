@@ -1,0 +1,20 @@
+{
+  "name": "evm-chain-engineering",
+  "interface": {
+    "displayName": "EVM Chain Engineering"
+  },
+  "plugins": [
+    {
+      "name": "evm-chain-engineering-pro",
+      "source": {
+        "source": "local",
+        "path": "./plugins/evm-chain-engineering-pro"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Development"
+    }
+  ]
+}

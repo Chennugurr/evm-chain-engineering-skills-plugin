@@ -1,0 +1,7 @@
+interface:
+  display_name: "OP Stack Engineer"
+  short_description: "OP Stack rollup deployment and ops"
+  brand_color: "#2563EB"
+  default_prompt: "Use $op-stack-engineer to produce a safe chain engineering plan."
+policy:
+  allow_implicit_invocation: true

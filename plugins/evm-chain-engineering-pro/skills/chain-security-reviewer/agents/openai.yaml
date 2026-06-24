@@ -1,0 +1,7 @@
+interface:
+  display_name: "Chain Security Reviewer"
+  short_description: "Threat model and launch blockers"
+  brand_color: "#2563EB"
+  default_prompt: "Use $chain-security-reviewer to produce a safe chain engineering plan."
+policy:
+  allow_implicit_invocation: true

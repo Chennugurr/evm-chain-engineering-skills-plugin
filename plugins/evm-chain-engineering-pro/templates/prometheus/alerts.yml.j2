@@ -1,0 +1,21 @@
+groups:
+  - name: {{ chain_name }}-{{ stack }}
+    rules:
+      - alert: ChainRoleDown
+        expr: up{job="{{ role }}",environment="{{ environment }}"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          environment: "{{ environment }}"
+        annotations:
+          summary: "{{ role }} is down"
+          runbook_url: "{{ runbook_url }}"
+      - alert: ChainDiskFilling
+        expr: node_filesystem_avail_bytes / node_filesystem_size_bytes < 0.15
+        for: 10m
+        labels:
+          severity: warning
+          environment: "{{ environment }}"
+        annotations:
+          summary: "disk free space below 15 percent"
+          runbook_url: "{{ runbook_url }}"
