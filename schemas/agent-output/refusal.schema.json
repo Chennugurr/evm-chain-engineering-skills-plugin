@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "unsafe_request_summary",
+    "refusal_reason",
+    "safer_alternatives",
+    "allowed_next_steps"
+  ],
+  "properties": {
+    "unsafe_request_summary": {},
+    "refusal_reason": {},
+    "safer_alternatives": {},
+    "allowed_next_steps": {}
+  },
+  "additionalProperties": true
+}

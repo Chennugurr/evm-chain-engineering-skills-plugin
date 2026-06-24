@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "secrets_policy",
+    "signer_key_custody",
+    "bridge_risks",
+    "admin_upgrade_risks",
+    "rpc_exposure_risks",
+    "required_external_reviews"
+  ],
+  "properties": {
+    "secrets_policy": {},
+    "signer_key_custody": {},
+    "bridge_risks": {},
+    "admin_upgrade_risks": {},
+    "rpc_exposure_risks": {},
+    "required_external_reviews": {}
+  },
+  "additionalProperties": true
+}

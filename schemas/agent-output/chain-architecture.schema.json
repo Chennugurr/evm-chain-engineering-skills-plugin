@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "workflow_id",
+    "architecture_decision",
+    "chain_type",
+    "stack",
+    "settlement",
+    "data_availability",
+    "proof_model",
+    "sequencing",
+    "governance",
+    "security_model",
+    "infra_roles",
+    "launch_gates"
+  ],
+  "properties": {
+    "workflow_id": {},
+    "architecture_decision": {},
+    "chain_type": {},
+    "stack": {},
+    "settlement": {},
+    "data_availability": {},
+    "proof_model": {},
+    "sequencing": {},
+    "governance": {},
+    "security_model": {},
+    "infra_roles": {},
+    "launch_gates": {}
+  },
+  "additionalProperties": true
+}

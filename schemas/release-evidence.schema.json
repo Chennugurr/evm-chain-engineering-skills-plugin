@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "version",
+    "ok",
+    "git",
+    "checks",
+    "known_limitations"
+  ],
+  "properties": {
+    "version": {},
+    "ok": {},
+    "git": {},
+    "checks": {},
+    "known_limitations": {}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "node_roles",
+    "server_topology",
+    "network_boundaries",
+    "firewall_policy",
+    "storage_policy",
+    "runtime_approach",
+    "observability",
+    "backup_restore",
+    "upgrade_process",
+    "incident_response"
+  ],
+  "properties": {
+    "node_roles": {},
+    "server_topology": {},
+    "network_boundaries": {},
+    "firewall_policy": {},
+    "storage_policy": {},
+    "runtime_approach": {},
+    "observability": {},
+    "backup_restore": {},
+    "upgrade_process": {},
+    "incident_response": {}
+  },
+  "additionalProperties": true
+}

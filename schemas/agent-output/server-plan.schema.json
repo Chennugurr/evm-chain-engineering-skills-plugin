@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "environment",
+    "roles",
+    "host_groups",
+    "networking",
+    "firewall",
+    "storage",
+    "runtime",
+    "observability",
+    "backup_restore",
+    "security_controls",
+    "validation_commands"
+  ],
+  "properties": {
+    "environment": {},
+    "roles": {},
+    "host_groups": {},
+    "networking": {},
+    "firewall": {},
+    "storage": {},
+    "runtime": {},
+    "observability": {},
+    "backup_restore": {},
+    "security_controls": {},
+    "validation_commands": {}
+  },
+  "additionalProperties": true
+}

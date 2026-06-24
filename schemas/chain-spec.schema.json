@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "workflow_id",
+    "chain_name",
+    "chain_type",
+    "stack_id",
+    "environment",
+    "settlement",
+    "data_availability",
+    "proof_model",
+    "execution",
+    "sequencing",
+    "gas_token",
+    "governance",
+    "node_roles",
+    "security",
+    "operational_limits",
+    "human_approval_required"
+  ],
+  "properties": {
+    "workflow_id": {
+      "type": "string"
+    },
+    "chain_type": {
+      "enum": [
+        "l1",
+        "l2",
+        "l3",
+        "appchain",
+        "sidechain",
+        "sovereign-rollup",
+        "validium",
+        "zkrollup",
+        "optimistic-rollup",
+        "private-testnet",
+        "public-testnet"
+      ]
+    },
+    "environment": {
+      "enum": [
+        "local-devnet",
+        "shared-devnet",
+        "private-testnet",
+        "public-testnet",
+        "staging",
+        "production",
+        "mainnet"
+      ]
+    },
+    "human_approval_required": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": true
+}

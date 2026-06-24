@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "scope",
+    "findings",
+    "critical_risks",
+    "required_mitigations",
+    "forbidden_actions_detected",
+    "approval_required",
+    "limitations"
+  ],
+  "properties": {
+    "scope": {},
+    "findings": {},
+    "critical_risks": {},
+    "required_mitigations": {},
+    "forbidden_actions_detected": {},
+    "approval_required": {},
+    "limitations": {}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "request_summary",
+    "recommended_options",
+    "rejected_options",
+    "assumptions",
+    "risks",
+    "next_questions",
+    "required_human_decisions"
+  ],
+  "properties": {
+    "request_summary": {},
+    "recommended_options": {},
+    "rejected_options": {},
+    "assumptions": {},
+    "risks": {},
+    "next_questions": {},
+    "required_human_decisions": {}
+  },
+  "additionalProperties": true
+}
