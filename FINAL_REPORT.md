@@ -20,6 +20,10 @@ This is not a strict v0.3 release yet. One Codex smoke run is captured and valid
 
 Latest command results recorded during the strict evidence pass:
 
+- `python3 -m pytest`: PASS, 55 tests passed.
+- `make validate`: PASS.
+- `make validate-v03-bootstrap`: PASS.
+- `make validate-v03 || true`: expected strict failure at `validate_dogfood_transcripts.py --strict`.
 - `claude plugin validate plugins/evm-chain-engineering-pro --strict`: PASS.
 - Codex smoke bundle validation: PASS for artifact validation, generated-config validation, known-bad output scan, and strict secret scan.
 - Claude smoke run: BLOCKED by `401 authentication_failed` after plugin discovery.
@@ -40,7 +44,10 @@ Bootstrap evidence:
 - Branch: `v0.3-beta-strict-live-evidence`
 - Starting tag: `v0.2.0-alpha`
 - v0.3 tag: not created
-- Latest baseline/preflight commit before smoke evidence: `7d68dac`
+- Strict evidence preflight commit: `7d68dac`
+- Smoke evidence commit: `3bbaeec`
+- Bootstrap evidence report commit: `a9f88f9`
+- Latest generated-evidence refresh before this report update: `c0d02a9`
 - Push/publish/deploy: not performed
 
 ## Known Limitations
