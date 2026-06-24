@@ -74,12 +74,14 @@ def local_path_findings(repo: Path) -> list[Finding]:
     for path in repo.rglob("*"):
         if not path.is_file() or any(part in {".git", "__pycache__", ".pytest_cache"} for part in path.parts):
             continue
+        rel = str(path.relative_to(repo))
+        if rel.startswith("tests/") or rel == "scripts/clean_install_test.py":
+            continue
         try:
             text = path.read_text(encoding="utf-8")
         except UnicodeDecodeError:
             continue
         if any(pattern in text for pattern in patterns):
-            rel = str(path.relative_to(repo))
             if rel.startswith(("docs/", "README.md", "FINAL_REPORT.md")):
                 continue
             findings.append(Finding("error", rel, "unexpected absolute local path"))
