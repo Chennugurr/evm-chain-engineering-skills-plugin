@@ -124,13 +124,14 @@ def write_summary(out: Path, version: str, checks: dict[str, str], findings: lis
     transcript_report = read_json(out / "dogfood-transcript-report.json")
     hook_report = read_json(out / "live-hook-observation-report.json")
     scorecard = read_json(out / "skill-routing-scorecard.json")
+    tag_status = "not created" if v03 and not release_ready else version
     summary = {
         "version": version,
         "ok": not findings and all(value in {"pass", "collected"} for value in checks.values()),
         "mode": mode_name,
         "release_ready": release_ready,
         "v0_3_release_ready": release_ready if v03 else None,
-        "git": {"branch": branch, "commit": commit, "tag": version, "working_tree_clean": working_tree_clean},
+        "git": {"branch": branch, "commit": commit, "tag": tag_status, "working_tree_clean": working_tree_clean},
         "checks": checks,
         "live_codex_transcripts": (transcript_report.get("summary") or {}).get("live_codex_transcripts", "pending") if v03 else None,
         "live_claude_transcripts": (transcript_report.get("summary") or {}).get("live_claude_transcripts", "pending") if v03 else None,
@@ -151,7 +152,7 @@ def write_summary(out: Path, version: str, checks: dict[str, str], findings: lis
         f"- Mode: {mode_name}",
         f"- Git branch: {branch}",
         f"- Git commit: {commit}",
-        f"- Git tag status: {'not created' if v03 and not release_ready else version}",
+        f"- Git tag status: {tag_status}",
         f"- Validation summary: {'PASS' if summary['ok'] else 'FAIL'}",
         f"- Release ready: {str(release_ready).lower()}",
         "",
