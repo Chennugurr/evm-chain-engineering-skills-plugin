@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "v0.3 live hook observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "platform",
+    "plugin_version",
+    "status",
+    "hook_manifest_path",
+    "observed_events",
+    "evidence",
+    "platform_limitation",
+    "notes"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "platform": {"enum": ["codex", "claude"]},
+    "plugin_version": {"type": "string"},
+    "status": {"enum": ["pending", "pass", "fail", "not-supported"]},
+    "hook_manifest_path": {"type": "string"},
+    "observed_events": {"type": "array", "items": {"type": "string"}},
+    "evidence": {"type": "array", "items": {"type": "string"}},
+    "platform_limitation": {"type": ["string", "null"]},
+    "notes": {"type": "string"}
+  }
+}

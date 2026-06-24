@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "v0.3 skill routing scorecard",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["overall_score", "confidence", "platforms", "prompts", "recommendations"],
+  "properties": {
+    "overall_score": {"type": "integer", "minimum": 0, "maximum": 100},
+    "confidence": {"enum": ["high", "medium", "low"]},
+    "platforms": {"type": "object"},
+    "prompts": {"type": "object"},
+    "recommendations": {"type": "array"}
+  }
+}

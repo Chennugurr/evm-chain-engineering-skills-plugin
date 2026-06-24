@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "platform": "claude",
+  "plugin_version": "v0.3.0-beta",
+  "status": "pending",
+  "hook_manifest_path": "plugins/evm-chain-engineering-pro/hooks/hooks.json",
+  "observed_events": [],
+  "evidence": [],
+  "platform_limitation": null,
+  "notes": "Bootstrap placeholder. Strict validation requires real observation or a documented platform limitation with evidence."
+}

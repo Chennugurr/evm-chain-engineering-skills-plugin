@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "v0.3 live run package",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "platform",
+    "prompt_id",
+    "status",
+    "transcript",
+    "expected",
+    "artifacts",
+    "validation_report",
+    "security_review",
+    "created_by"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "platform": {"enum": ["codex", "claude"]},
+    "prompt_id": {"type": "string"},
+    "status": {"enum": ["pending", "captured", "failed", "blocked"]},
+    "transcript": {"type": "string"},
+    "expected": {"type": "string"},
+    "artifacts": {"type": ["string", "null"]},
+    "validation_report": {"type": "string"},
+    "security_review": {"type": "string"},
+    "created_by": {"type": "string"}
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "overall_score": 0,
+  "confidence": "low",
+  "status": "pending",
+  "platforms": {
+    "codex": {
+      "score": 0,
+      "confidence": "low",
+      "runs": 0
+    },
+    "claude": {
+      "score": 0,
+      "confidence": "low",
+      "runs": 0
+    }
+  },
+  "prompts": {},
+  "recommendations": [
+    {
+      "skill": "chain-security-reviewer",
+      "reason": "Strict scoring requires live transcript evidence."
+    }
+  ]
+}

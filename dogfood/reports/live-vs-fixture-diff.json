@@ -1,0 +1,5 @@
+{
+  "status": "pending",
+  "comparisons": [],
+  "notes": "Strict mode requires live artifact bundles for fixture comparison."
+}

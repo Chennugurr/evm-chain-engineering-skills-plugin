@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "platform": "codex",
+  "prompt_id": "01-op-stack-public-testnet",
+  "status": "pending",
+  "transcript": "TRANSCRIPT.md",
+  "expected": "EXPECTED.yaml",
+  "artifacts": "artifacts",
+  "validation_report": "VALIDATION.md",
+  "security_review": "SECURITY_REVIEW.md",
+  "created_by": "operator"
+}

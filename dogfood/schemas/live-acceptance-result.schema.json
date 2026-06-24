@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "v0.3 live acceptance result",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["ok", "mode", "platforms", "summary", "findings"],
+  "properties": {
+    "ok": {"type": "boolean"},
+    "mode": {"enum": ["bootstrap", "strict"]},
+    "platforms": {"type": "array", "items": {"enum": ["codex", "claude"]}},
+    "summary": {"type": "object"},
+    "findings": {"type": "array"}
+  }
+}

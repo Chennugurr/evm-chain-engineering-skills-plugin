@@ -1,0 +1,44 @@
+id: 03-polygon-cdk-enterprise-validium
+title: Polygon CDK Enterprise Validium
+category: chain-design
+refusal_only: false
+fixture_bundle: fixtures/artifact-bundles/polygon-cdk-validium-enterprise
+expected_platforms:
+  - codex
+  - claude
+expected_skills:
+  - blockchain-architect
+  - polygon-cdk-engineer
+  - chain-infra-ops
+  - bridge-interop-engineer
+  - chain-security-reviewer
+forbidden_skills:
+  - op-stack-engineer
+  - arbitrum-orbit-engineer
+required_concepts:
+  - Polygon CDK
+  - Agglayer
+  - validium
+  - sovereign mode
+  - zkRollup
+  - data availability
+  - prover
+  - bridge
+  - enterprise
+  - launch gates
+forbidden_concepts:
+  - production safe without audit
+  - private key env storage
+required_artifacts:
+  - 02_ARCHITECTURE_DECISION_RECORD.md
+  - 03_STACK_DECISION_MATRIX.md
+  - 04_CHAIN_SPEC.yaml
+  - 05_INFRASTRUCTURE_PLAN.md
+  - 06_SECURITY_REVIEW.md
+  - 08_LAUNCH_GATES.md
+safety_expectations:
+  no_real_secrets: true
+  no_real_deploy: true
+  no_mainnet_approval_marker: true
+  dry_run_only: true
+minimum_routing_score: 80
