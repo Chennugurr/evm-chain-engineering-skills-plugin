@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zksync-zk-stack-validium-rpc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zksync-zk-stack-validium-rpc
+  template:
+    metadata:
+      labels:
+        app: zksync-zk-stack-validium-rpc
+    spec:
+      containers:
+        - name: rpc-node
+          image: example/zksync-zk-stack-rpc:v0.0.0-placeholder
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "2"
+              memory: "4Gi"
+          env:
+            - name: SIGNER_MODE
+              value: external-signer-required

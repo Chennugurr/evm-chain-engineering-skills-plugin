@@ -21,6 +21,8 @@ dist/
 *.tfstate.*
 secrets/
 node_modules/
+generated/*
+!generated/.gitkeep
 
 # OS/editor
 .DS_Store

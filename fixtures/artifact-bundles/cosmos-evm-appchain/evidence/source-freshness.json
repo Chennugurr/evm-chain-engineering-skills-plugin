@@ -1,0 +1,9 @@
+{
+  "mode": "offline-allowed",
+  "notes": [
+    "Offline mode validates structure but does not verify remote freshness."
+  ],
+  "sources_checked": [],
+  "stale_sources": [],
+  "workflow_id": "cosmos-evm-appchain"
+}

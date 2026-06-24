@@ -1,0 +1,49 @@
+workflow_id: polygon-cdk-validium-enterprise
+chain_name: Example CDK Enterprise Validium
+chain_id: <ASSIGN_UNIQUE_CHAIN_ID_AFTER_COLLISION_CHECK>
+chain_type: validium
+environment: public-testnet
+stack_id: polygon-cdk
+settlement:
+  layer: ethereum-testnet-or-agglayer
+  finality_assumption: Verify against current upstream docs before deployment.
+  mainnet: false
+data_availability:
+  mode: offchain-da-committee
+  provider: VERIFY_CURRENT_DOCS
+proof_model:
+  type: validity-proof
+  assumptions: Planning-only. Verify proof/fraud/validity assumptions for the selected
+    release.
+execution:
+  evm: true
+  clients:
+  - op-geth
+  - op-reth
+sequencing:
+  model: centralized-sequencer-for-alpha-fixture
+  decentralization_roadmap_required: true
+gas_token:
+  type: native-or-custom-if-supported
+  symbol_placeholder: TEST
+  real_token_contract: null
+governance:
+  admin_model: multisig-plus-timelock-required-before-production
+  emergency_pause: documented-only
+  consensus_model: inherits-rollup-stack-assumptions
+node_roles:
+- sequencer
+- rpc-node
+- explorer
+- monitoring
+- bridge-or-interoperability-service
+security:
+  private_keys_in_repo: false
+  mnemonics_in_repo: false
+  signer_policy: use-kms-hsm-or-hardware-wallet-for-real-deployment
+  admin_rpc_public: false
+  validator_key_custody: external-custody-required
+operational_limits:
+  generated_for: planning-and-validation-only
+  not_for: direct-mainnet-deployment
+human_approval_required: true

@@ -1,0 +1,10 @@
+{
+  "mainnet_deploy_commands": "none",
+  "mnemonics_written": false,
+  "policy_version": "v0.2-alpha",
+  "private_keys_written": false,
+  "secret_scan": "pass",
+  "unsafe_rpc_exposure": false,
+  "warnings": [],
+  "workflow_id": "zksync-zk-stack-validium"
+}

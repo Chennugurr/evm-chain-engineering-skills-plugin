@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cosmos-evm-appchain-rpc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cosmos-evm-appchain-rpc
+  template:
+    metadata:
+      labels:
+        app: cosmos-evm-appchain-rpc
+    spec:
+      containers:
+        - name: rpc-node
+          image: example/cosmos-evm-rpc:v0.0.0-placeholder
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "2"
+              memory: "4Gi"
+          env:
+            - name: SIGNER_MODE
+              value: external-signer-required

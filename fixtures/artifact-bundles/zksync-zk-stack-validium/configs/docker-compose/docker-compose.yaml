@@ -1,0 +1,14 @@
+services:
+  rpc-node:
+    image: example/zksync-zk-stack-rpc:v0.0.0-placeholder
+    restart: unless-stopped
+    environment:
+      RPC_BIND_ADDR: "127.0.0.1"
+      SIGNER_MODE: "external-signer-required"
+      PRIVATE_KEY_SOURCE: "<INJECT_FROM_SECURE_SIGNER_AT_RUNTIME>"
+    ports:
+      - "127.0.0.1:8545:8545"
+    volumes:
+      - rpc-data:/var/lib/zksync-zk-stack-validium
+volumes:
+  rpc-data:

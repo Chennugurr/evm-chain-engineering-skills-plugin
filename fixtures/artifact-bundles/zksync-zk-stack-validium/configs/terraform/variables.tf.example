@@ -1,0 +1,4 @@
+variable "project_id" {
+  description = "Set through reviewed deployment pipeline"
+  type = string
+}

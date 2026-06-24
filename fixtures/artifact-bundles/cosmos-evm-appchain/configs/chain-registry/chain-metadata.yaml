@@ -1,0 +1,4 @@
+workflow_id: cosmos-evm-appchain
+chain_id: <ASSIGN_UNIQUE_CHAIN_ID_AFTER_COLLISION_CHECK>
+rpc: https://rpc.example.invalid
+explorer: https://explorer.example.invalid
