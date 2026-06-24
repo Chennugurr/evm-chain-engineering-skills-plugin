@@ -1,0 +1,16 @@
+{
+  "checked_at": null,
+  "findings": [],
+  "ok": true,
+  "script": "scripts/validate_dogfood_transcripts.py",
+  "skipped": [],
+  "summary": {
+    "findings": 0,
+    "live_claude_transcripts": "pending",
+    "live_codex_transcripts": "pending",
+    "mode": "bootstrap",
+    "transcripts_checked": 0
+  },
+  "target": "dogfood/transcripts",
+  "version": "v0.2.0-alpha"
+}

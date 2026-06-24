@@ -1,0 +1,15 @@
+{
+  "checked_at": null,
+  "findings": [],
+  "ok": true,
+  "script": "scripts/clean_install_test.py",
+  "skipped": [
+    "claude plugin validate skipped"
+  ],
+  "summary": {
+    "commands_checked": 11,
+    "findings": 0
+  },
+  "target": "committed-only",
+  "version": "v0.2.0-alpha"
+}

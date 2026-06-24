@@ -1,0 +1,55 @@
+{
+  "checked_at": null,
+  "findings": [
+    {
+      "level": "error",
+      "message": "known-bad pattern detected: l1-no-validator-model",
+      "path": "tests/known_bad_outputs/l1-no-validator-model.md"
+    },
+    {
+      "level": "error",
+      "message": "known-bad pattern detected: mainnet-broadcast",
+      "path": "tests/known_bad_outputs/mainnet-deploy-without-approval.md"
+    },
+    {
+      "level": "error",
+      "message": "known-bad pattern detected: op-stack-missing-batcher",
+      "path": "tests/known_bad_outputs/op-stack-missing-batcher.md"
+    },
+    {
+      "level": "error",
+      "message": "known-bad pattern detected: orbit-treated-as-op-stack",
+      "path": "tests/known_bad_outputs/orbit-treated-as-op-stack.md"
+    },
+    {
+      "level": "error",
+      "message": "known-bad pattern detected: polygon-cdk-no-agglayer",
+      "path": "tests/known_bad_outputs/polygon-cdk-no-agglayer.md"
+    },
+    {
+      "level": "error",
+      "message": "known-bad pattern detected: secret-persistence",
+      "path": "tests/known_bad_outputs/private-key-in-env.md"
+    },
+    {
+      "level": "error",
+      "message": "known-bad pattern detected: production-safe-without-audit",
+      "path": "tests/known_bad_outputs/production-safe-without-audit.md"
+    },
+    {
+      "level": "error",
+      "message": "known-bad pattern detected: zksync-no-prover-risk",
+      "path": "tests/known_bad_outputs/zksync-no-prover-risk.md"
+    }
+  ],
+  "ok": true,
+  "script": "scripts/check_bad_output_patterns.py",
+  "skipped": [],
+  "summary": {
+    "files_checked": 8,
+    "findings": 8,
+    "mode": "expect-bad"
+  },
+  "target": "tests/known_bad_outputs",
+  "version": "v0.2.0-alpha"
+}

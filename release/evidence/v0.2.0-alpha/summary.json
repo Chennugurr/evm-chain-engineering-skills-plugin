@@ -11,17 +11,24 @@
     "upstream-freshness": "pass"
   },
   "git": {
-    "branch": "v0.2-alpha-workflow-acceptance",
-    "commit": "HEAD",
+    "branch": "v0.3-beta-live-agent-qa",
+    "commit": "3c39320",
     "tag": "v0.2.0-alpha",
     "working_tree_clean": false
   },
   "known_limitations": [
     "No live chain deployment performed.",
     "No mainnet approval workflow implemented.",
-    "Live Codex/Claude hook activation must be manually verified.",
-    "Tracked evidence uses reproducible git labels; final response records exact commit hash."
+    "No MCP servers included.",
+    "v0.3 strict release requires real Codex/Claude dogfood transcripts and live hook observations."
   ],
+  "live_claude_transcripts": null,
+  "live_codex_transcripts": null,
+  "live_hook_observations": null,
+  "mode": "strict",
   "ok": true,
+  "release_ready": true,
+  "skill_routing_score": null,
+  "v0_3_release_ready": null,
   "version": "v0.2.0-alpha"
 }

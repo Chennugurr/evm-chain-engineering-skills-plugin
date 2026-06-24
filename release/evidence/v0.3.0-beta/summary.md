@@ -1,24 +1,34 @@
-# v0.2.0-alpha Release Evidence
+# v0.3.0-beta Release Evidence
 
-- Version: v0.2.0-alpha
-- Mode: strict
+- Version: v0.3.0-beta
+- Mode: bootstrap
 - Git branch: v0.3-beta-live-agent-qa
 - Git commit: 3c39320
-- Git tag status: v0.2.0-alpha
+- Git tag status: not created
 - Validation summary: PASS
-- Release ready: true
+- Release ready: false
 
 ## Checks
 
-- acceptance: pass
-- artifact-bundle: pass
-- behavior-evals: pass
 - clean-install: pass
-- generated-config: pass
-- hook-fixture: pass
+- dogfood-prompt-lint: pass
+- dogfood-transcripts: pass
+- known-bad-output: pass
+- live-acceptance: pass
+- live-hooks: pass
+- live-output-safety: pass
+- live-runs: pass
+- live-vs-fixture: pass
 - secret-scan: pass
-- stack-profile: pass
-- upstream-freshness: pass
+- skill-routing: pass
+- subagent-dogfood: pass
+
+## Live Evidence
+
+- Codex transcripts: pending
+- Claude transcripts: pending
+- Hook observations: pending
+- Skill routing score: 0
 
 ## Known Limitations
 

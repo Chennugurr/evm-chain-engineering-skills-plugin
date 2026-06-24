@@ -1,0 +1,14 @@
+{
+  "checked_at": null,
+  "findings": [],
+  "ok": true,
+  "script": "scripts/validate_live_run_package.py",
+  "skipped": [],
+  "summary": {
+    "findings": 0,
+    "mode": "bootstrap",
+    "packages_checked": 0
+  },
+  "target": "dogfood/live-runs",
+  "version": "v0.2.0-alpha"
+}

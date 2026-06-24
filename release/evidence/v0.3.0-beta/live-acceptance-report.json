@@ -1,0 +1,15 @@
+{
+  "checked_at": null,
+  "findings": [],
+  "ok": true,
+  "script": "scripts/run_live_acceptance_suite.py",
+  "skipped": [],
+  "summary": {
+    "findings": 0,
+    "live_run_packages": 0,
+    "mode": "bootstrap",
+    "transcripts_checked": 0
+  },
+  "target": "dogfood",
+  "version": "v0.2.0-alpha"
+}

@@ -15,24 +15,28 @@ This is not a strict v0.3 release yet. Real Codex and Claude transcripts, live h
 
 ## Validation Results
 
-Pending final run:
+Final command results:
 
-- `python3 -m pytest`
-- `make validate`
-- `make validate-v02`
-- `make validate-v03-bootstrap`
-- `make validate-v03 || true`
+- `python3 -m pytest`: PASS, 55 tests passed.
+- `make validate`: PASS.
+- `make validate-v02`: PASS.
+- `make validate-v03-bootstrap`: PASS.
+- `make validate-v03 || true`: expected strict failure after v0.2 passed; failed at `validate_dogfood_transcripts.py --strict` because Codex and Claude transcript metadata are pending.
 
-Expected before live evidence:
+Bootstrap evidence:
 
-- Bootstrap validation: PASS.
-- Strict validation: FAIL for missing live Codex/Claude evidence and pending hook observations only.
+- `live_codex_transcripts`: pending.
+- `live_claude_transcripts`: pending.
+- `live_hook_observations`: pending.
+- `release_ready`: false.
+- `v0.3.0-beta` tag: not created.
 
 ## Git
 
 - Branch: `v0.3-beta-live-agent-qa`
 - Starting tag: `v0.2.0-alpha`
 - v0.3 tag: not created
+- Latest implementation commit before evidence report commit: `3c39320`
 - Push/publish/deploy: not performed
 
 ## Known Limitations

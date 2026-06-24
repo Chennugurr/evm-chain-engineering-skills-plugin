@@ -1,0 +1,15 @@
+{
+  "checked_at": null,
+  "findings": [],
+  "ok": true,
+  "script": "scripts/validate_subagent_dogfood.py",
+  "skipped": [],
+  "summary": {
+    "known_subagents": 6,
+    "mode": "bootstrap",
+    "prompt_11_transcripts": 0,
+    "subagent_runs": 0
+  },
+  "target": "dogfood/transcripts",
+  "version": "v0.2.0-alpha"
+}

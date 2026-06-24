@@ -1,0 +1,15 @@
+{
+  "checked_at": null,
+  "findings": [],
+  "ok": true,
+  "script": "scripts/validate_live_hook_observations.py",
+  "skipped": [],
+  "summary": {
+    "findings": 0,
+    "live_hook_observations": "pending",
+    "mode": "bootstrap",
+    "observations_checked": 2
+  },
+  "target": "dogfood/hooks",
+  "version": "v0.2.0-alpha"
+}

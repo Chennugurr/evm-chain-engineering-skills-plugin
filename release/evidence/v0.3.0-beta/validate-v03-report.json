@@ -1,0 +1,46 @@
+{
+  "checked_at": null,
+  "findings": [],
+  "ok": true,
+  "script": "scripts/build_release_evidence.py",
+  "skipped": [],
+  "summary": {
+    "checks": {
+      "clean-install": "pass",
+      "dogfood-prompt-lint": "pass",
+      "dogfood-transcripts": "pass",
+      "known-bad-output": "pass",
+      "live-acceptance": "pass",
+      "live-hooks": "pass",
+      "live-output-safety": "pass",
+      "live-runs": "pass",
+      "live-vs-fixture": "pass",
+      "secret-scan": "pass",
+      "skill-routing": "pass",
+      "subagent-dogfood": "pass"
+    },
+    "git": {
+      "branch": "v0.3-beta-live-agent-qa",
+      "commit": "3c39320",
+      "tag": "not created",
+      "working_tree_clean": false
+    },
+    "known_limitations": [
+      "No live chain deployment performed.",
+      "No mainnet approval workflow implemented.",
+      "No MCP servers included.",
+      "v0.3 strict release requires real Codex/Claude dogfood transcripts and live hook observations."
+    ],
+    "live_claude_transcripts": "pending",
+    "live_codex_transcripts": "pending",
+    "live_hook_observations": "pending",
+    "mode": "bootstrap",
+    "ok": true,
+    "release_ready": false,
+    "skill_routing_score": 0,
+    "v0_3_release_ready": false,
+    "version": "v0.3.0-beta"
+  },
+  "target": "release/evidence/v0.3.0-beta",
+  "version": "v0.2.0-alpha"
+}

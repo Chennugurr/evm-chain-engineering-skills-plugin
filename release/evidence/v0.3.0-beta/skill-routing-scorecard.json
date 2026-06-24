@@ -1,0 +1,23 @@
+{
+  "confidence": "low",
+  "overall_score": 0,
+  "platforms": {
+    "claude": {
+      "confidence": "low",
+      "runs": 0,
+      "score": 0
+    },
+    "codex": {
+      "confidence": "low",
+      "runs": 0,
+      "score": 0
+    }
+  },
+  "prompts": {},
+  "recommendations": [
+    {
+      "reason": "Keep security review required for sensitive live workflows.",
+      "skill": "chain-security-reviewer"
+    }
+  ]
+}

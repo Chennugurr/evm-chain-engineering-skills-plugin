@@ -1,0 +1,13 @@
+{
+  "checked_at": null,
+  "findings": [],
+  "ok": true,
+  "script": "scripts/lint_dogfood_prompts.py",
+  "skipped": [],
+  "summary": {
+    "findings": 0,
+    "prompts_checked": 11
+  },
+  "target": "dogfood/prompts",
+  "version": "v0.2.0-alpha"
+}
