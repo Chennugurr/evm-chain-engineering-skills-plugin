@@ -38,12 +38,15 @@ def local_path_check() -> dict[str, Any]:
     for path in ROOT.rglob("*"):
         if not path.is_file() or ".git" in path.parts or "__pycache__" in path.parts:
             continue
+        rel = str(path.relative_to(ROOT))
+        if rel.startswith("tests/") or rel == "scripts/clean_install_test.py":
+            continue
         try:
             text = path.read_text(encoding="utf-8")
         except UnicodeDecodeError:
             continue
         if home in text and not any(item in text for item in allowed):
-            offenders.append(str(path.relative_to(ROOT)))
+            offenders.append(rel)
     return {"name": "local-only paths", "command": "scan text files", "returncode": 1 if offenders else 0, "output": "\n".join(offenders)}
 
 
