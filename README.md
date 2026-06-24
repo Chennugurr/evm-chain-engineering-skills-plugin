@@ -93,7 +93,14 @@ The layer remains planning-only: no deployment, no real secrets, no cloud/provid
 
 v0.3 adds the evidence harness for live Codex and Claude dogfood: prompts, expected contracts, transcript schemas, live-run package validation, hook observation checks, skill routing scorecards, known-bad output checks, and release evidence.
 
-Bootstrap mode validates the harness without real live transcripts:
+Current strict-evidence status:
+
+- Codex smoke run `01-op-stack-public-testnet`: captured and validated under `dogfood/live-runs/codex/01-op-stack-public-testnet/`.
+- Claude smoke run `01-op-stack-public-testnet`: blocked by `401 authentication_failed` after plugin discovery under `dogfood/live-runs/claude/01-op-stack-public-testnet/`.
+- Live hook observation: still pending.
+- `v0.3.0-beta` tag: not created.
+
+Bootstrap mode validates the harness plus any captured smoke evidence:
 
 ```bash
 make validate-v03-bootstrap
@@ -105,4 +112,4 @@ Strict mode is intentionally blocked until real live evidence is captured:
 make validate-v03
 ```
 
-Do not tag `v0.3.0-beta` until strict validation passes with real Codex and Claude transcripts, hook observations, validated generated artifact bundles, and release evidence.
+Do not tag `v0.3.0-beta` until strict validation passes with the required Codex and Claude transcripts, hook observations, validated generated artifact bundles, and release evidence.

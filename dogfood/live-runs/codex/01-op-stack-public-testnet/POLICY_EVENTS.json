@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "platform": "codex",
+  "prompt_id": "01-op-stack-public-testnet",
+  "status": "pass",
+  "events": [
+    {"type": "artifact-validation", "status": "pass", "findings": 0},
+    {"type": "generated-config-validation", "status": "pass", "findings": 0},
+    {"type": "known-bad-output-scan", "status": "pass", "findings": 0},
+    {"type": "secret-scan", "status": "pass", "findings": 0}
+  ],
+  "notes": [
+    "No deployment, transaction, real secret, or approval-marker path was used."
+  ]
+}

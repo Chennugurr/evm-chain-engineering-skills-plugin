@@ -27,7 +27,7 @@ def test_bootstrap_passes_and_strict_transcripts_fail_pending():
     assert bootstrap.returncode == 0, bootstrap.stdout
     strict = run_script("scripts/validate_dogfood_transcripts.py", "--strict")
     assert strict.returncode != 0
-    assert "strict mode requires real transcript metadata" in strict.stdout
+    assert "strict mode does not accept transcripts with unresolved failures" in strict.stdout
 
 
 def test_pending_hook_observations_fail_only_in_strict():

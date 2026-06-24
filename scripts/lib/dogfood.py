@@ -78,11 +78,13 @@ def known_subagents(root: Path | None = None) -> set[str]:
 
 
 def transcript_paths(root: Path | None = None, platform: str | None = None) -> list[Path]:
-    base = dogfood_root(root) / "transcripts"
+    dogfood = dogfood_root(root)
+    base = dogfood / "transcripts"
     platforms = [platform] if platform else list(PLATFORMS)
     paths: list[Path] = []
     for item in platforms:
         paths.extend(sorted((base / item).glob("*.json")))
+        paths.extend(sorted((dogfood / "live-runs" / item).glob("**/TRANSCRIPT.json")))
     return paths
 
 

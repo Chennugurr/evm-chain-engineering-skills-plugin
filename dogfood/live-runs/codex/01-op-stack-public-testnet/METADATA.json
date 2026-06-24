@@ -1,0 +1,12 @@
+{
+  "artifacts": "GENERATED_ARTIFACTS",
+  "created_by": "iljanemesis",
+  "expected": "EXPECTED.yaml",
+  "platform": "codex",
+  "prompt_id": "01-op-stack-public-testnet",
+  "schema_version": "1.0",
+  "security_review": "SECURITY_REVIEW.md",
+  "status": "captured",
+  "transcript": "TRANSCRIPT.md",
+  "validation_report": "VALIDATION.md"
+}

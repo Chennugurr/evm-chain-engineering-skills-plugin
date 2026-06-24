@@ -9,6 +9,12 @@ Strict validation requires each platform to provide either:
 
 Bootstrap mode keeps `dogfood/hooks/*/observed-hooks.json` at `pending` and records release readiness as false.
 
+## Strict Evidence Pass Status
+
+- Codex smoke run: no explicit hook lifecycle event appeared in `dogfood/live-runs/codex/01-op-stack-public-testnet/CODEX_STREAM_REDACTED.jsonl`.
+- Claude smoke run: invoked with `--include-hook-events`, but API authentication failed before hook execution.
+- Release impact: hook verification remains pending and strict v0.3 is not release-ready.
+
 ## Official Docs Refreshed
 
 Retrieval date: 2026-06-25

@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "platform": "claude",
+  "prompt_id": "01-op-stack-public-testnet",
+  "status": "blocked",
+  "checked_at": null,
+  "commands": [
+    {
+      "command": "claude plugin validate plugins/evm-chain-engineering-pro --strict",
+      "exit_code": 0,
+      "report": null
+    },
+    {
+      "command": "claude --print --verbose --output-format stream-json --include-hook-events --plugin-dir plugins/evm-chain-engineering-pro ...",
+      "exit_code": 1,
+      "report": "CLAUDE_STREAM_REDACTED.jsonl"
+    }
+  ],
+  "limitations": [
+    "Claude Code authentication failed with 401 before agent execution.",
+    "No Claude artifact bundle was generated."
+  ]
+}

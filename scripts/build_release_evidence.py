@@ -14,6 +14,7 @@ from lib.reports import Finding, Report, write_json_report
 ROOT = find_repo_root(Path(__file__))
 
 V02_CHECKS = [
+    ("clean-install", [sys.executable, "scripts/clean_install_test.py", "--json-out", "{out}/clean-install-report.json", "--skip-claude-plugin-validate"]),
     ("behavior-evals", [sys.executable, "scripts/run_behavior_evals.py", "--evals", "evals/skill-trigger-matrix.yaml", "--strict", "--json"]),
     ("artifact-bundle", [sys.executable, "scripts/validate_artifact_bundle.py", "--strict", "--all", "fixtures/artifact-bundles", "--json-out", "{out}/artifact-bundle-report.json"]),
     ("stack-profile", [sys.executable, "scripts/validate_stack_profiles.py", "--strict", "--all", "profiles", "--json-out", "{out}/stack-profile-report.json"]),
@@ -22,10 +23,10 @@ V02_CHECKS = [
     ("hook-fixture", [sys.executable, "scripts/test_hook_fixtures.py", "--strict", "--json-out", "{out}/hook-fixture-report.json"]),
     ("upstream-freshness", [sys.executable, "scripts/check_upstream_freshness.py", "--sources", "docs/upstream-sources.md", "--markdown-report", "{out}/upstream-freshness-report.md", "--allow-offline", "--json"]),
     ("secret-scan", [sys.executable, "plugins/evm-chain-engineering-pro/scripts/scan_secrets.py", "--path", ".", "--strict", "--json"]),
-    ("clean-install", [sys.executable, "scripts/clean_install_test.py", "--json-out", "{out}/clean-install-report.json", "--skip-claude-plugin-validate"]),
 ]
 
 V03_CHECKS = [
+    ("clean-install", [sys.executable, "scripts/clean_install_test.py", "--json-out", "{out}/clean-install-report.json", "--skip-claude-plugin-validate"]),
     ("dogfood-prompt-lint", [sys.executable, "scripts/lint_dogfood_prompts.py", "--strict", "--json-out", "{out}/dogfood-prompt-lint-report.json"]),
     ("dogfood-transcripts", [sys.executable, "scripts/validate_dogfood_transcripts.py", "{mode}", "--json-out", "{out}/dogfood-transcript-report.json"]),
     ("live-runs", [sys.executable, "scripts/validate_live_run_package.py", "--all", "{mode}", "--json-out", "{out}/live-run-package-report.json"]),
@@ -36,7 +37,6 @@ V03_CHECKS = [
     ("live-vs-fixture", [sys.executable, "scripts/compare_live_to_fixture.py", "{mode}", "--json-out", "{out}/live-vs-fixture-diff.json"]),
     ("known-bad-output", [sys.executable, "scripts/check_bad_output_patterns.py", "--path", "tests/known_bad_outputs", "--expect-bad", "--json-out", "{out}/known-bad-output-check.json"]),
     ("live-output-safety", [sys.executable, "scripts/check_bad_output_patterns.py", "--path", "dogfood/live-runs", "--strict", "--json-out", "{out}/live-output-safety-check.json"]),
-    ("clean-install", [sys.executable, "scripts/clean_install_test.py", "--json-out", "{out}/clean-install-report.json", "--skip-claude-plugin-validate"]),
     ("secret-scan", [sys.executable, "plugins/evm-chain-engineering-pro/scripts/scan_secrets.py", "--path", ".", "--strict", "--json"]),
 ]
 

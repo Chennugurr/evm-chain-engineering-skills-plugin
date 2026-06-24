@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "platform": "codex",
+  "plugin_version": "v0.3.0-beta",
+  "git_commit": "7d68dac",
+  "prompt_id": "01-op-stack-public-testnet",
+  "prompt_file": "dogfood/prompts/01-op-stack-public-testnet.md",
+  "session_date": "2026-06-25",
+  "operator": "iljanemesis",
+  "install_method": "local Codex marketplace evm-chain-engineering, plugin evm-chain-engineering-pro",
+  "transcript_markdown": "dogfood/live-runs/codex/01-op-stack-public-testnet/TRANSCRIPT.md",
+  "skills_observed": [
+    "blockchain-architect",
+    "op-stack-engineer",
+    "chain-infra-ops",
+    "chain-security-reviewer",
+    "chain-launch-manager",
+    "observability-sre",
+    "explorer-indexer-engineer",
+    "data-availability-engineer"
+  ],
+  "subagents_observed": [],
+  "hooks_observed": [],
+  "generated_artifact_bundle": "dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS",
+  "validation_commands": [
+    "python3 scripts/validate_artifact_bundle.py --strict --path dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS",
+    "python3 scripts/validate_generated_configs.py --strict --path dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS",
+    "python3 scripts/check_bad_output_patterns.py --path dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS --strict",
+    "python3 plugins/evm-chain-engineering-pro/scripts/scan_secrets.py --path dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS --strict --json"
+  ],
+  "validation_results": [
+    {"command": "validate_artifact_bundle", "exit_code": 0, "status": "pass"},
+    {"command": "validate_generated_configs", "exit_code": 0, "status": "pass"},
+    {"command": "check_bad_output_patterns", "exit_code": 0, "status": "pass"},
+    {"command": "scan_secrets", "exit_code": 0, "status": "pass"}
+  ],
+  "policy_events": [
+    {"type": "secret-scan", "status": "pass", "findings": 0},
+    {"type": "known-bad-output", "status": "pass", "findings": 0}
+  ],
+  "manual_interventions": [
+    "Terminated Codex CLI process after evidence capture because it remained alive in post-run refresh warnings.",
+    "Replaced raw JSONL stream with redacted JSONL stream to avoid committing large tool outputs and validator source text."
+  ],
+  "failures": [],
+  "redactions": [
+    "Tool outputs were summarized in CODEX_STREAM_REDACTED.jsonl.",
+    "Local absolute plugin cache paths were replaced with <codex-plugin-cache>."
+  ],
+  "notes": [
+    "This is a smoke run for one prompt only.",
+    "Full v0.3 strict release still requires the remaining required prompts, Claude agent evidence, and live hook observations."
+  ]
+}

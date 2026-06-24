@@ -1,5 +1,24 @@
 # Changelog
 
+## v0.3.0-beta strict evidence pass
+
+Added:
+- Codex live smoke package for `01-op-stack-public-testnet` with redacted transcript stream, generated artifact bundle, validation reports, policy events, and manual notes.
+- Claude live smoke package for `01-op-stack-public-testnet` documenting plugin discovery and `401 authentication_failed` as a strict release blocker.
+
+Changed:
+- v0.3 validators include live-run `TRANSCRIPT.json` files in transcript discovery.
+- Bootstrap mode accepts documented blocked live packages; strict mode rejects them.
+- Skill routing and live acceptance skip blocked packages in bootstrap and reject them in strict mode.
+
+Validation:
+- Codex smoke bundle passed artifact validation, generated-config validation, known-bad output scan, and strict secret scan.
+- Claude plugin manifest validation passed, but live agent execution did not authenticate.
+
+Release:
+- `v0.3.0-beta` tag remains uncreated.
+- Strict v0.3 remains blocked pending authenticated Claude evidence, remaining required prompts on both platforms, and live hook observation.
+
 ## v0.3.0-beta bootstrap harness
 
 Added:

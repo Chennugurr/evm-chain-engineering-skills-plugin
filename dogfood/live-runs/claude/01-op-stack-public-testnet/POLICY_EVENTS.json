@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "platform": "claude",
+  "prompt_id": "01-op-stack-public-testnet",
+  "status": "blocked",
+  "events": [
+    {"type": "plugin-discovery", "status": "pass", "plugin_loaded": true, "plugin_skill_count": 14},
+    {"type": "agent-execution", "status": "blocked", "error": "401 authentication_failed"}
+  ],
+  "notes": [
+    "No tool execution or artifact generation occurred after the authentication failure."
+  ]
+}

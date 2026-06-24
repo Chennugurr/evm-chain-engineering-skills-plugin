@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "platform": "claude",
+  "plugin_version": "v0.3.0-beta",
+  "git_commit": "7d68dac",
+  "prompt_id": "01-op-stack-public-testnet",
+  "prompt_file": "dogfood/prompts/01-op-stack-public-testnet.md",
+  "session_date": "2026-06-25",
+  "operator": "iljanemesis",
+  "install_method": "local Claude plugin-dir plugins/evm-chain-engineering-pro",
+  "transcript_markdown": "dogfood/live-runs/claude/01-op-stack-public-testnet/TRANSCRIPT.md",
+  "skills_observed": [],
+  "subagents_observed": [],
+  "hooks_observed": [],
+  "generated_artifact_bundle": null,
+  "validation_commands": [
+    "claude plugin validate plugins/evm-chain-engineering-pro --strict",
+    "claude --print --verbose --output-format stream-json --include-hook-events --plugin-dir plugins/evm-chain-engineering-pro ..."
+  ],
+  "validation_results": [
+    {"command": "claude plugin validate", "exit_code": 0, "status": "pass"},
+    {"command": "claude smoke run", "exit_code": 1, "status": "blocked", "error": "401 authentication_failed"}
+  ],
+  "policy_events": [
+    {"type": "plugin-discovery", "status": "pass", "plugin_loaded": true, "plugin_skill_count": 14},
+    {"type": "agent-execution", "status": "blocked", "error": "401 authentication_failed"}
+  ],
+  "manual_interventions": [
+    "Reran Claude with --verbose after the CLI reported that stream-json output requires --verbose.",
+    "Replaced raw stream with redacted stream to keep committed evidence safety-scan clean."
+  ],
+  "failures": [
+    "Claude Code API authentication failed with 401 before agent execution."
+  ],
+  "redactions": [
+    "Full plugin skill list was summarized to avoid false positives from broad known-bad pattern checks.",
+    "Authentication failure details were retained without credentials."
+  ],
+  "notes": [
+    "This package is evidence of plugin discovery and an environment blocker, not a successful Claude dogfood run.",
+    "Strict v0.3 release remains blocked until an authenticated Claude transcript is captured."
+  ]
+}

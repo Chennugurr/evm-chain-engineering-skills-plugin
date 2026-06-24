@@ -3,7 +3,7 @@
     "acceptance": "pass",
     "artifact-bundle": "pass",
     "behavior-evals": "pass",
-    "clean-install": "pass",
+    "clean-install": "fail",
     "generated-config": "pass",
     "hook-fixture": "pass",
     "secret-scan": "pass",
@@ -12,7 +12,7 @@
   },
   "git": {
     "branch": "v0.3-beta-strict-live-evidence",
-    "commit": "150557b",
+    "commit": "7dbda5c",
     "tag": "v0.2.0-alpha",
     "working_tree_clean": false
   },
@@ -26,8 +26,8 @@
   "live_codex_transcripts": null,
   "live_hook_observations": null,
   "mode": "strict",
-  "ok": true,
-  "release_ready": true,
+  "ok": false,
+  "release_ready": false,
   "skill_routing_score": null,
   "v0_3_release_ready": null,
   "version": "v0.2.0-alpha"

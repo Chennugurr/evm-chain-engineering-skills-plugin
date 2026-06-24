@@ -98,6 +98,11 @@ def main(argv: list[str] | None = None) -> int:
             for prompt in missing:
                 findings.append(Finding("error", f"dogfood/transcripts/{platform}", f"missing required strict live prompt: {prompt}"))
     for path, data in records:
+        if data.get("failures"):
+            if not strict:
+                continue
+            findings.append(Finding("error", rel(path, ROOT), "strict mode does not accept live records with unresolved failures"))
+            continue
         findings.extend(validate_record(path, data))
     report = Report(ok=not [f for f in findings if f.level == "error" or (strict and f.level == "warning")], script="scripts/run_live_acceptance_suite.py", target=args.platform or "dogfood", summary={"mode": "strict" if strict else "bootstrap", "transcripts_checked": len(records), "live_run_packages": len(live_run_paths(ROOT, args.platform)), "findings": len(findings)}, findings=findings)
     if args.json_out:

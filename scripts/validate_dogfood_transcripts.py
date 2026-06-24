@@ -44,6 +44,8 @@ def validate_transcript(path: Path, *, strict: bool) -> list[Finding]:
         for field in ["git_commit", "session_date", "operator", "install_method"]:
             if str(data.get(field, "")).lower() in {"", "pending", "unknown", "null"}:
                 findings.append(Finding("error", rel(path, ROOT), f"{field} must be real in strict mode"))
+        if _as_list(data.get("failures")):
+            findings.append(Finding("error", rel(path, ROOT), "strict mode does not accept transcripts with unresolved failures"))
     prompt_file = ROOT / str(data.get("prompt_file", ""))
     if data.get("prompt_file") and not prompt_file.exists():
         findings.append(Finding("error", rel(path, ROOT), "prompt_file does not exist"))
@@ -64,7 +66,7 @@ def validate_transcript(path: Path, *, strict: bool) -> list[Finding]:
         if str(agent) not in known_agents:
             findings.append(Finding("error", rel(path, ROOT), f"unknown subagent: {agent}"))
     bundle = data.get("generated_artifact_bundle")
-    if prompt_id not in REFUSAL_PROMPTS and not bundle:
+    if prompt_id not in REFUSAL_PROMPTS and not bundle and (strict or not _as_list(data.get("failures"))):
         findings.append(Finding("error", rel(path, ROOT), "non-refusal transcript must reference a generated artifact bundle"))
     if bundle and not (ROOT / str(bundle)).exists():
         findings.append(Finding("error", rel(path, ROOT), "generated_artifact_bundle does not exist"))

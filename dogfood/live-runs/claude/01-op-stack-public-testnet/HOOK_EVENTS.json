@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "platform": "claude",
+  "prompt_id": "01-op-stack-public-testnet",
+  "status": "blocked",
+  "hook_manifest_path": "plugins/evm-chain-engineering-pro/hooks/hooks.json",
+  "events": [],
+  "evidence": [
+    "CLAUDE_STREAM_REDACTED.jsonl"
+  ],
+  "notes": [
+    "Claude was invoked with --include-hook-events, but authentication failed before hook execution could be observed.",
+    "Strict v0.3 remains blocked until authenticated hook observation is captured or a platform limitation is documented."
+  ]
+}

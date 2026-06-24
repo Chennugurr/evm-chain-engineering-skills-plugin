@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "platform": "codex",
+  "prompt_id": "01-op-stack-public-testnet",
+  "status": "not_observed",
+  "hook_manifest_path": "plugins/evm-chain-engineering-pro/hooks/hooks.json",
+  "events": [],
+  "evidence": [
+    "CODEX_STREAM_REDACTED.jsonl"
+  ],
+  "notes": [
+    "The smoke transcript shows plugin skill activation and tool use, but no explicit hook lifecycle event was emitted in the captured Codex JSONL stream.",
+    "Strict v0.3 remains blocked until hook observation is captured or a platform limitation is documented in dogfood/hooks/codex/observed-hooks.json."
+  ]
+}

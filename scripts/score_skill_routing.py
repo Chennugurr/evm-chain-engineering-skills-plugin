@@ -22,6 +22,8 @@ def build_scorecard(platform: str | None) -> tuple[dict, list[Finding]]:
     count = 0
     for path in paths:
         data = load_json_file(path)
+        if data.get("failures"):
+            continue
         prompt_id = str(data.get("prompt_id"))
         contract = expected.get(prompt_id, {})
         observed = set(data.get("skills_observed", []) or [])
@@ -67,6 +69,13 @@ def main(argv: list[str] | None = None) -> int:
     scorecard, findings = build_scorecard(args.platform)
     if strict and not transcript_paths(ROOT, args.platform):
         findings.append(Finding("error", "dogfood/transcripts", "strict mode requires transcripts before scoring skill routing"))
+    if strict:
+        for path in transcript_paths(ROOT, args.platform):
+            data = load_json_file(path)
+            if data.get("failures"):
+                findings.append(Finding("error", str(path), "strict mode does not score transcripts with unresolved failures"))
+        if scorecard["overall_score"] < 85:
+            findings.append(Finding("error", "dogfood/transcripts", "strict mode requires skill routing score >= 85"))
     if args.json_out:
         write_json(Path(args.json_out), scorecard)
     if args.markdown_report:

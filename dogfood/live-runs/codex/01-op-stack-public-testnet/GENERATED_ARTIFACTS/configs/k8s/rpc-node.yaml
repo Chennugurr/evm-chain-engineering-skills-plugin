@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: op-stack-public-testnet-rpc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: op-stack-public-testnet-rpc
+  template:
+    metadata:
+      labels:
+        app: op-stack-public-testnet-rpc
+    spec:
+      containers:
+        - name: rpc-node
+          image: example/op-stack-rpc:v0.0.0-placeholder
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "2"
+              memory: "4Gi"
+          env:
+            - name: SIGNER_MODE
+              value: external-signer-required

@@ -14,6 +14,7 @@ from lib.safety import scan_path
 
 ROOT = find_repo_root(Path(__file__))
 REQUIRED_FILES = ["METADATA.json", "TRANSCRIPT.md", "SKILL_OBSERVATIONS.md", "VALIDATION.md", "SECURITY_REVIEW.md"]
+STRICT_EVIDENCE_FILES = ["PROMPT.md", "TRANSCRIPT.json", "VALIDATION.json", "HOOK_EVENTS.json", "POLICY_EVENTS.json", "MANUAL_NOTES.md"]
 
 
 def validate_package(path: Path, *, strict: bool) -> list[Finding]:
@@ -32,14 +33,20 @@ def validate_package(path: Path, *, strict: bool) -> list[Finding]:
         findings.append(Finding("error", rel(path / "METADATA.json", ROOT), f"unknown prompt_id: {prompt_id}"))
     if meta.get("platform") not in {"codex", "claude"}:
         findings.append(Finding("error", rel(path / "METADATA.json", ROOT), "platform must be codex or claude"))
-    if strict and meta.get("status") == "pending":
-        findings.append(Finding("error", rel(path / "METADATA.json", ROOT), "strict mode does not accept pending live-run packages"))
+    status = str(meta.get("status", ""))
+    if strict:
+        for name in STRICT_EVIDENCE_FILES:
+            if not (path / name).exists():
+                findings.append(Finding("error", rel(path / name, ROOT), "missing strict live evidence file"))
+        if status in {"pending", "blocked", "failed"}:
+            findings.append(Finding("error", rel(path / "METADATA.json", ROOT), f"strict mode does not accept {status} live-run packages"))
     for finding in scan_path(path, ROOT):
         findings.append(Finding("error" if finding.level == "error" else "warning", finding.path, finding.message))
     artifact_value = meta.get("artifacts")
     if prompt_id not in REFUSAL_PROMPTS:
         if not artifact_value:
-            findings.append(Finding("error", rel(path / "METADATA.json", ROOT), "non-refusal package must reference artifacts"))
+            if strict or status not in {"blocked", "failed"}:
+                findings.append(Finding("error", rel(path / "METADATA.json", ROOT), "non-refusal package must reference artifacts unless it is a blocked bootstrap capture"))
         else:
             artifact_path = path / str(artifact_value)
             if not artifact_path.exists():

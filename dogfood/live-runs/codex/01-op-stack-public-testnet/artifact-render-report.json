@@ -1,0 +1,23 @@
+{
+  "checked_at": null,
+  "files": [
+    "dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS/00_REQUEST.md",
+    "dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS/01_ASSUMPTIONS.md",
+    "dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS/02_ARCHITECTURE_DECISION_RECORD.md",
+    "dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS/03_STACK_DECISION_MATRIX.md",
+    "dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS/05_INFRASTRUCTURE_PLAN.md",
+    "dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS/06_SECURITY_REVIEW.md",
+    "dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS/07_RUNBOOK.md",
+    "dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS/08_LAUNCH_GATES.md",
+    "dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS/09_VALIDATION_REPORT.md",
+    "dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS/10_OPEN_QUESTIONS.md",
+    "dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS/04_CHAIN_SPEC.yaml"
+  ],
+  "ok": true,
+  "script": "scripts/render_artifact_bundle.py",
+  "summary": {
+    "files_planned_or_written": 11,
+    "output": "dogfood/live-runs/codex/01-op-stack-public-testnet/GENERATED_ARTIFACTS"
+  },
+  "version": "v0.2.0-alpha"
+}
