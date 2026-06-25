@@ -1,12 +1,12 @@
 # v0.3.0-beta Release Evidence
 
 - Version: v0.3.0-beta
-- Mode: bootstrap
-- Git branch: v0.3-beta-strict-live-evidence
-- Git commit: 727fb3a
-- Git tag status: not created
+- Mode: strict
+- Git branch: v0.3.0-beta-live-matrix-closure
+- Git commit: 7d4ec7d
+- Git tag status: v0.3.0-beta
 - Validation summary: PASS
-- Release ready: false
+- Release ready: true
 
 ## Checks
 
@@ -25,8 +25,8 @@
 
 ## Live Evidence
 
-- Codex transcripts: 1
-- Claude transcripts: 2
+- Codex transcripts: 6
+- Claude transcripts: 7
 - Hook observations: recorded
 - Skill routing score: 100
 
@@ -35,7 +35,7 @@
 - No live chain deployment performed.
 - No mainnet approval workflow implemented.
 - No MCP servers included.
-- v0.3 strict release requires real Codex/Claude dogfood transcripts and live hook observations.
+- Subagent dogfood is documented as a limitation; no live subagent execution is claimed.
 
 ## Unsafe Capabilities Intentionally Excluded
 

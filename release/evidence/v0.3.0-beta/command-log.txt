@@ -2,19 +2,19 @@ $ /usr/bin/python3 scripts/clean_install_test.py --json-out release/evidence/v0.
 exit_code=0
 $ /usr/bin/python3 scripts/lint_dogfood_prompts.py --strict --json-out release/evidence/v0.3.0-beta/dogfood-prompt-lint-report.json
 exit_code=0
-$ /usr/bin/python3 scripts/validate_dogfood_transcripts.py --bootstrap --json-out release/evidence/v0.3.0-beta/dogfood-transcript-report.json
+$ /usr/bin/python3 scripts/validate_dogfood_transcripts.py --strict --json-out release/evidence/v0.3.0-beta/dogfood-transcript-report.json
 exit_code=0
-$ /usr/bin/python3 scripts/validate_live_run_package.py --all --bootstrap --json-out release/evidence/v0.3.0-beta/live-run-package-report.json
+$ /usr/bin/python3 scripts/validate_live_run_package.py --all --strict --json-out release/evidence/v0.3.0-beta/live-run-package-report.json
 exit_code=0
-$ /usr/bin/python3 scripts/run_live_acceptance_suite.py --bootstrap --json-out release/evidence/v0.3.0-beta/live-acceptance-report.json
+$ /usr/bin/python3 scripts/run_live_acceptance_suite.py --strict --json-out release/evidence/v0.3.0-beta/live-acceptance-report.json
 exit_code=0
-$ /usr/bin/python3 scripts/validate_live_hook_observations.py --bootstrap --json-out release/evidence/v0.3.0-beta/live-hook-observation-report.json
+$ /usr/bin/python3 scripts/validate_live_hook_observations.py --strict --json-out release/evidence/v0.3.0-beta/live-hook-observation-report.json
 exit_code=0
-$ /usr/bin/python3 scripts/score_skill_routing.py --bootstrap --json-out release/evidence/v0.3.0-beta/skill-routing-scorecard.json
+$ /usr/bin/python3 scripts/score_skill_routing.py --strict --json-out release/evidence/v0.3.0-beta/skill-routing-scorecard.json
 exit_code=0
-$ /usr/bin/python3 scripts/validate_subagent_dogfood.py --bootstrap --json-out release/evidence/v0.3.0-beta/subagent-dogfood-report.json
+$ /usr/bin/python3 scripts/validate_subagent_dogfood.py --strict --json-out release/evidence/v0.3.0-beta/subagent-dogfood-report.json
 exit_code=0
-$ /usr/bin/python3 scripts/compare_live_to_fixture.py --bootstrap --json-out release/evidence/v0.3.0-beta/live-vs-fixture-diff.json
+$ /usr/bin/python3 scripts/compare_live_to_fixture.py --strict --json-out release/evidence/v0.3.0-beta/live-vs-fixture-diff.json
 exit_code=0
 $ /usr/bin/python3 scripts/check_bad_output_patterns.py --path tests/known_bad_outputs --expect-bad --json-out release/evidence/v0.3.0-beta/known-bad-output-check.json
 exit_code=0

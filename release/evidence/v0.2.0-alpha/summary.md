@@ -2,8 +2,8 @@
 
 - Version: v0.2.0-alpha
 - Mode: strict
-- Git branch: v0.3-beta-strict-live-evidence
-- Git commit: 727fb3a
+- Git branch: v0.3.0-beta-live-matrix-closure
+- Git commit: 3babce4
 - Git tag status: v0.2.0-alpha
 - Validation summary: PASS
 - Release ready: true
@@ -25,7 +25,6 @@
 - No live chain deployment performed.
 - No mainnet approval workflow implemented.
 - No MCP servers included.
-- v0.3 strict release requires real Codex/Claude dogfood transcripts and live hook observations.
 
 ## Unsafe Capabilities Intentionally Excluded
 

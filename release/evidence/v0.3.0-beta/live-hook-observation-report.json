@@ -7,7 +7,7 @@
   "summary": {
     "findings": 0,
     "live_hook_observations": "recorded",
-    "mode": "bootstrap",
+    "mode": "strict",
     "observations_checked": 2
   },
   "target": "dogfood/hooks",

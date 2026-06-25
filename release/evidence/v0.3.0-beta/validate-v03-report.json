@@ -20,25 +20,25 @@
       "subagent-dogfood": "pass"
     },
     "git": {
-      "branch": "v0.3-beta-strict-live-evidence",
-      "commit": "727fb3a",
-      "tag": "not created",
-      "working_tree_clean": false
+      "branch": "v0.3.0-beta-live-matrix-closure",
+      "commit": "7d4ec7d",
+      "tag": "v0.3.0-beta",
+      "working_tree_clean": true
     },
     "known_limitations": [
       "No live chain deployment performed.",
       "No mainnet approval workflow implemented.",
       "No MCP servers included.",
-      "v0.3 strict release requires real Codex/Claude dogfood transcripts and live hook observations."
+      "Subagent dogfood is documented as a limitation; no live subagent execution is claimed."
     ],
-    "live_claude_transcripts": 2,
-    "live_codex_transcripts": 1,
+    "live_claude_transcripts": 7,
+    "live_codex_transcripts": 6,
     "live_hook_observations": "recorded",
-    "mode": "bootstrap",
+    "mode": "strict",
     "ok": true,
-    "release_ready": false,
+    "release_ready": true,
     "skill_routing_score": 100,
-    "v0_3_release_ready": false,
+    "v0_3_release_ready": true,
     "version": "v0.3.0-beta"
   },
   "target": "release/evidence/v0.3.0-beta",

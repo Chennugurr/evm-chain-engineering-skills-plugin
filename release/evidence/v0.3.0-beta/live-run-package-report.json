@@ -6,8 +6,8 @@
   "skipped": [],
   "summary": {
     "findings": 0,
-    "mode": "bootstrap",
-    "packages_checked": 3
+    "mode": "strict",
+    "packages_checked": 13
   },
   "target": "dogfood/live-runs",
   "version": "v0.2.0-alpha"

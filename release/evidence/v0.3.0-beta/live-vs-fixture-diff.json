@@ -8,9 +8,45 @@
     },
     {
       "findings": 0,
+      "fixture": "fixtures/artifact-bundles/arbitrum-orbit-l3-anytrust",
+      "live": "dogfood/live-runs/codex/02-arbitrum-orbit-l3-anytrust/GENERATED_ARTIFACTS",
+      "prompt_id": "02-arbitrum-orbit-l3-anytrust"
+    },
+    {
+      "findings": 0,
+      "fixture": "fixtures/artifact-bundles/polygon-cdk-validium-enterprise",
+      "live": "dogfood/live-runs/codex/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS",
+      "prompt_id": "03-polygon-cdk-enterprise-validium"
+    },
+    {
+      "findings": 0,
+      "fixture": "fixtures/artifact-bundles/evm-l1-posa-testnet",
+      "live": "dogfood/live-runs/codex/05-evm-l1-validator-network/GENERATED_ARTIFACTS",
+      "prompt_id": "05-evm-l1-validator-network"
+    },
+    {
+      "findings": 0,
       "fixture": "fixtures/artifact-bundles/op-stack-public-testnet",
       "live": "dogfood/live-runs/claude/01-op-stack-public-testnet/GENERATED_ARTIFACTS",
       "prompt_id": "01-op-stack-public-testnet"
+    },
+    {
+      "findings": 0,
+      "fixture": "fixtures/artifact-bundles/arbitrum-orbit-l3-anytrust",
+      "live": "dogfood/live-runs/claude/02-arbitrum-orbit-l3-anytrust/GENERATED_ARTIFACTS",
+      "prompt_id": "02-arbitrum-orbit-l3-anytrust"
+    },
+    {
+      "findings": 0,
+      "fixture": "fixtures/artifact-bundles/polygon-cdk-validium-enterprise",
+      "live": "dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS",
+      "prompt_id": "03-polygon-cdk-enterprise-validium"
+    },
+    {
+      "findings": 0,
+      "fixture": "fixtures/artifact-bundles/evm-l1-posa-testnet",
+      "live": "dogfood/live-runs/claude/05-evm-l1-validator-network/GENERATED_ARTIFACTS",
+      "prompt_id": "05-evm-l1-validator-network"
     }
   ],
   "findings": [],

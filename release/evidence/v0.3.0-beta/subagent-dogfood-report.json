@@ -5,8 +5,10 @@
   "script": "scripts/validate_subagent_dogfood.py",
   "skipped": [],
   "summary": {
+    "documented_limitation": true,
     "known_subagents": 6,
-    "mode": "bootstrap",
+    "limitation_path": "dogfood/reports/subagent-dogfood-limitation.md",
+    "mode": "strict",
     "prompt_11_transcripts": 0,
     "subagent_runs": 0
   },

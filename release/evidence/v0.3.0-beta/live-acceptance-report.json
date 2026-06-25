@@ -6,10 +6,10 @@
   "skipped": [],
   "summary": {
     "findings": 0,
-    "live_run_packages": 3,
-    "mode": "bootstrap",
+    "live_run_packages": 13,
+    "mode": "strict",
     "scope": "all",
-    "transcripts_checked": 3
+    "transcripts_checked": 13
   },
   "target": "dogfood",
   "version": "v0.2.0-alpha"
