@@ -30,12 +30,12 @@ def test_bootstrap_and_strict_transcripts_pass_for_captured_smoke_evidence():
     assert "transcripts_checked: 3" in strict.stdout
 
 
-def test_pending_hook_observations_fail_only_in_strict():
+def test_hook_observations_pass_in_strict_after_smoke_capture():
     bootstrap = run_script("scripts/validate_live_hook_observations.py", "--bootstrap")
     assert bootstrap.returncode == 0, bootstrap.stdout
     strict = run_script("scripts/validate_live_hook_observations.py", "--strict")
-    assert strict.returncode != 0
-    assert "strict mode requires real hook observation" in strict.stdout
+    assert strict.returncode == 0, strict.stdout
+    assert "live_hook_observations: recorded" in strict.stdout
 
 
 def test_known_bad_checker_modes():

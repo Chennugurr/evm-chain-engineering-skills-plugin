@@ -98,7 +98,7 @@ Current strict-evidence status:
 - Codex smoke run `01-op-stack-public-testnet`: captured and validated under `dogfood/live-runs/codex/01-op-stack-public-testnet/`.
 - Claude discovery run `00-plugin-discovery`: captured under `dogfood/live-runs/claude/00-plugin-discovery/`; the old `401 authentication_failed` issue is resolved in `dogfood/issues/resolved/CLAUDE-AUTH-401.md`.
 - Claude smoke run `01-op-stack-public-testnet`: captured and validated under `dogfood/live-runs/claude/01-op-stack-public-testnet/`.
-- Live hook observation: Claude discovery and OP Stack smoke observed `PreToolUse:Bash`; Codex hook evidence remains pending.
+- Live hook observation: Claude discovery and OP Stack smoke observed `PreToolUse:Bash`; Codex hook closure observed safe allow plus fake-secret and mainnet-like deny decisions under `dogfood/hooks/codex/`.
 - `v0.3.0-beta` tag: not created.
 
 Bootstrap mode validates the harness plus any captured smoke evidence:
@@ -107,10 +107,10 @@ Bootstrap mode validates the harness plus any captured smoke evidence:
 make validate-v03-bootstrap
 ```
 
-Strict mode is intentionally blocked until real live evidence is captured:
+Strict mode remains the release gate:
 
 ```bash
 make validate-v03
 ```
 
-Do not tag `v0.3.0-beta` until strict validation passes with the required Codex and Claude transcripts, hook observations, validated generated artifact bundles, and release evidence.
+Do not tag `v0.3.0-beta` until strict validation passes with the required Codex and Claude transcripts, hook observations, validated generated artifact bundles, subagent evidence, and release evidence.

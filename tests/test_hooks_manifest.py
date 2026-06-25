@@ -10,7 +10,9 @@ REQUIRED_RULES = {"secret-output", "private-key-flag", "mainnet-broadcast", "des
 def test_hook_manifest_shape_and_rules():
     manifest = PLUGIN / "hooks" / "hooks.json"
     data = json.loads(manifest.read_text())
-    assert set(data["policy_rule_categories"]) == REQUIRED_RULES
+    assert set(data) == {"hooks"}
+    metadata = json.loads((PLUGIN / "hooks" / "policy-metadata.json").read_text())
+    assert set(metadata["policy_rule_categories"]) == REQUIRED_RULES
     command = data["hooks"]["PreToolUse"][0]["hooks"][0]["command"]
     assert "policy_guard.py" in command
     assert str(Path.home()) not in command

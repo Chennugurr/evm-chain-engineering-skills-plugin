@@ -1,6 +1,6 @@
 {
   "name": "evm-chain-engineering-pro",
-  "version": "0.1.0",
+  "version": "0.1.0+codex.v03-codex-hook-enforce-20260625",
   "description": "Blockchain engineering toolkit for EVM L1s, rollups, bridges, operations, and launch safety.",
   "author": {
     "name": "iljanemesis",

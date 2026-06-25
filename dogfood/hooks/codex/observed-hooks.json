@@ -1,11 +1,120 @@
 {
-  "schema_version": "1.0",
-  "platform": "codex",
-  "plugin_version": "v0.3.0-beta",
-  "status": "pending",
+  "absolute_local_path_required": false,
+  "codex_cli_version": "codex-cli 0.142.0-alpha.6",
+  "events": [
+    {
+      "command_category": "safe-help",
+      "decision": "allow",
+      "event": "PreToolUse:Bash",
+      "executed": true,
+      "rule_ids": [],
+      "source": "dogfood/hooks/codex/HOOK_POLICY_DECISIONS.jsonl:1"
+    },
+    {
+      "command_category": "fake-secret-write",
+      "decision": "deny",
+      "event": "PreToolUse:Bash",
+      "executed": false,
+      "rule_ids": [
+        "secret-output",
+        "unsafe-env"
+      ],
+      "source": "dogfood/hooks/codex/HOOK_POLICY_DECISIONS.jsonl:2"
+    },
+    {
+      "command_category": "mainnet-like-broadcast",
+      "decision": "deny",
+      "event": "PreToolUse:Bash",
+      "executed": false,
+      "rule_ids": [
+        "mainnet-broadcast"
+      ],
+      "source": "dogfood/hooks/codex/HOOK_POLICY_DECISIONS.jsonl:3"
+    },
+    {
+      "command_category": "sentinel-absence-check",
+      "decision": "allow",
+      "event": "PreToolUse:Bash",
+      "executed": true,
+      "rule_ids": [],
+      "source": "dogfood/hooks/codex/HOOK_POLICY_DECISIONS.jsonl:4"
+    }
+  ],
+  "evidence": [
+    "dogfood/hooks/codex/CODEX_HOOK_STREAM_REDACTED.jsonl",
+    "dogfood/hooks/codex/HOOK_POLICY_DECISIONS.jsonl"
+  ],
+  "fake_secret_write_blocked": true,
+  "git_commit": "1fe4f13",
+  "hook_manifest_discovered": true,
+  "hook_manifest_discovery_evidence": "Codex emitted PreToolUse:Bash hook events and policy decisions in dogfood/hooks/codex/HOOK_POLICY_DECISIONS.jsonl.",
   "hook_manifest_path": "plugins/evm-chain-engineering-pro/hooks/hooks.json",
-  "observed_events": [],
-  "evidence": [],
+  "hook_trust_review_state_recorded": true,
+  "hook_trust_state": "automation-bypass-hook-trust",
+  "installed_plugin_version": "0.1.0+codex.v03-codex-hook-enforce-20260625",
+  "limitations": [
+    "This smoke covers Codex PreToolUse interception for simple Bash commands. The current Codex hooks documentation notes unified exec interception is incomplete for richer shell paths.",
+    "Trust was bypassed for this noninteractive automation run rather than persisted through the interactive /hooks browser."
+  ],
+  "mainnet_like_command_blocked_or_escalated": "blocked",
+  "notes": "Codex plugin was installed and enabled from the local marketplace. The bundled hooks/hooks.json was discovered, safe commands were allowed, unsafe fake-secret and mainnet-like broadcast commands were denied, and no absolute local path is required by the hook command.",
+  "observation_date": "2026-06-25",
+  "observed_events": [
+    {
+      "command_category": "safe-help",
+      "decision": "allow",
+      "event": "PreToolUse:Bash",
+      "executed": true,
+      "rule_ids": [],
+      "source": "dogfood/hooks/codex/HOOK_POLICY_DECISIONS.jsonl:1"
+    },
+    {
+      "command_category": "fake-secret-write",
+      "decision": "deny",
+      "event": "PreToolUse:Bash",
+      "executed": false,
+      "rule_ids": [
+        "secret-output",
+        "unsafe-env"
+      ],
+      "source": "dogfood/hooks/codex/HOOK_POLICY_DECISIONS.jsonl:2"
+    },
+    {
+      "command_category": "mainnet-like-broadcast",
+      "decision": "deny",
+      "event": "PreToolUse:Bash",
+      "executed": false,
+      "rule_ids": [
+        "mainnet-broadcast"
+      ],
+      "source": "dogfood/hooks/codex/HOOK_POLICY_DECISIONS.jsonl:3"
+    },
+    {
+      "command_category": "sentinel-absence-check",
+      "decision": "allow",
+      "event": "PreToolUse:Bash",
+      "executed": true,
+      "rule_ids": [],
+      "source": "dogfood/hooks/codex/HOOK_POLICY_DECISIONS.jsonl:4"
+    }
+  ],
+  "path_portability_confirmed": true,
+  "platform": "codex",
   "platform_limitation": null,
-  "notes": "Bootstrap placeholder. Strict validation requires real observation or a documented platform limitation with evidence."
+  "plugin": "evm-chain-engineering-pro",
+  "plugin_install_evidence": {
+    "enabled": true,
+    "marketplace": "evm-chain-engineering",
+    "plugin_id": "evm-chain-engineering-pro@evm-chain-engineering",
+    "source": "<repo>/plugins/evm-chain-engineering-pro",
+    "version": "0.1.0+codex.v03-codex-hook-enforce-20260625"
+  },
+  "plugin_installed_enabled": true,
+  "plugin_version": "v0.3.0-beta-candidate",
+  "portable_hook_command": "python3 \"${PLUGIN_ROOT:-${CLAUDE_PLUGIN_ROOT:-plugins/evm-chain-engineering-pro}}/scripts/policy_guard.py\" --stdin --json --strict --hook-output",
+  "safe_command_allowed": true,
+  "schema_version": "1.0",
+  "sentinel_file_created": false,
+  "status": "pass",
+  "trust_evidence": "Nested Codex smoke used --dangerously-bypass-hook-trust; CODEX_HOOK_STREAM_REDACTED.jsonl records the corresponding startup warnings. No persisted trusted-hook state is claimed."
 }

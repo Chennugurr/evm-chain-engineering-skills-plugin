@@ -56,6 +56,14 @@ def test_private_material_flag_blocked_even_when_redacted():
     assert any(f["rule_id"] == "private-key-flag" for f in payload(result)["findings"])
 
 
+def test_hook_output_denies_with_zero_exit_for_codex_contract():
+    result = run_guard("--command", "forge script Deploy --broadcast --rpc-url ethereum-mainnet", "--strict", "--hook-output")
+    assert result.returncode == 0
+    data = payload(result)
+    assert data["hookSpecificOutput"]["hookEventName"] == "PreToolUse"
+    assert data["hookSpecificOutput"]["permissionDecision"] == "deny"
+
+
 def test_engineering_public_testnet_text_is_not_admin_rpc_warning():
     findings = scan_text("Use the EVM Chain Engineering plugin for a public testnet RPC plan.", "test.md")
     assert findings == []

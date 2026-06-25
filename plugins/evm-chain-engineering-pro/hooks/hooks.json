@@ -1,25 +1,12 @@
 {
-  "description": "Policy guard hooks for evm-chain-engineering-pro. Uses plugin-local policy_guard.py and does not require live network or secrets.",
-  "policy_rule_categories": [
-    "secret-output",
-    "private-key-flag",
-    "mainnet-broadcast",
-    "destructive-filesystem",
-    "admin-rpc-exposure",
-    "unpinned-images",
-    "curl-pipe-shell",
-    "unsafe-env",
-    "production-without-dry-run",
-    "chain-id-collision"
-  ],
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Bash|Write|Edit|apply_patch",
+        "matcher": "*",
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"${PLUGIN_ROOT:-${CLAUDE_PLUGIN_ROOT}}/scripts/policy_guard.py\" --stdin --json --strict --hook-output",
+            "command": "python3 \"${PLUGIN_ROOT:-${CLAUDE_PLUGIN_ROOT:-plugins/evm-chain-engineering-pro}}/scripts/policy_guard.py\" --stdin --json --strict --hook-output",
             "timeout": 10,
             "statusMessage": "Checking blockchain safety policy"
           }

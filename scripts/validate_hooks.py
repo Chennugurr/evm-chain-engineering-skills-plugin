@@ -33,11 +33,23 @@ def validate_command(command: str, plugin_root: Path, errors: list[str], warning
         errors.append("policy_guard.py does not support --help")
 
 
+def load_policy_metadata(plugin_root: Path, warnings: list[str]) -> set[str]:
+    metadata_path = plugin_root / "hooks" / "policy-metadata.json"
+    if not metadata_path.exists():
+        warnings.append("missing hook policy metadata file")
+        return set()
+    metadata = load(metadata_path)
+    return set(metadata.get("policy_rule_categories", []))
+
+
 def validate_manifest(path: Path, plugin_root: Path) -> tuple[list[str], list[str], set[str]]:
     errors: list[str] = []
     warnings: list[str] = []
     data = load(path)
-    rules = set(data.get("policy_rule_categories", []))
+    unexpected = sorted(set(data) - {"hooks"})
+    if unexpected:
+        errors.append(f"Codex hook manifest contains unsupported top-level fields: {', '.join(unexpected)}")
+    rules = load_policy_metadata(plugin_root, warnings)
     missing_rules = RULES - rules
     if missing_rules:
         errors.append(f"missing policy rule categories: {', '.join(sorted(missing_rules))}")

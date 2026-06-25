@@ -1,0 +1,15 @@
+{
+  "description": "Policy guard hooks for evm-chain-engineering-pro. Uses plugin-local policy_guard.py and does not require live network or secrets.",
+  "policy_rule_categories": [
+    "secret-output",
+    "private-key-flag",
+    "mainnet-broadcast",
+    "destructive-filesystem",
+    "admin-rpc-exposure",
+    "unpinned-images",
+    "curl-pipe-shell",
+    "unsafe-env",
+    "production-without-dry-run",
+    "chain-id-collision"
+  ]
+}

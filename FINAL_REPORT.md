@@ -4,9 +4,11 @@
 
 Implemented the v0.3.0-beta bootstrap harness on branch `v0.3-beta-live-agent-qa`, then started the strict live evidence pass on branch `v0.3-beta-strict-live-evidence`. The repository now includes live dogfood prompts, expected behavior contracts, transcript and live-run schemas, validators, hook observation checks, skill routing scorecards, known-bad output checks, live-run package templates, platform compatibility docs, release evidence support, and first smoke-run evidence.
 
-This is not a strict v0.3 release yet. One Codex smoke run is captured and validated. Claude plugin discovery is captured successfully with direct skill invocation and hook lifecycle events. Claude OP Stack smoke is now captured and validated with generated artifacts. Codex hook observations, subagent evidence, and the remaining required prompt matrix remain pending.
+This is not a strict v0.3 release yet. One Codex smoke run is captured and validated. Claude plugin discovery is captured successfully with direct skill invocation and hook lifecycle events. Claude OP Stack smoke is now captured and validated with generated artifacts. Codex live hook observation is captured and validated for smoke scope. Subagent evidence and the remaining required prompt matrix remain pending.
 
 The latest Claude retry resolved the prior noninteractive `401 authentication_failed` blocker: `claude auth status` reports logged in with account identifiers redacted, `claude plugin validate` passes, a no-plugin `claude --print` smoke reached assistant output, plugin-dir discovery completed, and the OP Stack artifact smoke completed.
+
+The latest Codex hook closure resolved the prior pending hook blocker for smoke scope: Codex discovered the bundled `hooks/hooks.json`, allowed a safe validation command, denied a fake-secret write, denied a mainnet-like broadcast command, and left the sentinel file absent. The run used `--dangerously-bypass-hook-trust` for noninteractive automation; persisted interactive `/hooks` trust is not claimed.
 
 ## Files Added or Changed
 
@@ -17,7 +19,9 @@ The latest Claude retry resolved the prior noninteractive `401 authentication_fa
 - Added Codex smoke evidence under `dogfood/live-runs/codex/01-op-stack-public-testnet/`.
 - Added and then refreshed Claude smoke evidence under `dogfood/live-runs/claude/01-op-stack-public-testnet/`.
 - Added Claude discovery evidence under `dogfood/live-runs/claude/00-plugin-discovery/`.
+- Added Codex hook evidence under `dogfood/hooks/codex/`.
 - Updated validators to allow blocked packages in bootstrap while rejecting them in strict mode.
+- Updated hook policy guard packaging so installed Codex plugin cache execution is self-contained.
 - Moved canonical blocker issue to `dogfood/issues/resolved/CLAUDE-AUTH-401.md`.
 - Added triage doc `docs/claude-auth-blocker-triage.md`.
 - Rebuilt `docs/platform-compatibility-matrix.md` with evidence paths and strict status labels.
@@ -29,7 +33,7 @@ Latest command results recorded during the strict evidence pass:
 - `python3 -m pytest`: PASS, 57 tests passed.
 - `make validate`: PASS.
 - `make validate-v03-bootstrap`: PASS.
-- `make validate-v03 || true`: expected strict failure at `validate_live_hook_observations.py --strict` because Codex hook observation remains pending.
+- `make validate-v03 || true`: expected strict failure remains allowed only for unreleased live matrix/subagent gaps; Codex hook observation is no longer the expected blocker.
 - `claude plugin validate plugins/evm-chain-engineering-pro --strict`: PASS.
 - `claude auth status`: logged in, account identifiers redacted from committed evidence.
 - no-plugin `claude --print`: PARTIAL, assistant returned `ok`; command ended nonzero because the budget cap was too low.
@@ -41,12 +45,13 @@ Latest command results recorded during the strict evidence pass:
 - `python3 scripts/run_live_acceptance_suite.py --strict --scope smoke`: PASS.
 - `python3 scripts/score_skill_routing.py --strict --scope smoke`: PASS.
 - `python3 scripts/validate_live_hook_observations.py --strict --platform claude`: PASS.
+- `python3 scripts/validate_live_hook_observations.py --strict --platform codex`: PASS.
 
 Bootstrap evidence:
 
 - `live_codex_transcripts`: 1 smoke transcript.
 - `live_claude_transcripts`: 1 discovery transcript plus 1 captured OP Stack smoke transcript.
-- `live_hook_observations`: Claude central observation is pass; Codex observation remains pending.
+- `live_hook_observations`: Claude central observation is pass; Codex central observation is pass for smoke scope.
 - `release_ready`: false.
 - `v0.3.0-beta` tag: not created.
 
@@ -62,7 +67,8 @@ Bootstrap evidence:
 - Claude auth blocker classification: `67ec145`
 - Claude discovery and OP Stack resolution: `873a02f`
 - Bootstrap evidence after auth triage: `73c7158`
-- Latest generated-evidence refresh after Claude rerun: pending commit
+- Latest generated-evidence refresh after Claude rerun: `1fe4f13`
+- Codex hook evidence closure: pending commit
 - Push/publish/deploy: not performed
 
 ## Known Limitations
@@ -71,4 +77,4 @@ No live chain deployment, no real secrets, no MCP servers, no mainnet approval m
 
 ## Next Recommended Milestone
 
-Continue the required six-prompt Codex and Claude matrix, capture Codex hook observation, capture subagent evidence, and rerun strict release evidence. Create `v0.3.0-beta` only if `make validate-v03` passes.
+Continue the required six-prompt Codex and Claude matrix, capture subagent evidence, and rerun strict release evidence. Create `v0.3.0-beta` only if `make validate-v03` passes.

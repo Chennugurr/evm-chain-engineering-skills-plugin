@@ -7,6 +7,10 @@ Changed:
 - Added Claude `00-plugin-discovery` evidence with plugin visibility, direct skill invocation, routing evidence, hook lifecycle events, and portability notes.
 - Reran Claude `01-op-stack-public-testnet` successfully with generated artifacts, validation reports, hook events, and policy evidence.
 - Updated Claude hook observation status to pass.
+- Captured Codex live hook evidence with plugin-bundled `PreToolUse:Bash` decisions, safe-command allow, fake-secret deny, and mainnet-like broadcast deny.
+- Made the policy guard hook output use Codex `permissionDecision` JSON with exit `0`, while preserving strict nonzero exits for normal CLI scans.
+- Moved hook metadata into `hooks/policy-metadata.json` so `hooks/hooks.json` stays compatible with Codex hook parsing.
+- Made the plugin-local policy guard self-contained for installed plugin cache execution.
 
 Validation:
 - `claude auth status` reports logged in with account identifiers redacted.
@@ -14,9 +18,10 @@ Validation:
 - `claude plugin validate plugins/evm-chain-engineering-pro --strict` passes.
 - Claude plugin discovery passes.
 - Claude OP Stack smoke validation passes for artifact bundle, generated configs, known-bad output scan, and strict secret scan.
+- Codex hook observation validation passes for smoke scope.
 
 Release:
-- Strict v0.3 remains blocked by the remaining live prompt matrix, Codex hook evidence, and subagent evidence.
+- Strict v0.3 remains blocked by the remaining live prompt matrix and subagent evidence.
 - `v0.3.0-beta` tag remains uncreated.
 
 ## v0.3.0-beta auth blocker classification
