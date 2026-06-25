@@ -8,6 +8,7 @@
     "findings": 0,
     "live_run_packages": 2,
     "mode": "bootstrap",
+    "scope": "all",
     "transcripts_checked": 2
   },
   "target": "dogfood",

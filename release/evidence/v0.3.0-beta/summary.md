@@ -3,7 +3,7 @@
 - Version: v0.3.0-beta
 - Mode: bootstrap
 - Git branch: v0.3-beta-strict-live-evidence
-- Git commit: 3bbaeec
+- Git commit: 67ec145
 - Git tag status: not created
 - Validation summary: PASS
 - Release ready: false

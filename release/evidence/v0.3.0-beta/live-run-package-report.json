@@ -1,62 +1,11 @@
 {
   "checked_at": null,
-  "findings": [
-    {
-      "level": "warning",
-      "message": "public admin/debug RPC exposure pattern detected",
-      "path": "dogfood/live-runs/codex/01-op-stack-public-testnet/PROMPT.md:21"
-    },
-    {
-      "level": "warning",
-      "message": "public admin/debug RPC exposure pattern detected",
-      "path": "dogfood/live-runs/codex/01-op-stack-public-testnet/VALIDATION.md:13"
-    },
-    {
-      "level": "warning",
-      "message": "public admin/debug RPC exposure pattern detected",
-      "path": "dogfood/live-runs/codex/01-op-stack-public-testnet/VALIDATION.json:24"
-    },
-    {
-      "level": "warning",
-      "message": "public admin/debug RPC exposure pattern detected",
-      "path": "dogfood/live-runs/codex/01-op-stack-public-testnet/TRANSCRIPT.json:29"
-    },
-    {
-      "level": "warning",
-      "message": "public admin/debug RPC exposure pattern detected",
-      "path": "dogfood/live-runs/codex/01-op-stack-public-testnet/CODEX_STREAM_REDACTED.jsonl:61"
-    },
-    {
-      "level": "warning",
-      "message": "public admin/debug RPC exposure pattern detected",
-      "path": "dogfood/live-runs/codex/01-op-stack-public-testnet/CODEX_STREAM_REDACTED.jsonl:91"
-    },
-    {
-      "level": "warning",
-      "message": "public admin/debug RPC exposure pattern detected",
-      "path": "dogfood/live-runs/codex/01-op-stack-public-testnet/CODEX_STREAM_REDACTED.jsonl:92"
-    },
-    {
-      "level": "warning",
-      "message": "public admin/debug RPC exposure pattern detected",
-      "path": "dogfood/live-runs/codex/01-op-stack-public-testnet/CODEX_STREAM_REDACTED.jsonl:124"
-    },
-    {
-      "level": "warning",
-      "message": "public admin/debug RPC exposure pattern detected",
-      "path": "dogfood/live-runs/codex/01-op-stack-public-testnet/CODEX_STREAM_REDACTED.jsonl:125"
-    },
-    {
-      "level": "warning",
-      "message": "public admin/debug RPC exposure pattern detected",
-      "path": "dogfood/live-runs/claude/01-op-stack-public-testnet/PROMPT.md:21"
-    }
-  ],
+  "findings": [],
   "ok": true,
   "script": "scripts/validate_live_run_package.py",
   "skipped": [],
   "summary": {
-    "findings": 10,
+    "findings": 0,
     "mode": "bootstrap",
     "packages_checked": 2
   },
