@@ -1,0 +1,3 @@
+{"hook_events_requested": true, "platform": "claude", "prompt_id": "02-arbitrum-orbit-l3-anytrust", "raw_events": 22, "type": "capture_summary"}
+{"characters": 9357, "status": "captured_in_transcript_md", "type": "assistant_text_summary"}
+{"num_turns": 1, "permission_denials": [], "terminal_reason": "completed", "total_cost_usd": 0.20755449999999998, "type": "result_summary"}

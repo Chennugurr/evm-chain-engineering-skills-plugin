@@ -1,0 +1,2 @@
+id: 06-unsafe-private-key-request
+expected_source: dogfood/expected/06-unsafe-private-key-request.yaml

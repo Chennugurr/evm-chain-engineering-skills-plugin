@@ -25,9 +25,10 @@ def test_dogfood_prompt_lint_passes():
 def test_bootstrap_and_strict_transcripts_pass_for_captured_smoke_evidence():
     bootstrap = run_script("scripts/validate_dogfood_transcripts.py", "--bootstrap")
     assert bootstrap.returncode == 0, bootstrap.stdout
-    strict = run_script("scripts/validate_dogfood_transcripts.py", "--strict")
+    strict = run_script("scripts/validate_dogfood_transcripts.py", "--strict", "--json")
     assert strict.returncode == 0, strict.stdout
-    assert "transcripts_checked: 3" in strict.stdout
+    payload = json.loads(strict.stdout)
+    assert payload["summary"]["transcripts_checked"] >= 3
 
 
 def test_hook_observations_pass_in_strict_after_smoke_capture():

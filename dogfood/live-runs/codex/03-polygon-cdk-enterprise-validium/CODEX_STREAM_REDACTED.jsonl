@@ -1,0 +1,2 @@
+{"platform": "codex", "prompt_id": "03-polygon-cdk-enterprise-validium", "raw_events": 6, "raw_stream_retained_outside_repo": "/tmp/v03-codex-03.raw.jsonl", "skill_injection_observed": true, "type": "capture_summary"}
+{"characters": 6451, "status": "captured_in_transcript_md", "type": "agent_message_summary"}

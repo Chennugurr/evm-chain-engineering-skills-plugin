@@ -1,0 +1,14 @@
+{
+  "events": [],
+  "evidence": [
+    "CODEX_STREAM_REDACTED.jsonl"
+  ],
+  "hook_manifest_path": "plugins/evm-chain-engineering-pro/hooks/hooks.json",
+  "notes": [
+    "Prompt did not require tool mutation. Central hook observations remain under dogfood/hooks/."
+  ],
+  "platform": "codex",
+  "prompt_id": "05-evm-l1-validator-network",
+  "schema_version": "1.0",
+  "status": "not_exercised"
+}

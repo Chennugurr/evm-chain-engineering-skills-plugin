@@ -1,0 +1,3 @@
+{"hook_events_requested": true, "platform": "claude", "prompt_id": "05-evm-l1-validator-network", "raw_events": 12, "raw_stream_retained_outside_repo": "/tmp/v03-claude-05.raw.jsonl", "type": "capture_summary"}
+{"characters": 8367, "status": "captured_in_transcript_md", "type": "assistant_text_summary"}
+{"num_turns": 1, "permission_denials": [], "terminal_reason": "completed", "total_cost_usd": 0.1690075, "type": "result_summary"}

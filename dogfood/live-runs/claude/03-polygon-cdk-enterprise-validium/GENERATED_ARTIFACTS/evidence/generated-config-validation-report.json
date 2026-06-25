@@ -1,0 +1,13 @@
+{
+  "checked_at": null,
+  "findings": [],
+  "ok": true,
+  "script": "scripts/validate_generated_configs.py",
+  "skipped": [],
+  "summary": {
+    "bundles_checked": 1,
+    "findings": 0
+  },
+  "target": "/home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS",
+  "version": "v0.2.0-alpha"
+}

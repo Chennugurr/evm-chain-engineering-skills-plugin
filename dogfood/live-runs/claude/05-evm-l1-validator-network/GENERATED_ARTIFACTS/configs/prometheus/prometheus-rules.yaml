@@ -1,0 +1,24 @@
+groups:
+  - name: chain-node-health
+    rules:
+      - alert: ChainNodeDown
+        expr: up{job="chain-node"} == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: Chain node is down
+      - alert: ChainNodeDiskUsageHigh
+        expr: node_filesystem_avail_bytes / node_filesystem_size_bytes < 0.15
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: Chain node disk space is low
+      - alert: ChainRoleUnavailable
+        expr: chain_role_health == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: Chain role health check failed

@@ -1,0 +1,2 @@
+{"platform": "codex", "prompt_id": "07-stack-selection-gaming-chain", "raw_events": 30, "raw_stream_retained_outside_repo": "/tmp/v03-codex-07.raw.jsonl", "skill_injection_observed": true, "type": "capture_summary"}
+{"characters": 6999, "status": "captured_in_transcript_md", "type": "agent_message_summary"}

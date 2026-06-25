@@ -1,0 +1,38 @@
+{
+  "checked_at": null,
+  "commands": [
+    {
+      "command": "/usr/bin/python3 scripts/render_artifact_bundle.py --workflow polygon-cdk-validium-enterprise --stack polygon-cdk --chain-type validium --environment public-testnet --settlement ethereum-testnet-or-agglayer --data-availability offchain-da-committee --proof-model validity-proof --chain-name Example CDK Enterprise Validium --output /home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS --overwrite --json-out /home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/artifact-render-report.json",
+      "exit_code": 0,
+      "report": "artifact-render-report.json"
+    },
+    {
+      "command": "/usr/bin/python3 scripts/validate_artifact_bundle.py --strict --path /home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS --json-out /home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/evidence/artifact-validation-report.json",
+      "exit_code": 0,
+      "report": "GENERATED_ARTIFACTS/evidence/artifact-validation-report.json"
+    },
+    {
+      "command": "/usr/bin/python3 scripts/validate_generated_configs.py --strict --path /home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS --json-out /home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/evidence/generated-config-validation-report.json",
+      "exit_code": 0,
+      "report": "GENERATED_ARTIFACTS/evidence/generated-config-validation-report.json"
+    },
+    {
+      "command": "/usr/bin/python3 scripts/check_bad_output_patterns.py --path /home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS --strict --json-out /home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/evidence/bad-output-patterns-report.json",
+      "exit_code": 0,
+      "report": "GENERATED_ARTIFACTS/evidence/bad-output-patterns-report.json"
+    },
+    {
+      "command": "/usr/bin/python3 plugins/evm-chain-engineering-pro/scripts/scan_secrets.py --path /home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS --strict --json",
+      "exit_code": 0,
+      "report": "GENERATED_ARTIFACTS/evidence/secret-scan-report.json"
+    }
+  ],
+  "limitations": [
+    "Live answer is redacted for repository safety.",
+    "No live deployment or transaction execution performed."
+  ],
+  "platform": "claude",
+  "prompt_id": "03-polygon-cdk-enterprise-validium",
+  "schema_version": "1.0",
+  "status": "pass"
+}

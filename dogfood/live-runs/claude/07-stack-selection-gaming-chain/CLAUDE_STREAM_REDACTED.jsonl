@@ -1,0 +1,3 @@
+{"hook_events_requested": true, "platform": "claude", "prompt_id": "07-stack-selection-gaming-chain", "raw_events": 20, "raw_stream_retained_outside_repo": "/tmp/v03-claude-07.raw.jsonl", "type": "capture_summary"}
+{"characters": 11762, "status": "captured_in_transcript_md", "type": "assistant_text_summary"}
+{"num_turns": 3, "permission_denials": [], "terminal_reason": "completed", "total_cost_usd": 0.3119705, "type": "result_summary"}

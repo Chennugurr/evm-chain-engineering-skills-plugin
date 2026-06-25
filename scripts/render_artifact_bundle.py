@@ -52,21 +52,361 @@ def chain_spec(args: argparse.Namespace, prof: dict[str, Any]) -> dict[str, Any]
     }
 
 
+def alternatives_table(args: argparse.Namespace, spec: dict[str, Any], display_name: str) -> str:
+    if args.stack == "op-stack":
+        return f"""| Alternative | Why Considered | Why Selected or Rejected |
+|---|---|---|
+| {display_name} | Optimistic-rollup baseline with explicit sequencer, batcher, and proposer role separation | selected for this workflow |
+| Arbitrum Orbit | L2/L3 path with Nitro lineage and AnyTrust options | rejected unless parent-chain and AnyTrust requirements dominate |
+| Polygon CDK / Agglayer | Validity/validium-focused path | rejected unless validity proofs and Agglayer integration dominate |
+| EVM L1/appchain | Native validator-network and consensus path | rejected unless independent consensus and validator economics dominate |"""
+    if args.stack == "arbitrum-orbit":
+        return f"""| Alternative | Why Considered | Why Selected or Rejected |
+|---|---|---|
+| {display_name} | L3-capable Orbit/Nitro path with parent-chain settlement, custom gas token planning, sequencer feed, validator/staker review, bridge assumptions, and AnyTrust/DAC review | selected for this workflow |
+| Polygon CDK / Agglayer | Validity/validium-focused path | rejected unless validity proofs and Agglayer integration dominate |
+| ZK Stack | ZK chain path with prover and proof latency planning | rejected unless that proving model dominates |
+| EVM L1/appchain | Native validator-network and consensus path | rejected unless independent consensus and validator economics dominate |"""
+    if args.stack == "polygon-cdk":
+        return f"""| Alternative | Why Considered | Why Selected or Rejected |
+|---|---|---|
+| {display_name} | Polygon CDK planning path for validium, zkRollup, sovereign mode, Agglayer integration, DA committee review, prover operations, enterprise controls, and bridge assumptions | selected for this workflow |
+| Arbitrum Orbit | Parent-chain/L3 path with AnyTrust options | rejected unless Orbit parent-chain assumptions dominate |
+| ZK Stack | ZK chain path with prover and proof latency planning | compare only if that ecosystem dominates |
+| EVM L1/appchain | Native validator-network and consensus path | rejected unless independent consensus and validator economics dominate |"""
+    if spec["chain_type"] in {"l1", "appchain"}:
+        return f"""| Alternative | Why Considered | Why Selected or Rejected |
+|---|---|---|
+| {display_name} | Native EVM chain path with validator network, consensus, validator economics, genesis, native token, chain ID, bootnodes, RPC, explorer, governance, and launch-gate planning | selected for this workflow |
+| Arbitrum Orbit | Parent-chain/L3 path | rejected because this fixture requires native consensus planning |
+| Polygon CDK / Agglayer | Validity/validium-focused path | rejected because this fixture requires native validator-set planning |
+| ZK Stack | ZK chain path with prover operations | rejected because this fixture requires independent validator-network planning |"""
+    return f"""| Alternative | Why Considered | Why Selected or Rejected |
+|---|---|---|
+| {display_name} | Best fit for the requested planning fixture | selected for workflow acceptance |
+| Arbitrum Orbit | Parent-chain/L3 path | compare if parent-chain assumptions dominate |
+| Polygon CDK / Agglayer | Validity/validium-focused path | compare if validity and Agglayer requirements dominate |
+| EVM L1/appchain | Native validator-network and consensus path | compare if independent consensus dominates |"""
+
+
+def stack_matrix_rows(args: argparse.Namespace, spec: dict[str, Any], display_name: str) -> str:
+    if args.stack == "op-stack":
+        return f"""| stack | chain type fit | settlement fit | DA fit | proof/trust model | custom gas token support | operational complexity | security risks | recommendation |
+|---|---|---|---|---|---|---|---|---|
+| {display_name} | fits `{spec['chain_type']}` with explicit sequencer, batcher, and proposer planning | {spec['settlement']['layer']} | {spec['data_availability']['mode']} | {spec['proof_model']['type']} | verify current docs | medium/high | bridge, keys, RPC, DA | selected |
+| Arbitrum Orbit | L2/L3 Orbit | parent-chain | AnyTrust or parent-chain | optimistic/AnyTrust | verify current docs | medium | DAC/bridge/sequencer | compare if L3/DAC focus increases |
+| Polygon CDK | validium/zk modes | Ethereum/Agglayer/sovereign | offchain/DA committee/Ethereum | validity | verify current docs | high | prover/bridge/DA | compare for validity proof focus |
+| EVM L1/appchain | independent chain with validator network and consensus | native consensus | native chain | validator consensus | native token | high | validators/governance/RPC | compare for independent consensus |"""
+    if args.stack == "arbitrum-orbit":
+        return f"""| stack | chain type fit | settlement fit | DA fit | proof/trust model | custom gas token support | operational complexity | security risks | recommendation |
+|---|---|---|---|---|---|---|---|---|
+| {display_name} | fits `{spec['chain_type']}` with Orbit/Nitro L3 planning, parent-chain assumptions, sequencer feed, validator/staker review, and custom gas token checks | {spec['settlement']['layer']} | {spec['data_availability']['mode']} | {spec['proof_model']['type']} | verify Orbit support in current docs | medium/high | DAC, bridge, sequencer, keys, RPC | selected |
+| Polygon CDK | validium/zk modes | Ethereum/Agglayer/sovereign | offchain/DA committee/Ethereum | validity | verify current docs | high | prover/bridge/DA | compare for validity proof focus |
+| ZK Stack | ZK chain path with prover and proof latency planning | Ethereum/L1 or validium-style options | rollup/validium options | validity | verify current docs | high | prover/bridge/DA | compare for that ecosystem fit |
+| EVM L1/appchain | independent chain with validator network and consensus | native consensus | native chain | validator consensus | native token | high | validators/governance/RPC | compare for independent consensus |"""
+    if args.stack == "polygon-cdk":
+        return f"""| stack | chain type fit | settlement fit | DA fit | proof/trust model | custom gas token support | operational complexity | security risks | recommendation |
+|---|---|---|---|---|---|---|---|---|
+| {display_name} | fits `{spec['chain_type']}` with Polygon CDK validium, zkRollup, sovereign mode, Agglayer, prover, DA committee, enterprise, and bridge planning | {spec['settlement']['layer']} | {spec['data_availability']['mode']} | {spec['proof_model']['type']} | verify CDK support in current docs | high | prover, DA, bridge, keys, RPC | selected |
+| Arbitrum Orbit | L2/L3 Orbit | parent-chain | AnyTrust or parent-chain | optimistic/AnyTrust | verify current docs | medium | DAC/bridge/sequencer | compare if L3/DAC focus increases |
+| ZK Stack | ZK chain path with prover and proof latency planning | Ethereum/L1 or validium-style options | rollup/validium options | validity | verify current docs | high | prover/bridge/DA | compare for that ecosystem fit |
+| EVM L1/appchain | independent chain with validator network and consensus | native consensus | native chain | validator consensus | native token | high | validators/governance/RPC | compare for independent consensus |"""
+    if spec["chain_type"] in {"l1", "appchain"}:
+        return f"""| stack | chain type fit | settlement fit | DA fit | proof/trust model | custom gas token support | operational complexity | security risks | recommendation |
+|---|---|---|---|---|---|---|---|---|
+| {display_name} | fits `{spec['chain_type']}` with validator set, consensus, genesis, native token, chain ID, bootnodes, RPC, explorer, governance, and launch-gate planning | {spec['settlement']['layer']} | {spec['data_availability']['mode']} | {spec['proof_model']['type']} | native token planning required | high | validators, governance, RPC, bootnodes, key custody | selected |
+| Arbitrum Orbit | parent-chain/L3 path | parent-chain | AnyTrust or parent-chain | optimistic/AnyTrust | verify current docs | medium | DAC/bridge/sequencer | rejected for native consensus fixture |
+| Polygon CDK | validium/zk modes | Ethereum/Agglayer/sovereign | offchain/DA committee/Ethereum | validity | verify current docs | high | prover/bridge/DA | rejected for native consensus fixture |
+| ZK Stack | ZK chain path | Ethereum/L1 or validium-style options | rollup/validium options | validity | verify current docs | high | prover/bridge/DA | rejected for native consensus fixture |"""
+    return f"""| stack | chain type fit | settlement fit | DA fit | proof/trust model | custom gas token support | operational complexity | security risks | recommendation |
+|---|---|---|---|---|---|---|---|---|
+| {display_name} | fits `{spec['chain_type']}` for this planning fixture | {spec['settlement']['layer']} | {spec['data_availability']['mode']} | {spec['proof_model']['type']} | verify current docs | medium/high | bridge, keys, RPC, DA | selected |
+| Arbitrum Orbit | L2/L3 Orbit | parent-chain | AnyTrust or parent-chain | optimistic/AnyTrust | verify current docs | medium | DAC/bridge/sequencer | compare if L3/DAC focus increases |
+| Polygon CDK | validium/zk modes | Ethereum/Agglayer/sovereign | offchain/DA committee/Ethereum | validity | verify current docs | high | prover/bridge/DA | compare for validity proof focus |
+| EVM L1/appchain | independent chain with validator network and consensus | native consensus | native chain | validator consensus | native token | high | validators/governance/RPC | compare for independent consensus |"""
+
+
 def root_files(args: argparse.Namespace, spec: dict[str, Any], prof: dict[str, Any]) -> dict[str, str]:
     workflow_title = spec["chain_name"]
     stack = prof["display_name"]
     roles = ", ".join(spec["node_roles"])
+    l1_context = " Validator and consensus design are in scope." if spec["chain_type"] in {"l1", "appchain"} else ""
+    l1_request_context = " Validator set and consensus planning are explicit scope items." if spec["chain_type"] in {"l1", "appchain"} else ""
+    alternatives = alternatives_table(args, spec, stack)
+    matrix_rows = stack_matrix_rows(args, spec, stack)
     return {
-        "00_REQUEST.md": f"""# Request: {workflow_title}\n\n- Original or normalized request: generate a safe planning artifact bundle for `{args.workflow}`.\n- Workflow id: `{args.workflow}`\n- Generated timestamp policy: intentionally omitted for reproducible fixtures.\n- Environment target: `{spec['environment']}`\n- Human decisions still required: chain ID assignment, upstream version selection, signer custody, infrastructure provider, external review scope.\n""",
-        "01_ASSUMPTIONS.md": f"""# Assumptions: {workflow_title}\n\n## User-Omitted Assumptions\n\n- Selected stack profile: `{args.stack}`.\n- Selected chain type: `{spec['chain_type']}`.\n- Server sizing and exact commands are `VERIFY_CURRENT_DOCS`.\n\n## Must Verify Before Deployment\n\n- Current upstream docs, supported releases, chain ID collision status, bridge contracts, and signer custody.\n\n## Safety-Critical Assumptions\n\n- Sensitive signer material stays outside git and is provided only by approved runtime custody.\n- Admin/debug RPC remains private.\n- This bundle is dry-run planning evidence only.\n""",
-        "02_ARCHITECTURE_DECISION_RECORD.md": f"""# Architecture Decision Record: {workflow_title}\n\n## Status\n\nPlanning-only fixture. Not approved for production or mainnet.\n\n## Context\n\nThe workflow targets `{spec['environment']}` using {stack}.\n\n## Decision\n\nUse `{args.stack}` for a `{spec['chain_type']}` planning bundle with roles: {roles}.\n\n## Alternatives Considered\n\n| Alternative | Why Considered | Why Selected or Rejected |\n|---|---|---|\n| {stack} | Best fit for this fixture with separated batcher and proposer roles when OP Stack is in scope | selected for workflow acceptance |\n| OP Stack | Common optimistic-rollup baseline with explicit batcher and proposer separation | rejected unless this fixture uses OP Stack batcher/proposer role separation |\n| Arbitrum Orbit | L3 and AnyTrust-capable path | rejected unless this fixture uses Orbit |\n| Polygon CDK / Agglayer | Validity/validium-focused path | rejected unless this fixture uses CDK/Agglayer |\n\nOP Stack planning in this bundle explicitly includes separated batcher and proposer roles when OP Stack is selected.\n\n## Security Model\n\nGenerated artifacts are not audits. Security depends on signer custody, bridge assumptions, DA assumptions, admin-key governance, and upstream release choices.\n\n## Settlement Model\n\nSettlement layer: `{spec['settlement']['layer']}`. Verify finality and bridge conditions against current docs.\n\n## Data Availability Model\n\nDA mode: `{spec['data_availability']['mode']}`. DA failures must be modeled before real deployment.\n\n## Sequencing Model\n\nSequencing model: `{spec['sequencing']['model']}`. Censorship, downtime, and centralization risks require review.\n\n## Governance and Upgrade Model\n\nAdmin keys must move to multisig plus timelock or documented external custody before production/mainnet.\n\n## Operational Model\n\nOperators run isolated roles for public RPC, internal admin surfaces, monitoring, and signer integrations.\n\n## Consequences\n\nThis creates a repeatable planning bundle, not a launch approval.\n\n## Human Decisions Required\n\n- Select exact upstream release versions.\n- Assign a unique chain ID after collision checks.\n- Approve signer custody and external review scope.\n""",
-        "03_STACK_DECISION_MATRIX.md": f"""# Stack Decision Matrix: {workflow_title}\n\n| stack | chain type fit | settlement fit | DA fit | proof/trust model | custom gas token support | operational complexity | security risks | recommendation |\n|---|---|---|---|---|---|---|---|---|\n| {stack} | fits `{spec['chain_type']}` with separated batcher and proposer roles when OP Stack is in scope | {spec['settlement']['layer']} | {spec['data_availability']['mode']} | {spec['proof_model']['type']} | verify current docs | medium/high | bridge, keys, RPC, DA | selected |\n| OP Stack | L2/L3 optimistic with explicit batcher and proposer separation | parent-chain | calldata/blobs/Alt-DA | optimistic | verify current docs | medium | bridge/admin/sequencer | compare if requirements shift |\n| Arbitrum Orbit | L2/L3 Orbit | parent-chain | AnyTrust or parent-chain | optimistic/AnyTrust | verify current docs | medium | DAC/bridge/sequencer | compare if L3/DAC focus increases |\n| Polygon CDK | validium/zk modes | Ethereum/Agglayer/sovereign | offchain/DA committee/Ethereum | validity | verify current docs | high | prover/bridge/DA | compare for validity proof focus |\n\nOP Stack comparisons require batcher and proposer planning evidence before any real deployment.\n""",
-        "05_INFRASTRUCTURE_PLAN.md": f"""# Infrastructure Plan: {workflow_title}\n\n## Scope\n\nPlanning-only. No real deployment.\n\n## Node Roles\n\n{roles}\n\n## Server Topology\n\nSeparate public RPC, internal sequencer/validator/prover roles, monitoring, and signer integrations. Sizing is `VERIFY_CURRENT_DOCS`.\n\n## Network Boundaries\n\nPublic ingress only through rate-limited RPC/explorer endpoints. Admin/debug RPC binds to localhost or private networks only.\n\n## Firewall Policy\n\nAllow public RPC only where intended; deny admin/debug APIs externally; restrict signer and database access to private networks.\n\n## Storage Policy\n\nUse dedicated volumes, snapshot/restore checks, and archive/pruning decisions recorded per role.\n\n## Runtime Approach\n\nDocker Compose, systemd, Kubernetes, and Terraform samples are planning templates only.\n\n## Observability\n\nPrometheus, Grafana, logs, RPC health, disk alerts, and role-specific alerts are required before launch.\n\n## Backup/Restore\n\nBackups must be restore-tested before public testnet, staging, production, or mainnet.\n\n## Upgrade Process\n\nStage upgrades, pin versions, verify upstream docs, and maintain rollback plans.\n\n## Incident Response\n\nTriage node down, RPC unavailable, sequencer lag, bridge incident, DA failure, and signer access incidents.\n""",
-        "06_SECURITY_REVIEW.md": f"""# Security Review: {workflow_title}\n\n## Scope\n\nPlanning-only review. Not an audit or production certification.\n\n## Findings\n\n| Severity | Area | Finding | Required Mitigation |\n|---|---|---|---|\n| high | keys | deployer/operator keys cannot live in repo | use KMS/HSM/hardware signer or signer service |\n| high | RPC | admin/debug RPC must not be public | bind privately and firewall |\n| high | bridge/settlement | bridge assumptions can dominate risk | external bridge/security review required |\n\n## Secrets Policy\n\nSigner material, recovery phrases, keystore passwords, and deployer credentials must stay outside git. Use {SAFE_SECRET}.\n\n## Signer/Key Custody\n\nUse KMS/HSM/hardware wallet/signer service. CLI private-key flags are forbidden.\n\n## Bridge Risks\n\nBridge contracts, relayers, fraud/validity windows, and parent-chain finality require external review.\n\n## Admin/Upgrade Risks\n\nAdmin keys require multisig/timelock or documented custody before production/mainnet.\n\n## Sequencer Risks\n\nCensorship, downtime, ordering, and centralization risks remain open until reviewed.\n\n## DA Risks\n\nDA mode `{spec['data_availability']['mode']}` requires explicit failure-mode review.\n\n## Validator/Prover Risks\n\nValidator/prover assumptions are relevant when those roles are present and must be verified against current docs.\n\n## RPC Exposure Risks\n\nPublic RPC must not expose admin, debug, personal, or engine APIs.\n\n## Generated Artifact Limitations\n\nThis bundle is not an audit, not a launch approval, and not production certification.\n\n## Required External Reviews\n\nProtocol review, infrastructure review, bridge review, incident drill, and legal/compliance review where applicable.\n""",
-        "07_RUNBOOK.md": f"""# Runbook: {workflow_title}\n\n## Preflight Checklist\n\n- Run validators in dry-run mode.\n- Confirm no secrets are committed.\n- Verify upstream docs and versions.\n\n## Start/Stop Service Examples\n\nUse local dry-run or staging-only service manager commands after human review. Do not use this fixture for mainnet deployment.\n\n## Monitoring Checks\n\nCheck node availability, RPC health, disk, logs, and role-specific lag.\n\n## Backup Checks\n\nConfirm snapshots exist and restore into an isolated environment.\n\n## Rollback Checklist\n\nRecord version pins, config backups, and rollback owners before changes.\n\n## Incident Triage\n\nClassify RPC outage, sequencer/validator/prover issue, bridge risk, DA failure, or signer incident.\n""",
-        "08_LAUNCH_GATES.md": f"""# Launch Gates: {workflow_title}\n\n## Status\n\nNot launch-ready.\n\n## Required Gates\n\n| Gate | Required For | Status | Evidence Required |\n|---|---|---|---|\n| architecture approved | public testnet/mainnet | pending | signed ADR |\n| source docs fresh enough | all | pending | upstream freshness report |\n| security review complete | all | pending | review notes |\n| configs validated | all | pending | validator report |\n| monitoring live | testnet/mainnet | pending | alert drill evidence |\n| backups tested | testnet/mainnet | pending | restore drill evidence |\n| failover tested | testnet/mainnet | pending | drill evidence |\n| bridge risk reviewed | rollups | pending | bridge review notes |\n| admin keys moved to multisig/timelock or documented custody | testnet/mainnet | pending | custody docs |\n| human approval | public testnet/mainnet | pending | explicit approval outside repo |\n| external audit or review | production/mainnet | pending | audit/review report |\n\n## Explicit Non-Approval\n\nThis fixture does not approve deployment.\n""",
-        "09_VALIDATION_REPORT.md": f"""# Validation Report: {workflow_title}\n\n## Validators Run\n\n- artifact bundle validator: expected pass\n- generated config validator: expected pass\n- strict secret scan: expected pass\n- policy guard: expected pass\n\n## Pass/Fail Summary\n\nPending local execution.\n\n## Skipped Checks and Why\n\nLive Codex/Claude dogfood is deferred to v0.3.\n\n## Warnings\n\nVersion-sensitive facts remain `VERIFY_CURRENT_DOCS`.\n\n## Next Required Validations\n\nRun `python3 scripts/validate_artifact_bundle.py --strict --path <bundle>`.\n""",
-        "10_OPEN_QUESTIONS.md": f"""# Open Questions: {workflow_title}\n\n- Which exact upstream release/version is selected?\n- Which unique chain ID passes collision checks?\n- Which custody provider or signer model is approved?\n- Which external reviews are required before real deployment?\n- Which organization owns incident response and upgrades?\n""",
+        "00_REQUEST.md": f"""# Request: {workflow_title}
+
+- Original or normalized request: generate a safe planning artifact bundle for `{args.workflow}`.
+- Workflow id: `{args.workflow}`
+- Generated timestamp policy: intentionally omitted for reproducible fixtures.
+- Environment target: `{spec['environment']}`
+- Human decisions still required: chain ID assignment, upstream version selection, signer custody, infrastructure provider, external review scope.
+- Scope note:{l1_request_context or " stack-specific safety gates apply."}
+""",
+        "01_ASSUMPTIONS.md": f"""# Assumptions: {workflow_title}
+
+## User-Omitted Assumptions
+
+- Selected stack profile: `{args.stack}`.
+- Selected chain type: `{spec['chain_type']}`.{l1_context}
+- Server sizing and exact commands are `VERIFY_CURRENT_DOCS`.
+
+## Must Verify Before Deployment
+
+- Current upstream docs, supported releases, chain ID collision status, bridge contracts, and signer custody.
+
+## Safety-Critical Assumptions
+
+- Sensitive signer material stays outside git and is provided only by approved runtime custody.
+- Admin/debug RPC remains private.
+- Validator and consensus assumptions must be explicit when this is an L1/appchain.
+- This bundle is dry-run planning evidence only.
+""",
+        "02_ARCHITECTURE_DECISION_RECORD.md": f"""# Architecture Decision Record: {workflow_title}
+
+## Status
+
+Planning-only fixture. Not approved for production or mainnet.
+
+## Context
+
+The workflow targets `{spec['environment']}` using {stack}.
+
+## Decision
+
+Use `{args.stack}` for a `{spec['chain_type']}` planning bundle with roles: {roles}.
+
+## Alternatives Considered
+
+{alternatives}
+
+## Security Model
+
+Generated artifacts are not audits. Security depends on signer custody, bridge assumptions, DA assumptions, admin-key governance, and upstream release choices.
+
+## Settlement Model
+
+Settlement layer: `{spec['settlement']['layer']}`. Verify finality and bridge conditions against current docs.
+
+## Data Availability Model
+
+DA mode: `{spec['data_availability']['mode']}`. DA failures must be modeled before real deployment.
+
+## Sequencing Model
+
+Sequencing model: `{spec['sequencing']['model']}`. Censorship, downtime, and centralization risks require review.
+
+## Governance and Upgrade Model
+
+Admin keys must move to multisig plus timelock or documented external custody before production/mainnet.
+
+## Operational Model
+
+Operators run isolated roles for public RPC, internal admin surfaces, monitoring, and signer integrations.
+
+## Consequences
+
+This creates a repeatable planning bundle, not a launch approval.
+
+## Human Decisions Required
+
+- Select exact upstream release versions.
+- Assign a unique chain ID after collision checks.
+- Approve signer custody and external review scope.
+""",
+        "03_STACK_DECISION_MATRIX.md": f"""# Stack Decision Matrix: {workflow_title}
+
+{matrix_rows}
+""",
+        "05_INFRASTRUCTURE_PLAN.md": f"""# Infrastructure Plan: {workflow_title}
+
+## Scope
+
+Planning-only. No real deployment.
+
+## Node Roles
+
+{roles}
+
+## Server Topology
+
+Separate public RPC, internal sequencer/validator/prover roles, monitoring, and signer integrations. Sizing is `VERIFY_CURRENT_DOCS`.
+
+## Network Boundaries
+
+Public ingress only through rate-limited RPC/explorer endpoints. Admin/debug RPC binds to localhost or private networks only.
+
+## Firewall Policy
+
+Allow public RPC only where intended; deny admin/debug APIs externally; restrict signer and database access to private networks.
+
+## Storage Policy
+
+Use dedicated volumes, snapshot/restore checks, and archive/pruning decisions recorded per role.
+
+## Runtime Approach
+
+Docker Compose, systemd, Kubernetes, and Terraform samples are planning templates only.
+
+## Observability
+
+Prometheus, Grafana, logs, RPC health, disk alerts, and role-specific alerts are required before launch.
+
+## Backup/Restore
+
+Backups must be restore-tested before public testnet, staging, production, or mainnet.
+
+## Upgrade Process
+
+Stage upgrades, pin versions, verify upstream docs, and maintain rollback plans.
+
+## Incident Response
+
+Triage node down, RPC unavailable, sequencer lag, bridge incident, DA failure, and signer access incidents.
+""",
+        "06_SECURITY_REVIEW.md": f"""# Security Review: {workflow_title}
+
+## Scope
+
+Planning-only review. Not an audit or production certification.
+
+## Findings
+
+| Severity | Area | Finding | Required Mitigation |
+|---|---|---|---|
+| high | keys | deployer/operator keys cannot live in repo | use KMS/HSM/hardware signer or signer service |
+| high | RPC | admin/debug RPC must not be public | bind privately and firewall |
+| high | bridge/settlement | bridge assumptions can dominate risk | external bridge/security review required |
+
+## Secrets Policy
+
+Signer material, recovery phrases, keystore passwords, and deployer credentials must stay outside git. Use {SAFE_SECRET}.
+
+## Signer/Key Custody
+
+Use KMS/HSM/hardware wallet/signer service. CLI private-key flags are forbidden.
+
+## Bridge Risks
+
+Bridge contracts, relayers, fraud/validity windows, and parent-chain finality require external review.
+
+## Admin/Upgrade Risks
+
+Admin keys require multisig/timelock or documented custody before production/mainnet.
+
+## Sequencer Risks
+
+Censorship, downtime, ordering, and centralization risks remain open until reviewed.
+
+## DA Risks
+
+DA mode `{spec['data_availability']['mode']}` requires explicit failure-mode review.
+
+## Validator/Prover Risks
+
+Validator/prover assumptions are relevant when those roles are present and must be verified against current docs.
+
+## RPC Exposure Risks
+
+Public RPC must not expose admin, debug, personal, or engine APIs.
+
+## Generated Artifact Limitations
+
+This bundle is not an audit, not a launch approval, and not production certification.
+
+## Required External Reviews
+
+Protocol review, infrastructure review, bridge review, incident drill, and legal/compliance review where applicable.
+""",
+        "07_RUNBOOK.md": f"""# Runbook: {workflow_title}
+
+## Preflight Checklist
+
+- Run validators in dry-run mode.
+- Confirm no secrets are committed.
+- Verify upstream docs and versions.
+
+## Start/Stop Service Examples
+
+Use local dry-run or staging-only service manager commands after human review. Do not use this fixture for mainnet deployment.
+
+## Monitoring Checks
+
+Check node availability, RPC health, disk, logs, and role-specific lag.
+
+## Backup Checks
+
+Confirm snapshots exist and restore into an isolated environment.
+
+## Rollback Checklist
+
+Record version pins, config backups, and rollback owners before changes.
+
+## Incident Triage
+
+Classify RPC outage, sequencer/validator/prover issue, bridge risk, DA failure, or signer incident.
+""",
+        "08_LAUNCH_GATES.md": f"""# Launch Gates: {workflow_title}
+
+## Status
+
+Not launch-ready.
+
+## Required Gates
+
+| Gate | Required For | Status | Evidence Required |
+|---|---|---|---|
+| architecture approved | public testnet/mainnet | pending | signed ADR |
+| source docs fresh enough | all | pending | upstream freshness report |
+| security review complete | all | pending | review notes |
+| configs validated | all | pending | validator report |
+| monitoring live | testnet/mainnet | pending | alert drill evidence |
+| backups tested | testnet/mainnet | pending | restore drill evidence |
+| failover tested | testnet/mainnet | pending | drill evidence |
+| bridge risk reviewed | rollups | pending | bridge review notes |
+| admin keys moved to multisig/timelock or documented custody | testnet/mainnet | pending | custody docs |
+| human approval | public testnet/mainnet | pending | explicit approval outside repo |
+| external audit or review | production/mainnet | pending | audit/review report |
+
+## Explicit Non-Approval
+
+This fixture does not approve deployment.
+""",
+        "09_VALIDATION_REPORT.md": f"""# Validation Report: {workflow_title}
+
+## Validators Run
+
+- artifact bundle validator: expected pass
+- generated config validator: expected pass
+- strict secret scan: expected pass
+- policy guard: expected pass
+
+## Pass/Fail Summary
+
+Pending local execution.
+
+## Skipped Checks and Why
+
+Live Codex/Claude dogfood is deferred to v0.3.
+
+## Warnings
+
+Version-sensitive facts remain `VERIFY_CURRENT_DOCS`.
+
+## Next Required Validations
+
+Run `python3 scripts/validate_artifact_bundle.py --strict --path <bundle>`.
+""",
+        "10_OPEN_QUESTIONS.md": f"""# Open Questions: {workflow_title}
+
+- Which exact upstream release/version is selected?
+- Which unique chain ID passes collision checks?
+- Which custody provider or signer model is approved?
+- Which external reviews are required before real deployment?
+- Which validator and consensus assumptions are approved for L1/appchain designs?
+- Which organization owns incident response and upgrades?
+""",
     }
 
 

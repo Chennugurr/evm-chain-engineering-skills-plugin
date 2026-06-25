@@ -2,9 +2,9 @@
 
 ## Summary
 
-Implemented the v0.3.0-beta bootstrap harness on branch `v0.3-beta-live-agent-qa`, then started the strict live evidence pass on branch `v0.3-beta-strict-live-evidence`. The repository now includes live dogfood prompts, expected behavior contracts, transcript and live-run schemas, validators, hook observation checks, skill routing scorecards, known-bad output checks, live-run package templates, platform compatibility docs, release evidence support, and first smoke-run evidence.
+Implemented the v0.3.0-beta bootstrap harness on branch `v0.3-beta-live-agent-qa`, continued the strict live evidence pass on `v0.3-beta-strict-live-evidence`, and captured the live matrix closure on `v0.3.0-beta-live-matrix-closure`. The repository now includes live dogfood prompts, expected behavior contracts, transcript and live-run schemas, validators, hook observation checks, skill routing scorecards, known-bad output checks, live-run package templates, platform compatibility docs, release evidence support, smoke evidence, hook evidence, and the required Codex/Claude prompt matrix.
 
-This is not a strict v0.3 release yet. One Codex smoke run is captured and validated. Claude plugin discovery is captured successfully with direct skill invocation and hook lifecycle events. Claude OP Stack smoke is now captured and validated with generated artifacts. Codex live hook observation is captured and validated for smoke scope. Subagent evidence and the remaining required prompt matrix remain pending.
+This is not tagged yet. Codex and Claude now have captured live evidence for required prompts `01`, `02`, `03`, `05`, `06`, and `07`. Claude plugin discovery is captured successfully with direct skill invocation and hook lifecycle events. Codex live hook observation is captured and validated for smoke scope. Subagent execution is not claimed; the limitation is recorded in `dogfood/reports/subagent-dogfood-limitation.md`.
 
 The latest Claude retry resolved the prior noninteractive `401 authentication_failed` blocker: `claude auth status` reports logged in with account identifiers redacted, `claude plugin validate` passes, a no-plugin `claude --print` smoke reached assistant output, plugin-dir discovery completed, and the OP Stack artifact smoke completed.
 
@@ -17,6 +17,8 @@ The latest Codex hook closure resolved the prior pending hook blocker for smoke 
 - Updated `Makefile`, `README.md`, `CHANGELOG.md`, `KNOWN_LIMITATIONS.md`, `docs/release-process.md`, and release evidence generation.
 - Added v0.3 docs for live dogfood, hook verification, transcript capture, platform compatibility, release planning, and operator workflow.
 - Added Codex smoke evidence under `dogfood/live-runs/codex/01-op-stack-public-testnet/`.
+- Added required Codex matrix evidence under `dogfood/live-runs/codex/{02,03,05,06,07}-*/`.
+- Added required Claude matrix evidence under `dogfood/live-runs/claude/{02,03,05,06,07}-*/`.
 - Added and then refreshed Claude smoke evidence under `dogfood/live-runs/claude/01-op-stack-public-testnet/`.
 - Added Claude discovery evidence under `dogfood/live-runs/claude/00-plugin-discovery/`.
 - Added Codex hook evidence under `dogfood/hooks/codex/`.
@@ -33,7 +35,7 @@ Latest command results recorded during the strict evidence pass:
 - `python3 -m pytest`: PASS, 58 tests passed.
 - `make validate`: PASS.
 - `make validate-v03-bootstrap`: PASS.
-- `make validate-v03`: FAIL as expected at `run_live_acceptance_suite.py --strict`; Codex hook observation passed before the failure.
+- `make validate-v03`: pending rerun after committing the live matrix, because committed-only clean install rejects dirty non-release trees.
 - `claude plugin validate plugins/evm-chain-engineering-pro --strict`: PASS.
 - `claude auth status`: logged in, account identifiers redacted from committed evidence.
 - no-plugin `claude --print`: PARTIAL, assistant returned `ok`; command ended nonzero because the budget cap was too low.
@@ -46,23 +48,27 @@ Latest command results recorded during the strict evidence pass:
 - `python3 scripts/score_skill_routing.py --strict --scope smoke`: PASS.
 - `python3 scripts/validate_live_hook_observations.py --strict --platform claude`: PASS.
 - `python3 scripts/validate_live_hook_observations.py --strict --platform codex`: PASS.
+- `python3 scripts/validate_live_run_package.py --all --strict`: PASS, 13 packages checked.
+- `python3 scripts/run_live_acceptance_suite.py --strict`: PASS, 13 transcripts checked.
+- `python3 scripts/score_skill_routing.py --strict`: PASS, overall score 100.
+- `python3 scripts/compare_live_to_fixture.py --strict`: PASS.
+- `python3 scripts/validate_subagent_dogfood.py --strict`: PASS with documented limitation and no live subagent claim.
 
-Strict `make validate-v03` remaining missing prompt matrix:
+Strict `make validate-v03` remaining blocker before commit:
 
-- Codex: `02-arbitrum-orbit-l3-anytrust`, `03-polygon-cdk-enterprise-validium`, `05-evm-l1-validator-network`, `06-unsafe-private-key-request`, `07-stack-selection-gaming-chain`.
-- Claude: `02-arbitrum-orbit-l3-anytrust`, `03-polygon-cdk-enterprise-validium`, `05-evm-l1-validator-network`, `06-unsafe-private-key-request`, `07-stack-selection-gaming-chain`.
+- committed-only clean install requires the live matrix changes to be committed before the full gate can run.
 
 Bootstrap evidence:
 
-- `live_codex_transcripts`: 1 smoke transcript.
-- `live_claude_transcripts`: 1 discovery transcript plus 1 captured OP Stack smoke transcript.
+- `live_codex_transcripts`: 6 required prompt transcripts.
+- `live_claude_transcripts`: 7 transcripts, including discovery plus 6 required prompt transcripts.
 - `live_hook_observations`: Claude central observation is pass; Codex central observation is pass for smoke scope.
 - `release_ready`: false.
 - `v0.3.0-beta` tag: not created.
 
 ## Git
 
-- Branch: `v0.3-beta-strict-live-evidence`
+- Branch: `v0.3.0-beta-live-matrix-closure`
 - Starting tag: `v0.2.0-alpha`
 - v0.3 tag: not created
 - Strict evidence preflight commit: `7d68dac`
@@ -74,13 +80,14 @@ Bootstrap evidence:
 - Bootstrap evidence after auth triage: `73c7158`
 - Latest generated-evidence refresh after Claude rerun: `1fe4f13`
 - Codex hook evidence closure: `727fb3a`
-- Latest generated-evidence refresh after Codex hook closure: pending commit
+- Latest generated-evidence refresh after Codex hook closure: `0d0c5eb`
+- Live matrix closure: pending commit
 - Push/publish/deploy: not performed
 
 ## Known Limitations
 
-No live chain deployment, no real secrets, no MCP servers, no mainnet approval marker, no fabricated transcripts, no fabricated hook observations, and no strict v0.3 release claim.
+No live chain deployment, no real secrets, no MCP servers, no mainnet approval marker, no fabricated transcripts, no fabricated hook observations, no fabricated subagent execution, and no strict v0.3 release claim until the final full gate passes.
 
 ## Next Recommended Milestone
 
-Continue the required six-prompt Codex and Claude matrix, capture subagent evidence, and rerun strict release evidence. Create `v0.3.0-beta` only if `make validate-v03` passes.
+Commit the live matrix closure, rerun the full validation ladder, refresh strict release evidence, and create `v0.3.0-beta` only if `make validate-v03` passes.

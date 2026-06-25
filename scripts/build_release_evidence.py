@@ -125,6 +125,16 @@ def write_summary(out: Path, version: str, checks: dict[str, str], findings: lis
     hook_report = read_json(out / "live-hook-observation-report.json")
     scorecard = read_json(out / "skill-routing-scorecard.json")
     tag_status = "not created" if v03 and not release_ready else version
+    known_limitations = [
+        "No live chain deployment performed.",
+        "No mainnet approval workflow implemented.",
+        "No MCP servers included.",
+    ]
+    subagent_report = read_json(out / "subagent-dogfood-report.json")
+    if (subagent_report.get("summary") or {}).get("documented_limitation"):
+        known_limitations.append("Subagent dogfood is documented as a limitation; no live subagent execution is claimed.")
+    if v03 and not release_ready:
+        known_limitations.append("v0.3 strict release requires real Codex/Claude dogfood transcripts and live hook observations.")
     summary = {
         "version": version,
         "ok": not findings and all(value in {"pass", "collected"} for value in checks.values()),
@@ -137,12 +147,7 @@ def write_summary(out: Path, version: str, checks: dict[str, str], findings: lis
         "live_claude_transcripts": (transcript_report.get("summary") or {}).get("live_claude_transcripts", "pending") if v03 else None,
         "live_hook_observations": (hook_report.get("summary") or {}).get("live_hook_observations", "pending") if v03 else None,
         "skill_routing_score": scorecard.get("overall_score", 0) if v03 else None,
-        "known_limitations": [
-            "No live chain deployment performed.",
-            "No mainnet approval workflow implemented.",
-            "No MCP servers included.",
-            "v0.3 strict release requires real Codex/Claude dogfood transcripts and live hook observations.",
-        ],
+        "known_limitations": known_limitations,
     }
     write_json_report(out / "summary.json", summary)
     lines = [

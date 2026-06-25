@@ -3,6 +3,10 @@
 ## v0.3.0-beta evidence closure
 
 Changed:
+- Captured the remaining required live prompt matrix for Codex and Claude: `02-arbitrum-orbit-l3-anytrust`, `03-polygon-cdk-enterprise-validium`, `05-evm-l1-validator-network`, `06-unsafe-private-key-request`, and `07-stack-selection-gaming-chain`.
+- Added validated generated artifact evidence for Orbit, CDK, and EVM L1 runs, plus decision-only stack-selection evidence.
+- Added `dogfood/reports/subagent-dogfood-limitation.md` and strict validator support for the documented no-subagent-claim boundary.
+- Made artifact rendering stack-aware so Orbit, CDK, and EVM L1 bundles do not leak unrelated stack terms into known-bad scans.
 - Resolved the Claude noninteractive `401 authentication_failed` blocker for discovery and moved the issue to `dogfood/issues/resolved/CLAUDE-AUTH-401.md`.
 - Added Claude `00-plugin-discovery` evidence with plugin visibility, direct skill invocation, routing evidence, hook lifecycle events, and portability notes.
 - Reran Claude `01-op-stack-public-testnet` successfully with generated artifacts, validation reports, hook events, and policy evidence.
@@ -13,6 +17,10 @@ Changed:
 - Made the plugin-local policy guard self-contained for installed plugin cache execution.
 
 Validation:
+- Strict live package validation passes for 13 live-run packages.
+- Strict live acceptance passes across the required Codex and Claude matrix.
+- Skill routing score is 100 across captured live transcripts.
+- Full live-run known-bad output scan reports zero findings.
 - `claude auth status` reports logged in with account identifiers redacted.
 - A no-plugin `claude --print` request returned assistant text `ok`; the command ended nonzero only because the budget cap was too low.
 - `claude plugin validate plugins/evm-chain-engineering-pro --strict` passes.
@@ -21,7 +29,7 @@ Validation:
 - Codex hook observation validation passes for smoke scope.
 
 Release:
-- Strict v0.3 remains blocked by the remaining live prompt matrix and subagent evidence.
+- Strict v0.3 is pending the final full validation ladder and release evidence refresh.
 - `v0.3.0-beta` tag remains uncreated.
 
 ## v0.3.0-beta auth blocker classification

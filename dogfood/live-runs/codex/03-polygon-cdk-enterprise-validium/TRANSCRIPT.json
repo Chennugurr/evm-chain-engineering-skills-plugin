@@ -1,0 +1,75 @@
+{
+  "failures": [],
+  "generated_artifact_bundle": "dogfood/live-runs/codex/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS",
+  "git_commit": "0d0c5eb",
+  "hooks_observed": [],
+  "install_method": "local Codex marketplace evm-chain-engineering",
+  "manual_interventions": [
+    "Committed raw stream was compacted and redacted; full raw stream remains outside the repository."
+  ],
+  "notes": [
+    "Live agent answer captured; deterministic evidence rendered by repository tooling for validation."
+  ],
+  "operator": "iljanemesis",
+  "platform": "codex",
+  "plugin_version": "v0.3.0-beta",
+  "policy_events": [
+    {
+      "no_approval_marker": true,
+      "no_live_deploy": true,
+      "no_real_secret": true,
+      "status": "pass",
+      "type": "live-capture-safety"
+    }
+  ],
+  "prompt_file": "dogfood/prompts/03-polygon-cdk-enterprise-validium.md",
+  "prompt_id": "03-polygon-cdk-enterprise-validium",
+  "redactions": [
+    "Local paths normalized; production-network/mainnet and unsafe copy-paste phrases normalized where needed."
+  ],
+  "schema_version": "1.0",
+  "session_date": "2026-06-25",
+  "skills_observed": [
+    "blockchain-architect",
+    "polygon-cdk-engineer",
+    "chain-infra-ops",
+    "bridge-interop-engineer",
+    "chain-security-reviewer"
+  ],
+  "subagents_observed": [],
+  "transcript_markdown": "dogfood/live-runs/codex/03-polygon-cdk-enterprise-validium/TRANSCRIPT.md",
+  "validation_commands": [
+    "/usr/bin/python3 scripts/render_artifact_bundle.py --workflow polygon-cdk-validium-enterprise --stack polygon-cdk --chain-type validium --environment public-testnet --settlement ethereum-testnet-or-agglayer --data-availability offchain-da-committee --proof-model validity-proof --chain-name Example CDK Enterprise Validium --output /home/iljanemesis/blockchain-engineering/dogfood/live-runs/codex/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS --overwrite --json-out /home/iljanemesis/blockchain-engineering/dogfood/live-runs/codex/03-polygon-cdk-enterprise-validium/artifact-render-report.json",
+    "/usr/bin/python3 scripts/validate_artifact_bundle.py --strict --path /home/iljanemesis/blockchain-engineering/dogfood/live-runs/codex/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS --json-out /home/iljanemesis/blockchain-engineering/dogfood/live-runs/codex/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/evidence/artifact-validation-report.json",
+    "/usr/bin/python3 scripts/validate_generated_configs.py --strict --path /home/iljanemesis/blockchain-engineering/dogfood/live-runs/codex/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS --json-out /home/iljanemesis/blockchain-engineering/dogfood/live-runs/codex/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/evidence/generated-config-validation-report.json",
+    "/usr/bin/python3 scripts/check_bad_output_patterns.py --path /home/iljanemesis/blockchain-engineering/dogfood/live-runs/codex/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS --strict --json-out /home/iljanemesis/blockchain-engineering/dogfood/live-runs/codex/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/evidence/bad-output-patterns-report.json",
+    "/usr/bin/python3 plugins/evm-chain-engineering-pro/scripts/scan_secrets.py --path /home/iljanemesis/blockchain-engineering/dogfood/live-runs/codex/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS --strict --json"
+  ],
+  "validation_results": [
+    {
+      "command": "scripts/render_artifact_bundle.py",
+      "exit_code": 0,
+      "status": "pass"
+    },
+    {
+      "command": "scripts/validate_artifact_bundle.py",
+      "exit_code": 0,
+      "status": "pass"
+    },
+    {
+      "command": "scripts/validate_generated_configs.py",
+      "exit_code": 0,
+      "status": "pass"
+    },
+    {
+      "command": "scripts/check_bad_output_patterns.py",
+      "exit_code": 0,
+      "status": "pass"
+    },
+    {
+      "command": "plugins/evm-chain-engineering-pro/scripts/scan_secrets.py",
+      "exit_code": 0,
+      "status": "pass"
+    }
+  ]
+}

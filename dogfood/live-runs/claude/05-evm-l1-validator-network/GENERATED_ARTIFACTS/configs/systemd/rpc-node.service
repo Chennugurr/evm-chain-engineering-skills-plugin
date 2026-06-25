@@ -1,0 +1,20 @@
+[Unit]
+Description=evm-l1-posa-testnet RPC Node (planning fixture only)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=example-chain
+WorkingDirectory=/opt/example-chain
+Environment=SIGNER_MODE=external-signer-required
+ExecStart=/usr/local/bin/example-node --http.addr 127.0.0.1 --http.port 8545
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/example-chain
+
+[Install]
+WantedBy=multi-user.target

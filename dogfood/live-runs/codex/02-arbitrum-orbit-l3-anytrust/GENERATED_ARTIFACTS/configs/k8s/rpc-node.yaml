@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arbitrum-orbit-l3-anytrust-rpc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arbitrum-orbit-l3-anytrust-rpc
+  template:
+    metadata:
+      labels:
+        app: arbitrum-orbit-l3-anytrust-rpc
+    spec:
+      containers:
+        - name: rpc-node
+          image: example/arbitrum-orbit-rpc:v0.0.0-placeholder
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "2"
+              memory: "4Gi"
+          env:
+            - name: SIGNER_MODE
+              value: external-signer-required

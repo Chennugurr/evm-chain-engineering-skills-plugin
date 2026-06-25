@@ -1,0 +1,23 @@
+{
+  "events": [
+    {
+      "status": "review",
+      "type": "artifact-validation"
+    },
+    {
+      "status": "pass",
+      "type": "known-bad-output-scan"
+    },
+    {
+      "status": "absent",
+      "type": "approval-marker"
+    }
+  ],
+  "notes": [
+    "No deployment, transaction, real secret, or approval-marker path was used."
+  ],
+  "platform": "claude",
+  "prompt_id": "02-arbitrum-orbit-l3-anytrust",
+  "schema_version": "1.0",
+  "status": "pass"
+}

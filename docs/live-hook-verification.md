@@ -16,7 +16,7 @@ Bootstrap mode keeps `dogfood/hooks/*/observed-hooks.json` at `pending` and reco
 - Claude discovery run: `dogfood/live-runs/claude/00-plugin-discovery/CLAUDE_STREAM_REDACTED.jsonl` recorded `PreToolUse:Bash` hook lifecycle events and policy guard allow decisions.
 - Claude OP Stack artifact run: `dogfood/live-runs/claude/01-op-stack-public-testnet/CLAUDE_STREAM_REDACTED.jsonl` recorded `PreToolUse:Bash` hook lifecycle events and policy guard allow decisions.
 - Claude central observation file: `dogfood/hooks/claude/observed-hooks.json` is now `pass`.
-- Release impact: the live hook observation blocker is resolved for smoke scope. Strict v0.3 remains not release-ready until the remaining prompt matrix and subagent evidence pass.
+- Release impact: the live hook observation blocker is resolved for smoke scope. The required prompt matrix is now captured; subagent execution is documented as a no-claim limitation for this beta closure.
 
 ## Codex Hook Closure Notes
 

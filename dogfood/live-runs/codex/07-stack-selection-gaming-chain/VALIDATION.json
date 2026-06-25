@@ -1,0 +1,18 @@
+{
+  "checked_at": null,
+  "commands": [
+    {
+      "command": "not-applicable-stack-selection",
+      "exit_code": 0,
+      "report": "GENERATED_ARTIFACTS/DECISION_MATRIX.md"
+    }
+  ],
+  "limitations": [
+    "Live answer is redacted for repository safety.",
+    "No live deployment or transaction execution performed."
+  ],
+  "platform": "codex",
+  "prompt_id": "07-stack-selection-gaming-chain",
+  "schema_version": "1.0",
+  "status": "pass"
+}

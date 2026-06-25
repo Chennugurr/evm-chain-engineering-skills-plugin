@@ -1,0 +1,13 @@
+{
+  "checked_at": null,
+  "findings": [],
+  "ok": true,
+  "script": "scripts/validate_artifact_bundle.py",
+  "skipped": [],
+  "summary": {
+    "bundles_checked": 1,
+    "findings": 0
+  },
+  "target": "/home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/05-evm-l1-validator-network/GENERATED_ARTIFACTS",
+  "version": "v0.2.0-alpha"
+}
