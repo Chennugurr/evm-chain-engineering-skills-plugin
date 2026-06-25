@@ -25,6 +25,10 @@ It is meant for architecture, safety review, dry-run planning, artifact generati
 - `scripts/`: root validation, artifact, release evidence, policy, and dogfood tooling.
 - `profiles/`, `schemas/`, `fixtures/`, `acceptance/`, and `dogfood/`: machine-checkable contracts and test evidence.
 
+## Contributors
+
+- [Chennugurr](https://github.com/Chennugurr)
+
 ## Supported workflows
 
 - Choosing between OP Stack, Arbitrum Orbit, Polygon CDK, ZKsync ZK Stack, EVM L1, Cosmos EVM, and modular rollup paths.
