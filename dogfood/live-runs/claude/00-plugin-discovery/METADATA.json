@@ -1,0 +1,12 @@
+{
+  "artifacts": null,
+  "created_by": "iljanemesis",
+  "expected": "EXPECTED.yaml",
+  "platform": "claude",
+  "prompt_id": "00-plugin-discovery",
+  "schema_version": "1.0",
+  "security_review": "SECURITY_REVIEW.md",
+  "status": "captured",
+  "transcript": "TRANSCRIPT.md",
+  "validation_report": "VALIDATION.md"
+}

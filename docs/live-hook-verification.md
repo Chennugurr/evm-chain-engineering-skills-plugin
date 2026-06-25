@@ -12,8 +12,11 @@ Bootstrap mode keeps `dogfood/hooks/*/observed-hooks.json` at `pending` and reco
 ## Strict Evidence Pass Status
 
 - Codex smoke run: no explicit hook lifecycle event appeared in `dogfood/live-runs/codex/01-op-stack-public-testnet/CODEX_STREAM_REDACTED.jsonl`.
-- Claude smoke run: invoked with `--include-hook-events`, but API authentication failed before hook execution.
-- Release impact: hook verification remains pending and strict v0.3 is not release-ready.
+- Claude discovery run: `dogfood/live-runs/claude/00-plugin-discovery/CLAUDE_STREAM_REDACTED.jsonl` recorded `PreToolUse:Bash` hook lifecycle events and policy guard allow decisions.
+- Claude OP Stack artifact run: `dogfood/live-runs/claude/01-op-stack-public-testnet/CLAUDE_STREAM_REDACTED.jsonl` recorded `PreToolUse:Bash` hook lifecycle events and policy guard allow decisions.
+- Claude central observation file: `dogfood/hooks/claude/observed-hooks.json` is now `pass`.
+- Codex central observation file: `dogfood/hooks/codex/observed-hooks.json` remains `pending`.
+- Release impact: strict v0.3 is not release-ready until Codex hook evidence or a documented platform limitation is captured.
 
 ## Official Docs Refreshed
 

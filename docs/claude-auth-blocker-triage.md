@@ -3,9 +3,9 @@
 ## Status
 
 - Date: 2026-06-25
-- Issue: `dogfood/issues/open/CLAUDE-AUTH-401.md`
-- Classification: blocker
-- Release impact: `v0.3.0-beta` must remain untagged until resolved or the milestone is explicitly redefined.
+- Issue: `dogfood/issues/resolved/CLAUDE-AUTH-401.md`
+- Classification: resolved for discovery
+- Release impact: `v0.3.0-beta` must remain untagged until the remaining strict evidence matrix, Codex hook evidence, and subagent evidence are captured.
 
 ## Surface
 
@@ -33,13 +33,17 @@ claude --print --verbose --output-format stream-json --include-hook-events --plu
 - The clean-shell auth status check also reports logged in.
 - No `ANTHROPIC_*`, `CLAUDE_*`, API-key, token, or auth credential environment variables were present in the shell environment checked for this pass.
 - `claude plugin validate plugins/evm-chain-engineering-pro --strict` passes.
-- A no-plugin `claude --print` request fails with `401 authentication_failed`.
-- The plugin-dir smoke request also fails with `401 authentication_failed`.
-- The plugin-dir smoke init event previously reported the plugin loaded and 14 plugin skills visible before the API request failed.
+- A no-plugin `claude --print` request returned assistant text `ok`; the command exited nonzero only because the budget cap was too low.
+- The plugin discovery request succeeded with `--plugin-dir plugins/evm-chain-engineering-pro` and without `--bare`.
+- The plugin discovery init event reported the plugin loaded and 14 plugin skills visible.
+- The discovery run directly invoked `evm-chain-engineering-pro:blockchain-architect`.
+- The discovery JSONL stream recorded `PreToolUse:Bash` hook lifecycle events and policy guard allow decisions.
 
 ## Interpretation
 
-The current blocker is auth/session execution for Claude Code noninteractive agent calls. It is not currently plugin-specific because the no-plugin `claude --print` request also fails with the same 401.
+The original blocker was auth/session execution for Claude Code noninteractive agent calls. It is now resolved for discovery because both no-plugin agent text generation and plugin-dir discovery completed without a 401.
+
+The remaining release blockers are no longer Claude auth or the OP Stack smoke. They are the broader strict matrix, Codex hook evidence, and subagent evidence.
 
 ## Required Checklist
 
@@ -49,10 +53,10 @@ The current blocker is auth/session execution for Claude Code noninteractive age
 - Plugin path recorded: yes, `plugins/evm-chain-engineering-pro`.
 - Local plugin validation works: yes.
 - Interactive Claude Code login works: not rerun; `claude auth status` reports logged in, so no token/login flow was attempted.
-- Failure auth-only or plugin-specific: classified as auth-only for noninteractive execution.
+- Failure auth-only or plugin-specific: previously auth-only for noninteractive execution; now resolved for discovery.
 - `--bare` accidentally used: no. `--bare` was not used for plugin discovery or smoke evidence.
-- Managed settings block plugin hooks: no managed settings file found in common locations; no hook/plugin policy keys found in user settings. Hook behavior remains unverified because auth fails before execution.
-- Reproducible from clean shell: auth status is reproducible from a clean shell; no-plugin noninteractive execution still fails with 401 in the normal shell.
+- Managed settings block plugin hooks: no managed settings file found in common locations; no hook/plugin policy keys found in user settings. Discovery captured hook lifecycle events.
+- Reproducible from clean shell: auth status is reproducible from a clean shell; the latest no-plugin run reached assistant output.
 - Another authenticated account/environment can reproduce: not tested.
 
 ## Safe Auth Rules
@@ -65,10 +69,10 @@ The current blocker is auth/session execution for Claude Code noninteractive age
 
 ## Next Action
 
-Resolve the Claude Code noninteractive 401 outside the repo, then rerun:
+The Claude Code noninteractive 401 is resolved for discovery and the OP Stack artifact smoke. Continue the remaining live prompt matrix with the same noninteractive pattern:
 
 ```bash
-claude --print --verbose --output-format stream-json --plugin-dir plugins/evm-chain-engineering-pro ...
+claude --print --verbose --output-format stream-json --include-hook-events --plugin-dir plugins/evm-chain-engineering-pro ...
 ```
 
-If the command succeeds, capture `dogfood/live-runs/claude/00-plugin-discovery/` before rerunning the OP Stack smoke package.
+Capture each refreshed package under `dogfood/live-runs/claude/<prompt-id>/` and keep only redacted evidence.

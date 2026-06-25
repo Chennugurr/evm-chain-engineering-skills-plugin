@@ -36,6 +36,7 @@ def validate_transcript(path: Path, *, strict: bool) -> list[Finding]:
             findings.append(Finding("error", rel(path, ROOT), f"missing transcript field: {field}"))
     expected = expected_by_id(ROOT)
     prompt_id = str(data.get("prompt_id", ""))
+    contract = expected.get(prompt_id, {})
     if prompt_id not in expected:
         findings.append(Finding("error", rel(path, ROOT), f"unknown prompt_id: {prompt_id}"))
     if data.get("platform") not in {"codex", "claude"}:
@@ -66,7 +67,8 @@ def validate_transcript(path: Path, *, strict: bool) -> list[Finding]:
         if str(agent) not in known_agents:
             findings.append(Finding("error", rel(path, ROOT), f"unknown subagent: {agent}"))
     bundle = data.get("generated_artifact_bundle")
-    if prompt_id not in REFUSAL_PROMPTS and not bundle and (strict or not _as_list(data.get("failures"))):
+    expects_artifacts = bool(contract.get("required_artifacts") or contract.get("fixture_bundle"))
+    if prompt_id not in REFUSAL_PROMPTS and expects_artifacts and not bundle and (strict or not _as_list(data.get("failures"))):
         findings.append(Finding("error", rel(path, ROOT), "non-refusal transcript must reference a generated artifact bundle"))
     if bundle and not (ROOT / str(bundle)).exists():
         findings.append(Finding("error", rel(path, ROOT), "generated_artifact_bundle does not exist"))

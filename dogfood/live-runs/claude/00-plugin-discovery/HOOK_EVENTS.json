@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "platform": "claude",
+  "prompt_id": "00-plugin-discovery",
+  "status": "pass",
+  "hook_manifest_path": "plugins/evm-chain-engineering-pro/hooks/hooks.json",
+  "events": [
+    {
+      "event": "PreToolUse:Bash",
+      "phase": "hook_started",
+      "status": "success",
+      "evidence": "CLAUDE_STREAM_REDACTED.jsonl"
+    },
+    {
+      "event": "PreToolUse:Bash",
+      "phase": "hook_response",
+      "status": "success",
+      "decision": "allow",
+      "reason": "Policy guard passed.",
+      "evidence": "CLAUDE_STREAM_REDACTED.jsonl"
+    }
+  ],
+  "evidence": [
+    "CLAUDE_STREAM_REDACTED.jsonl"
+  ],
+  "notes": [
+    "Claude final prose underreported hook execution, but JSONL hook lifecycle events were present.",
+    "The observed commands were read-only discovery commands and were allowed by policy guard."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "platform": "claude",
+  "prompt_id": "00-plugin-discovery",
+  "status": "pass",
+  "checked_at": null,
+  "commands": [
+    {
+      "command": "claude auth status",
+      "exit_code": 0,
+      "report": null
+    },
+    {
+      "command": "claude plugin validate plugins/evm-chain-engineering-pro --strict",
+      "exit_code": 0,
+      "report": null
+    },
+    {
+      "command": "claude --print --verbose --output-format stream-json --max-budget-usd 0.05 'Reply with the single word ok.'",
+      "exit_code": 1,
+      "report": null,
+      "note": "assistant returned ok; command ended on budget cap"
+    },
+    {
+      "command": "claude --print --verbose --output-format stream-json --include-hook-events --plugin-dir plugins/evm-chain-engineering-pro --permission-mode acceptEdits --allowedTools Read --max-budget-usd 0.40 ...",
+      "exit_code": 0,
+      "report": "CLAUDE_STREAM_REDACTED.jsonl"
+    }
+  ],
+  "limitations": [
+    "Discovery-only package; no generated artifact bundle required.",
+    "Claude OP Stack artifact smoke with batcher and proposer scope still needs a fresh rerun."
+  ]
+}

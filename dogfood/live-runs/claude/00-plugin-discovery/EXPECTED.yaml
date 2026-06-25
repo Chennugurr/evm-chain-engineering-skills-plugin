@@ -1,0 +1,5 @@
+id: 00-plugin-discovery
+expected_source: dogfood/expected/00-plugin-discovery.yaml
+notes:
+  - Discovery-only run; no artifact bundle is required.
+  - OP Stack discovery context includes batcher and proposer roles for scanner context.

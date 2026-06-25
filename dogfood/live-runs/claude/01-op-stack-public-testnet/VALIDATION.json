@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "platform": "claude",
   "prompt_id": "01-op-stack-public-testnet",
-  "status": "blocked",
+  "status": "pass",
   "checked_at": null,
   "commands": [
     {
@@ -11,13 +11,33 @@
       "report": null
     },
     {
-      "command": "claude --print --verbose --output-format stream-json --include-hook-events --plugin-dir plugins/evm-chain-engineering-pro ...",
-      "exit_code": 1,
+      "command": "claude --print --verbose --output-format stream-json --include-hook-events --plugin-dir plugins/evm-chain-engineering-pro --permission-mode acceptEdits --max-budget-usd 0.80 < PROMPT.md",
+      "exit_code": 0,
       "report": "CLAUDE_STREAM_REDACTED.jsonl"
+    },
+    {
+      "command": "python3 scripts/validate_artifact_bundle.py --strict --path dogfood/live-runs/claude/01-op-stack-public-testnet/GENERATED_ARTIFACTS",
+      "exit_code": 0,
+      "report": "GENERATED_ARTIFACTS/evidence/artifact-validation-report.json"
+    },
+    {
+      "command": "python3 scripts/validate_generated_configs.py --strict --path dogfood/live-runs/claude/01-op-stack-public-testnet/GENERATED_ARTIFACTS",
+      "exit_code": 0,
+      "report": "GENERATED_ARTIFACTS/evidence/generated-config-validation-report.json"
+    },
+    {
+      "command": "python3 scripts/check_bad_output_patterns.py --path dogfood/live-runs/claude/01-op-stack-public-testnet/GENERATED_ARTIFACTS --strict",
+      "exit_code": 0,
+      "report": "GENERATED_ARTIFACTS/evidence/bad-output-patterns-report.json"
+    },
+    {
+      "command": "python3 plugins/evm-chain-engineering-pro/scripts/scan_secrets.py --path dogfood/live-runs/claude/01-op-stack-public-testnet/GENERATED_ARTIFACTS --strict --json",
+      "exit_code": 0,
+      "report": null
     }
   ],
   "limitations": [
-    "Claude Code authentication failed with 401 before agent execution.",
-    "No Claude artifact bundle was generated."
+    "Package covers only the first OP Stack smoke prompt with batcher and proposer scope.",
+    "Skill routing is observed-by-output/inferred rather than hidden platform telemetry."
   ]
 }

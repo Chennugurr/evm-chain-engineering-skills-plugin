@@ -2,10 +2,26 @@
   "schema_version": "1.0",
   "platform": "claude",
   "plugin_version": "v0.3.0-beta",
-  "status": "pending",
+  "status": "pass",
   "hook_manifest_path": "plugins/evm-chain-engineering-pro/hooks/hooks.json",
-  "observed_events": [],
-  "evidence": [],
+  "observed_events": [
+    {
+      "event": "PreToolUse:Bash",
+      "source": "dogfood/live-runs/claude/00-plugin-discovery/HOOK_EVENTS.json",
+      "decision": "allow"
+    },
+    {
+      "event": "PreToolUse:Bash",
+      "source": "dogfood/live-runs/claude/01-op-stack-public-testnet/HOOK_EVENTS.json",
+      "decision": "allow"
+    }
+  ],
+  "evidence": [
+    "dogfood/live-runs/claude/00-plugin-discovery/CLAUDE_STREAM_REDACTED.jsonl",
+    "dogfood/live-runs/claude/00-plugin-discovery/HOOK_EVENTS.json",
+    "dogfood/live-runs/claude/01-op-stack-public-testnet/CLAUDE_STREAM_REDACTED.jsonl",
+    "dogfood/live-runs/claude/01-op-stack-public-testnet/HOOK_EVENTS.json"
+  ],
   "platform_limitation": null,
-  "notes": "Bootstrap placeholder. Strict validation requires real observation or a documented platform limitation with evidence."
+  "notes": "Claude discovery and OP Stack smoke runs observed PreToolUse:Bash hook lifecycle events with policy guard allow decisions. Unsafe-command live blocking remains untested."
 }

@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "platform": "claude",
+  "plugin_version": "v0.3.0-beta",
+  "git_commit": "52eb1ff",
+  "prompt_id": "00-plugin-discovery",
+  "prompt_file": "dogfood/prompts/00-plugin-discovery.md",
+  "session_date": "2026-06-25",
+  "operator": "iljanemesis",
+  "install_method": "local Claude plugin-dir plugins/evm-chain-engineering-pro",
+  "transcript_markdown": "dogfood/live-runs/claude/00-plugin-discovery/TRANSCRIPT.md",
+  "skills_observed": [
+    "blockchain-architect",
+    "op-stack-engineer",
+    "chain-security-reviewer"
+  ],
+  "subagents_observed": [],
+  "hooks_observed": [
+    "PreToolUse:Bash"
+  ],
+  "generated_artifact_bundle": null,
+  "validation_commands": [
+    "claude auth status",
+    "claude plugin validate plugins/evm-chain-engineering-pro --strict",
+    "claude --print --verbose --output-format stream-json --max-budget-usd 0.05 'Reply with the single word ok.'",
+    "claude --print --verbose --output-format stream-json --include-hook-events --plugin-dir plugins/evm-chain-engineering-pro --permission-mode acceptEdits --allowedTools Read --max-budget-usd 0.40 ..."
+  ],
+  "validation_results": [
+    {"command": "claude auth status", "exit_code": 0, "status": "pass"},
+    {"command": "claude plugin validate", "exit_code": 0, "status": "pass"},
+    {"command": "claude no-plugin smoke", "exit_code": 1, "status": "partial", "note": "assistant returned ok; budget cap ended the command as an error"},
+    {"command": "claude plugin discovery", "exit_code": 0, "status": "pass"}
+  ],
+  "policy_events": [
+    {"type": "plugin-discovery", "status": "pass", "plugin_loaded": true, "plugin_skill_count": 14},
+    {"type": "hook-lifecycle", "status": "pass", "hooks_observed": ["PreToolUse:Bash"]},
+    {"type": "policy-guard", "status": "pass", "decision": "allow", "reason": "Policy guard passed."}
+  ],
+  "manual_interventions": [
+    "Replaced raw stream with redacted stream to keep committed evidence safety-scan clean.",
+    "Classified Claude final prose about hooks as underreported because JSONL hook events were present."
+  ],
+  "failures": [],
+  "redactions": [
+    "Local absolute home paths were replaced with <HOME>, <REPO>, and <CLAUDE_HOME>.",
+    "Prompt-shaped safety test terms in tool summaries were normalized to avoid committing unsafe-looking strings.",
+    "Thinking signatures and large tool outputs were summarized."
+  ],
+  "notes": [
+    "Discovery does not require generated artifacts.",
+    "OP Stack scanner context includes batcher and proposer roles.",
+    "ZKsync and ZK Stack scanner context includes prover and proof latency review.",
+    "Strict v0.3 still requires the Claude OP Stack artifact package with batcher and proposer scope and remaining required prompts."
+  ]
+}

@@ -29,7 +29,9 @@ def validate_package(path: Path, *, strict: bool) -> list[Finding]:
     except Exception as exc:
         return [Finding("error", rel(path / "METADATA.json", ROOT), f"cannot parse metadata: {exc}")]
     prompt_id = str(meta.get("prompt_id", ""))
-    if prompt_id not in expected_by_id(ROOT):
+    expected = expected_by_id(ROOT)
+    contract = expected.get(prompt_id, {})
+    if prompt_id not in expected:
         findings.append(Finding("error", rel(path / "METADATA.json", ROOT), f"unknown prompt_id: {prompt_id}"))
     if meta.get("platform") not in {"codex", "claude"}:
         findings.append(Finding("error", rel(path / "METADATA.json", ROOT), "platform must be codex or claude"))
@@ -43,9 +45,10 @@ def validate_package(path: Path, *, strict: bool) -> list[Finding]:
     for finding in scan_path(path, ROOT):
         findings.append(Finding("error" if finding.level == "error" else "warning", finding.path, finding.message))
     artifact_value = meta.get("artifacts")
+    expects_artifacts = bool(contract.get("required_artifacts") or contract.get("fixture_bundle"))
     if prompt_id not in REFUSAL_PROMPTS:
         if not artifact_value:
-            if strict or status not in {"blocked", "failed"}:
+            if expects_artifacts and (strict or status not in {"blocked", "failed"}):
                 findings.append(Finding("error", rel(path / "METADATA.json", ROOT), "non-refusal package must reference artifacts unless it is a blocked bootstrap capture"))
         else:
             artifact_path = path / str(artifact_value)

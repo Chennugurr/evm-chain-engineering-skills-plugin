@@ -5,12 +5,13 @@ v0.3 dogfood proves the plugin in real Codex and Claude sessions. Bootstrap chec
 Current strict-evidence pass status:
 
 - Codex `01-op-stack-public-testnet`: captured and validated.
-- Claude `01-op-stack-public-testnet`: blocked by `401 authentication_failed` after plugin discovery.
-- Claude blocker details: `dogfood/issues/open/CLAUDE-AUTH-401.md` and `docs/claude-auth-blocker-triage.md`.
-- Hook observations: pending.
+- Claude `00-plugin-discovery`: captured with direct skill invocation and hook lifecycle events.
+- Claude `01-op-stack-public-testnet`: captured and validated with generated artifacts.
+- Claude 401 details: `dogfood/issues/resolved/CLAUDE-AUTH-401.md` and `docs/claude-auth-blocker-triage.md`.
+- Hook observations: Claude discovery and OP Stack smoke observed `PreToolUse:Bash`; Codex hook evidence remains pending.
 - `v0.3.0-beta` tag: not created.
 
-Do not run the remaining Claude prompt matrix until the Claude 401 is resolved and `dogfood/live-runs/claude/00-plugin-discovery/` passes bootstrap validation.
+Continue the remaining Claude prompt matrix using the same redacted evidence package format.
 
 Use one prompt from `dogfood/prompts/`, run it in the target platform with the local plugin installed, and capture a live-run package with `scripts/create_live_run_package.py`. Redact secrets before committing any transcript.
 

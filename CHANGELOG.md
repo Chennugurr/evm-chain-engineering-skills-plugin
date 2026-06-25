@@ -3,25 +3,44 @@
 ## v0.3.0-beta evidence closure
 
 Changed:
-- Added canonical blocker issue `dogfood/issues/open/CLAUDE-AUTH-401.md`.
-- Added `docs/claude-auth-blocker-triage.md` with redacted Claude Code auth diagnostics.
-- Rebuilt `docs/platform-compatibility-matrix.md` with status rows and evidence paths.
-- Updated Claude OP Stack smoke manual notes with the auth-only classification.
+- Resolved the Claude noninteractive `401 authentication_failed` blocker for discovery and moved the issue to `dogfood/issues/resolved/CLAUDE-AUTH-401.md`.
+- Added Claude `00-plugin-discovery` evidence with plugin visibility, direct skill invocation, routing evidence, hook lifecycle events, and portability notes.
+- Reran Claude `01-op-stack-public-testnet` successfully with generated artifacts, validation reports, hook events, and policy evidence.
+- Updated Claude hook observation status to pass.
 
 Validation:
 - `claude auth status` reports logged in with account identifiers redacted.
-- A no-plugin `claude --print` request still fails with `401 authentication_failed`.
+- A no-plugin `claude --print` request returned assistant text `ok`; the command ended nonzero only because the budget cap was too low.
+- `claude plugin validate plugins/evm-chain-engineering-pro --strict` passes.
+- Claude plugin discovery passes.
+- Claude OP Stack smoke validation passes for artifact bundle, generated configs, known-bad output scan, and strict secret scan.
+
+Release:
+- Strict v0.3 remains blocked by the remaining live prompt matrix, Codex hook evidence, and subagent evidence.
+- `v0.3.0-beta` tag remains uncreated.
+
+## v0.3.0-beta auth blocker classification
+
+Changed:
+- Added canonical blocker issue `dogfood/issues/open/CLAUDE-AUTH-401.md`, later moved to `dogfood/issues/resolved/CLAUDE-AUTH-401.md`.
+- Added `docs/claude-auth-blocker-triage.md` with redacted Claude Code auth diagnostics and later resolution notes.
+- Rebuilt `docs/platform-compatibility-matrix.md` with status rows and evidence paths.
+- Updated Claude OP Stack smoke manual notes with the original auth-only classification, later superseded by the successful rerun.
+
+Validation:
+- `claude auth status` reports logged in with account identifiers redacted.
+- A no-plugin `claude --print` request failed with `401 authentication_failed` during the original classification pass, then reached assistant output during the later retry.
 - `claude plugin validate plugins/evm-chain-engineering-pro --strict` still passes.
 
 Release:
-- Strict v0.3 remains blocked.
+- Strict v0.3 remains blocked by incomplete live matrix evidence, not by this resolved auth issue.
 - `v0.3.0-beta` tag remains uncreated.
 
 ## v0.3.0-beta strict evidence pass
 
 Added:
 - Codex live smoke package for `01-op-stack-public-testnet` with redacted transcript stream, generated artifact bundle, validation reports, policy events, and manual notes.
-- Claude live smoke package for `01-op-stack-public-testnet` documenting plugin discovery and `401 authentication_failed` as a strict release blocker.
+- Initial Claude live smoke package for `01-op-stack-public-testnet` documenting plugin discovery and `401 authentication_failed`; later superseded by the successful Claude rerun.
 
 Changed:
 - v0.3 validators include live-run `TRANSCRIPT.json` files in transcript discovery.
@@ -30,11 +49,11 @@ Changed:
 
 Validation:
 - Codex smoke bundle passed artifact validation, generated-config validation, known-bad output scan, and strict secret scan.
-- Claude plugin manifest validation passed, but live agent execution did not authenticate.
+- Claude plugin manifest validation passed; live agent execution did not authenticate in the original pass and later succeeded in the closure rerun.
 
 Release:
 - `v0.3.0-beta` tag remains uncreated.
-- Strict v0.3 remains blocked pending authenticated Claude evidence, remaining required prompts on both platforms, and live hook observation.
+- Strict v0.3 remains blocked pending remaining required prompts on both platforms, Codex hook observation, and subagent evidence.
 
 ## v0.3.0-beta bootstrap harness
 

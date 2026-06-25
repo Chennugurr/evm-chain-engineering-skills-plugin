@@ -19,15 +19,15 @@ def test_dogfood_prompt_lint_passes():
     result = run_script("scripts/lint_dogfood_prompts.py", "--strict", "--json")
     assert result.returncode == 0, result.stdout
     payload = json.loads(result.stdout)
-    assert payload["summary"]["prompts_checked"] == 11
+    assert payload["summary"]["prompts_checked"] == 12
 
 
-def test_bootstrap_passes_and_strict_transcripts_fail_pending():
+def test_bootstrap_and_strict_transcripts_pass_for_captured_smoke_evidence():
     bootstrap = run_script("scripts/validate_dogfood_transcripts.py", "--bootstrap")
     assert bootstrap.returncode == 0, bootstrap.stdout
     strict = run_script("scripts/validate_dogfood_transcripts.py", "--strict")
-    assert strict.returncode != 0
-    assert "strict mode does not accept transcripts with unresolved failures" in strict.stdout
+    assert strict.returncode == 0, strict.stdout
+    assert "transcripts_checked: 3" in strict.stdout
 
 
 def test_pending_hook_observations_fail_only_in_strict():
@@ -49,10 +49,11 @@ def test_smoke_scope_acceptance_and_routing_are_supported():
     acceptance = run_script("scripts/run_live_acceptance_suite.py", "--bootstrap", "--scope", "smoke")
     assert acceptance.returncode == 0, acceptance.stdout
     strict_acceptance = run_script("scripts/run_live_acceptance_suite.py", "--strict", "--scope", "smoke")
-    assert strict_acceptance.returncode != 0
-    assert "unresolved failures" in strict_acceptance.stdout
+    assert strict_acceptance.returncode == 0, strict_acceptance.stdout
     routing = run_script("scripts/score_skill_routing.py", "--bootstrap", "--scope", "smoke")
     assert routing.returncode == 0, routing.stdout
+    strict_routing = run_script("scripts/score_skill_routing.py", "--strict", "--scope", "smoke")
+    assert strict_routing.returncode == 0, strict_routing.stdout
 
 
 def test_create_and_validate_live_run_package(tmp_path):

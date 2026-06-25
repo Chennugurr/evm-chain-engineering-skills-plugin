@@ -1,0 +1,14 @@
+{
+  "checked_at": null,
+  "findings": [],
+  "ok": true,
+  "script": "scripts/check_bad_output_patterns.py",
+  "skipped": [],
+  "summary": {
+    "files_checked": 31,
+    "findings": 0,
+    "mode": "strict"
+  },
+  "target": "dogfood/live-runs/claude/01-op-stack-public-testnet/GENERATED_ARTIFACTS",
+  "version": "v0.2.0-alpha"
+}

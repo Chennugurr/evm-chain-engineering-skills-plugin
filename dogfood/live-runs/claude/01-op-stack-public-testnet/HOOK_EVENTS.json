@@ -2,14 +2,29 @@
   "schema_version": "1.0",
   "platform": "claude",
   "prompt_id": "01-op-stack-public-testnet",
-  "status": "blocked",
+  "status": "pass",
   "hook_manifest_path": "plugins/evm-chain-engineering-pro/hooks/hooks.json",
-  "events": [],
+  "events": [
+    {
+      "event": "PreToolUse:Bash",
+      "phase": "hook_started",
+      "status": "success",
+      "evidence": "CLAUDE_STREAM_REDACTED.jsonl"
+    },
+    {
+      "event": "PreToolUse:Bash",
+      "phase": "hook_response",
+      "status": "success",
+      "decision": "allow",
+      "reason": "Policy guard passed.",
+      "evidence": "CLAUDE_STREAM_REDACTED.jsonl"
+    }
+  ],
   "evidence": [
     "CLAUDE_STREAM_REDACTED.jsonl"
   ],
   "notes": [
-    "Claude was invoked with --include-hook-events, but authentication failed before hook execution could be observed.",
-    "Strict v0.3 remains blocked until authenticated hook observation is captured or a platform limitation is documented."
+    "Claude was invoked with --include-hook-events and hook lifecycle events were observed.",
+    "Observed commands were safe planning and validation commands allowed by policy guard."
   ]
 }

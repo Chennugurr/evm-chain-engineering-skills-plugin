@@ -96,9 +96,9 @@ v0.3 adds the evidence harness for live Codex and Claude dogfood: prompts, expec
 Current strict-evidence status:
 
 - Codex smoke run `01-op-stack-public-testnet`: captured and validated under `dogfood/live-runs/codex/01-op-stack-public-testnet/`.
-- Claude auth blocker: classified in `dogfood/issues/open/CLAUDE-AUTH-401.md` and `docs/claude-auth-blocker-triage.md`.
-- Claude smoke run `01-op-stack-public-testnet`: blocked by `401 authentication_failed` after plugin discovery under `dogfood/live-runs/claude/01-op-stack-public-testnet/`.
-- Live hook observation: still pending.
+- Claude discovery run `00-plugin-discovery`: captured under `dogfood/live-runs/claude/00-plugin-discovery/`; the old `401 authentication_failed` issue is resolved in `dogfood/issues/resolved/CLAUDE-AUTH-401.md`.
+- Claude smoke run `01-op-stack-public-testnet`: captured and validated under `dogfood/live-runs/claude/01-op-stack-public-testnet/`.
+- Live hook observation: Claude discovery and OP Stack smoke observed `PreToolUse:Bash`; Codex hook evidence remains pending.
 - `v0.3.0-beta` tag: not created.
 
 Bootstrap mode validates the harness plus any captured smoke evidence:
