@@ -2,54 +2,144 @@
 
 ## What this plugin is
 
-A dual Codex and Claude Code plugin bundle for planning, validating, securing, and operating EVM L1s, L2s, L3s, appchains, rollups, bridges, explorers, faucets, and infrastructure.
+This repository packages `evm-chain-engineering-pro`, a dual Codex and Claude Code plugin for planning and reviewing EVM chain engineering work.
+
+It is meant for architecture, safety review, dry-run planning, artifact generation, and workflow acceptance around EVM L1s, L2s, L3s, appchains, rollups, bridges, explorers, faucets, and infrastructure.
 
 ## What it is not
 
-- It is not an automatic mainnet deployer.
-- It does not store or manage private keys.
-- It does not replace audits.
-- It does not make stale stack docs safe.
-- It does not make OP Stack, Arbitrum Orbit, Polygon CDK, ZKsync ZK Stack, Cosmos EVM, Avalanche L1s, and modular rollups interchangeable.
+- It is not an automatic chain deployer.
+- It does not manage or store real secrets.
+- It does not approve mainnet actions.
+- It does not replace current vendor docs, human review, or professional audits.
+- It does not make different chain stacks interchangeable.
+
+## What Is Included
+
+- `plugins/evm-chain-engineering-pro/`: the installable plugin bundle.
+- `.agents/plugins/marketplace.json`: local Codex marketplace entry.
+- `.claude-plugin/marketplace.json`: local Claude Code marketplace entry.
+- `plugins/evm-chain-engineering-pro/skills/`: 14 portable skills shared by both agent surfaces.
+- `plugins/evm-chain-engineering-pro/references/`: stack notes, safety guidance, and planning references.
+- `plugins/evm-chain-engineering-pro/scripts/`: safe plugin-local helper commands.
+- `scripts/`: root validation, artifact, release evidence, policy, and dogfood tooling.
+- `profiles/`, `schemas/`, `fixtures/`, `acceptance/`, and `dogfood/`: machine-checkable contracts and test evidence.
 
 ## Supported workflows
 
-Architecture decision records, stack selection, server topology, bridge risk review, DA selection, launch gates, observability planning, dry-run validation, docs review, behavior evals, and release readiness.
+- Choosing between OP Stack, Arbitrum Orbit, Polygon CDK, ZKsync ZK Stack, EVM L1, Cosmos EVM, and modular rollup paths.
+- Drafting chain specs, infrastructure plans, launch gates, security review templates, and runbooks.
+- Reviewing bridge, admin, sequencer, prover, data availability, explorer, faucet, and observability assumptions.
+- Running offline validation against checked-in schemas, fixtures, acceptance cases, and safety policies.
+- Dogfooding Codex and Claude skill routing with deterministic prompts and redacted transcript evidence.
 
-## Repository layout
+## Install In Codex
 
-- `plugins/evm-chain-engineering-pro/skills`: 14 portable skills.
-- `plugins/evm-chain-engineering-pro/references`: shared stack references.
-- `plugins/evm-chain-engineering-pro/scripts`: plugin-packaged safe helper scripts and hook policy guard wrapper.
-- `scripts`: root-level hardening orchestration scripts.
-- `evals`: deterministic behavior eval matrix.
-- `examples/golden-demos`: safe model answers for dogfooding.
+The Codex marketplace file is already checked in at `.agents/plugins/marketplace.json`.
 
-## Install/view in Codex
+From this repository root, validate the plugin metadata:
 
-Use `.agents/plugins/marketplace.json`, restart Codex, then view or install `evm-chain-engineering-pro` from the EVM Chain Engineering marketplace.
+```bash
+python3 "$HOME/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py" plugins/evm-chain-engineering-pro
+```
 
-## Install/view in Claude Code
+Then restart Codex or refresh local plugins and install `evm-chain-engineering-pro` from the `evm-chain-engineering` marketplace.
 
-Use `.claude-plugin/marketplace.json` or validate the local plugin directly with:
+## Install In Claude Code
+
+The Claude marketplace file is checked in at `.claude-plugin/marketplace.json`.
+
+Validate the local plugin:
 
 ```bash
 claude plugin validate plugins/evm-chain-engineering-pro --strict
 ```
 
-## Skill list
+Then add or install the plugin from the local marketplace path, depending on your Claude Code plugin setup.
 
-`blockchain-architect`, `evm-l1-builder`, `op-stack-engineer`, `arbitrum-orbit-engineer`, `polygon-cdk-engineer`, `zksync-zk-stack-engineer`, `modular-rollup-engineer`, `data-availability-engineer`, `bridge-interop-engineer`, `chain-infra-ops`, `observability-sre`, `chain-security-reviewer`, `chain-launch-manager`, and `explorer-indexer-engineer`.
+## Use The Skills
 
-## Safety model
+After installation, ask normally. Codex and Claude can route to the relevant skills by topic, or you can name a skill explicitly in your prompt.
 
-Dry-run first, no secrets in repo, policy guard hooks, mainnet-like actions approval-gated, chain-specific trust assumptions documented, and production launch requires human review.
+Example prompts:
+
+```text
+Use blockchain-architect and chain-security-reviewer to compare OP Stack and Arbitrum Orbit for a public testnet.
+```
+
+```text
+Use bridge-interop-engineer to review the trust assumptions for this bridge plan, then hand off to chain-security-reviewer.
+```
+
+```text
+Use chain-launch-manager to produce launch gates for a dry-run testnet only.
+```
+
+Available skills:
+
+- `blockchain-architect`
+- `evm-l1-builder`
+- `op-stack-engineer`
+- `arbitrum-orbit-engineer`
+- `polygon-cdk-engineer`
+- `zksync-zk-stack-engineer`
+- `modular-rollup-engineer`
+- `data-availability-engineer`
+- `bridge-interop-engineer`
+- `chain-infra-ops`
+- `observability-sre`
+- `chain-security-reviewer`
+- `chain-launch-manager`
+- `explorer-indexer-engineer`
+
+For production, mainnet, bridge, admin, sequencer, or prover paths, include `chain-security-reviewer` in the workflow.
+
+## Release validation
+
+Run the standard validation gate before sharing changes:
+
+```bash
+make validate
+```
+
+Run the v0.2 workflow acceptance layer:
+
+```bash
+make validate-v02
+```
+
+Run the v0.3 live QA evidence gate:
+
+```bash
+make validate-v03
+```
+
+Render and validate a planning artifact bundle:
+
+```bash
+python3 scripts/render_artifact_bundle.py --workflow op-stack-public-testnet --stack op-stack --chain-type l2 --environment public-testnet --settlement sepolia --output generated/op-stack-public-testnet --overwrite
+python3 scripts/validate_artifact_bundle.py --strict --path generated/op-stack-public-testnet
+```
+
+Scan for unsafe output patterns:
+
+```bash
+python3 scripts/check_bad_output_patterns.py --path dogfood/live-runs --strict
+```
+
+Build release evidence:
+
+```bash
+python3 scripts/build_release_evidence.py --version v0.3.0-beta --strict
+```
 
 ## Dogfood workflow
 
-Use `docs/dogfood-plan.md`, run the prompts from `evals/skill-trigger-matrix.yaml`, and record results in `docs/usage-review.md`.
+Dogfood prompts and live-run evidence live under `dogfood/`. Use them to check whether Codex and Claude route to the expected skills, refuse unsafe requests, and produce artifact-shaped planning output without using real secrets or live deployment commands.
 
 ## Behavior evals
+
+Behavior evals check expected and forbidden skill routing against `evals/skill-trigger-matrix.yaml`:
 
 ```bash
 python3 scripts/run_behavior_evals.py --evals evals/skill-trigger-matrix.yaml --strict
@@ -57,62 +147,20 @@ python3 scripts/run_behavior_evals.py --evals evals/skill-trigger-matrix.yaml --
 
 ## Golden demos
 
-Six demos live in `examples/golden-demos/` and provide safe, dry-run expected outputs.
+Golden demos live under `examples/golden-demos/`. Each demo gives a safe prompt, expected skills, expected output shape, validation notes, and security review expectations for repeatable plugin QA.
 
-## Upstream source freshness
+## Safety model
 
-```bash
-python3 scripts/check_upstream_freshness.py --sources docs/upstream-sources.md --markdown-report docs/upstream-freshness-report.md --allow-offline
-```
+- Keep all outputs planning-only unless a human operator explicitly moves them into a separate deployment process.
+- Do not put real private keys, mnemonics, API keys, RPC credentials, or `.env` files in this repository.
+- Treat exact stack commands, client versions, bridge procedures, and production launch steps as version-sensitive.
+- Use `VERIFY_CURRENT_DOCS` guidance before any production-like action.
+- Do not create `.agent-approvals/mainnet-action-approved.json` unless a separate human approval process requires it.
 
-## Release validation
+## Development Notes
 
-```bash
-make validate-all
-```
+Root-level scripts are for repository validation and release hardening. Plugin-local scripts under `plugins/evm-chain-engineering-pro/scripts/` are the portable helpers shipped with the plugin.
 
-## Known limitations
+Generated local outputs belong under `generated/` and should not be committed unless they are intentional fixtures or release evidence.
 
-Exact deployment commands, server requirements, client versions, bridge instructions, and stack modes remain version-sensitive and require `VERIFY_CURRENT_DOCS` before production-like use.
-
-## v0.2.0-alpha Workflow Acceptance
-
-v0.2 adds a machine-checkable artifact bundle contract, stack profiles, safe artifact generators, validated fixture bundles, generated config validation, workflow acceptance cases, hook fixture tests, clean install validation, and release evidence.
-
-Quick commands:
-
-```bash
-make validate-v02
-python3 scripts/render_artifact_bundle.py --workflow op-stack-public-testnet --stack op-stack --chain-type l2 --environment public-testnet --settlement sepolia --output generated/op-stack-public-testnet --overwrite
-python3 scripts/validate_artifact_bundle.py --strict --path generated/op-stack-public-testnet
-```
-
-The layer remains planning-only: no deployment, no real secrets, no cloud/provider calls, no MCP servers, and no production certification. See `KNOWN_LIMITATIONS.md`.
-
-## v0.3.0-beta Live Agent QA Harness
-
-v0.3 adds the evidence harness for live Codex and Claude dogfood: prompts, expected contracts, transcript schemas, live-run package validation, hook observation checks, skill routing scorecards, known-bad output checks, and release evidence.
-
-Current strict-evidence status:
-
-- Codex smoke run `01-op-stack-public-testnet`: captured and validated under `dogfood/live-runs/codex/01-op-stack-public-testnet/`.
-- Claude discovery run `00-plugin-discovery`: captured under `dogfood/live-runs/claude/00-plugin-discovery/`; the old `401 authentication_failed` issue is resolved in `dogfood/issues/resolved/CLAUDE-AUTH-401.md`.
-- Claude smoke run `01-op-stack-public-testnet`: captured and validated under `dogfood/live-runs/claude/01-op-stack-public-testnet/`.
-- Required live matrix prompts `02`, `03`, `05`, `06`, and `07`: captured for both Codex and Claude under `dogfood/live-runs/`.
-- Live hook observation: Claude discovery and OP Stack smoke observed `PreToolUse:Bash`; Codex hook closure observed safe allow plus fake-secret and mainnet-like deny decisions under `dogfood/hooks/codex/`.
-- Subagent dogfood: no live subagent execution is claimed; limitation recorded in `dogfood/reports/subagent-dogfood-limitation.md`.
-- `v0.3.0-beta` tag: created after strict validation passes.
-
-Bootstrap mode validates the harness plus any captured smoke evidence:
-
-```bash
-make validate-v03-bootstrap
-```
-
-Strict mode remains the release gate:
-
-```bash
-make validate-v03
-```
-
-The `v0.3.0-beta` tag is valid only for the planning-only, safety-first evidence set in this repository. It does not imply live deployment readiness, real-secret handling, MCP server support, or mainnet approval.
+The current beta evidence is planning-only. The `v0.3.0-beta` tag records live Codex and Claude smoke coverage, hook observations, and release evidence for this repository; it is not a production deployment certification.
