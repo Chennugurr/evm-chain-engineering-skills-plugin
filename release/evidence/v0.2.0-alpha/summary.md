@@ -3,7 +3,7 @@
 - Version: v0.2.0-alpha
 - Mode: strict
 - Git branch: v0.3-beta-strict-live-evidence
-- Git commit: 73c7158
+- Git commit: 873a02f
 - Git tag status: v0.2.0-alpha
 - Validation summary: PASS
 - Release ready: true

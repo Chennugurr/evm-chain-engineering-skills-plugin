@@ -21,7 +21,7 @@
     },
     "git": {
       "branch": "v0.3-beta-strict-live-evidence",
-      "commit": "67ec145",
+      "commit": "873a02f",
       "tag": "not created",
       "working_tree_clean": false
     },
@@ -31,7 +31,7 @@
       "No MCP servers included.",
       "v0.3 strict release requires real Codex/Claude dogfood transcripts and live hook observations."
     ],
-    "live_claude_transcripts": 1,
+    "live_claude_transcripts": 2,
     "live_codex_transcripts": 1,
     "live_hook_observations": "pending",
     "mode": "bootstrap",

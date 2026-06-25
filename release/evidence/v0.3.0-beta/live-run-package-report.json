@@ -7,7 +7,7 @@
   "summary": {
     "findings": 0,
     "mode": "bootstrap",
-    "packages_checked": 2
+    "packages_checked": 3
   },
   "target": "dogfood/live-runs",
   "version": "v0.2.0-alpha"

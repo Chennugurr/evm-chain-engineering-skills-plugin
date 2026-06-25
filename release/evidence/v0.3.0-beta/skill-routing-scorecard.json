@@ -3,9 +3,9 @@
   "overall_score": 100,
   "platforms": {
     "claude": {
-      "confidence": "low",
-      "runs": 0,
-      "score": 0
+      "confidence": "medium",
+      "runs": 2,
+      "score": 100
     },
     "codex": {
       "confidence": "medium",
@@ -14,6 +14,12 @@
     }
   },
   "prompts": {
+    "00-plugin-discovery": {
+      "irrelevant_skills": [],
+      "missing_expected_skills": [],
+      "notes": [],
+      "score": 100
+    },
     "01-op-stack-public-testnet": {
       "irrelevant_skills": [],
       "missing_expected_skills": [],

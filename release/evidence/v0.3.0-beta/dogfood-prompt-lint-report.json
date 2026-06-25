@@ -6,7 +6,7 @@
   "skipped": [],
   "summary": {
     "findings": 0,
-    "prompts_checked": 11
+    "prompts_checked": 12
   },
   "target": "dogfood/prompts",
   "version": "v0.2.0-alpha"

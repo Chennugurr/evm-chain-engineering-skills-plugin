@@ -29,7 +29,7 @@ Latest command results recorded during the strict evidence pass:
 - `python3 -m pytest`: PASS, 57 tests passed.
 - `make validate`: PASS.
 - `make validate-v03-bootstrap`: PASS.
-- `make validate-v03 || true`: expected strict failure at `validate_dogfood_transcripts.py --strict`.
+- `make validate-v03 || true`: expected strict failure at `validate_live_hook_observations.py --strict` because Codex hook observation remains pending.
 - `claude plugin validate plugins/evm-chain-engineering-pro --strict`: PASS.
 - `claude auth status`: logged in, account identifiers redacted from committed evidence.
 - no-plugin `claude --print`: PARTIAL, assistant returned `ok`; command ended nonzero because the budget cap was too low.
@@ -37,8 +37,10 @@ Latest command results recorded during the strict evidence pass:
 - Claude discovery run: PASS.
 - Claude smoke run: PASS for `01-op-stack-public-testnet`.
 - `python3 scripts/check_bad_output_patterns.py --path dogfood/live-runs --strict`: PASS.
-- `python3 scripts/validate_dogfood_transcripts.py --bootstrap`: PASS.
-- `python3 scripts/run_live_acceptance_suite.py --bootstrap`: PASS.
+- `python3 scripts/validate_dogfood_transcripts.py --strict`: PASS.
+- `python3 scripts/run_live_acceptance_suite.py --strict --scope smoke`: PASS.
+- `python3 scripts/score_skill_routing.py --strict --scope smoke`: PASS.
+- `python3 scripts/validate_live_hook_observations.py --strict --platform claude`: PASS.
 
 Bootstrap evidence:
 
@@ -58,9 +60,9 @@ Bootstrap evidence:
 - Bootstrap evidence report commit: `a9f88f9`
 - Strict evidence report update: `a6ce400`
 - Claude auth blocker classification: `67ec145`
-- Claude discovery and OP Stack resolution: pending commit
+- Claude discovery and OP Stack resolution: `873a02f`
 - Bootstrap evidence after auth triage: `73c7158`
-- Latest generated-evidence refresh before this report update: `bc7920b`
+- Latest generated-evidence refresh after Claude rerun: pending commit
 - Push/publish/deploy: not performed
 
 ## Known Limitations
