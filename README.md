@@ -2,28 +2,27 @@
 
 ## What this plugin is
 
-This repository packages `evm-chain-engineering-pro`, a dual Codex and Claude Code plugin for planning and reviewing EVM chain engineering work.
+This repo is a local plugin for Codex and Claude Code called `evm-chain-engineering-pro`.
 
-It is meant for architecture, safety review, dry-run planning, artifact generation, and workflow acceptance around EVM L1s, L2s, L3s, appchains, rollups, bridges, explorers, faucets, and infrastructure.
+It gives an agent a set of EVM chain engineering skills: stack selection, rollup planning, L1 design, bridge review, data availability review, infrastructure planning, launch gates, observability, explorer/indexer planning, and security handoff.
+
+Use it when you want an agent to help think through a chain design before anyone touches real infrastructure. The useful output is a clearer plan: what stack fits, what assumptions are risky, what needs current docs, what should be reviewed by a human, and what artifacts should exist before a testnet or launch process moves forward.
 
 ## What it is not
 
-- It is not an automatic chain deployer.
-- It does not manage or store real secrets.
-- It does not approve mainnet actions.
-- It does not replace current vendor docs, human review, or professional audits.
-- It does not make different chain stacks interchangeable.
+This is not a deploy button. It does not run mainnet launches, hold private keys, manage RPC credentials, publish contracts, or make a stack safe just because it produced a checklist.
+
+It is also not a replacement for current stack documentation or an audit. The chain ecosystem moves quickly; use this plugin to structure the work, then verify the exact commands, versions, and production choices against current upstream docs and human reviewers.
 
 ## What Is Included
 
-- `plugins/evm-chain-engineering-pro/`: the installable plugin bundle.
-- `.agents/plugins/marketplace.json`: local Codex marketplace entry.
-- `.claude-plugin/marketplace.json`: local Claude Code marketplace entry.
-- `plugins/evm-chain-engineering-pro/skills/`: 14 portable skills shared by both agent surfaces.
-- `plugins/evm-chain-engineering-pro/references/`: stack notes, safety guidance, and planning references.
-- `plugins/evm-chain-engineering-pro/scripts/`: safe plugin-local helper commands.
-- `scripts/`: root validation, artifact, release evidence, policy, and dogfood tooling.
-- `profiles/`, `schemas/`, `fixtures/`, `acceptance/`, and `dogfood/`: machine-checkable contracts and test evidence.
+- `plugins/evm-chain-engineering-pro/`: the plugin that Codex and Claude install.
+- `.agents/plugins/marketplace.json`: the local Codex marketplace entry.
+- `.claude-plugin/marketplace.json`: the local Claude Code marketplace entry.
+- `plugins/evm-chain-engineering-pro/skills/`: the 14 skills this plugin adds.
+- `plugins/evm-chain-engineering-pro/references/`: supporting notes the skills can use.
+- `plugins/evm-chain-engineering-pro/scripts/`: small safe helper scripts shipped with the plugin.
+- `scripts/`, `schemas/`, `profiles/`, `fixtures/`, `acceptance/`, and `dogfood/`: maintainer tooling for checking that the plugin behaves the way the repo says it should.
 
 ## Contributors
 
@@ -31,119 +30,101 @@ It is meant for architecture, safety review, dry-run planning, artifact generati
 
 ## Supported workflows
 
-- Choosing between OP Stack, Arbitrum Orbit, Polygon CDK, ZKsync ZK Stack, EVM L1, Cosmos EVM, and modular rollup paths.
-- Drafting chain specs, infrastructure plans, launch gates, security review templates, and runbooks.
-- Reviewing bridge, admin, sequencer, prover, data availability, explorer, faucet, and observability assumptions.
-- Running offline validation against checked-in schemas, fixtures, acceptance cases, and safety policies.
-- Dogfooding Codex and Claude skill routing with deterministic prompts and redacted transcript evidence.
+The plugin is built for planning and review work like:
+
+- choosing between OP Stack, Arbitrum Orbit, Polygon CDK, ZKsync ZK Stack, EVM L1, Cosmos EVM, and modular rollup designs;
+- writing chain specs, ADRs, infrastructure plans, launch gates, and runbooks;
+- reviewing bridge, admin, sequencer, prover, DA, explorer, faucet, and observability assumptions;
+- checking that generated plans stay dry-run, redacted, and review-friendly;
+- routing risky work through the security reviewer skill before it looks actionable.
 
 ## Install In Codex
 
-The Codex marketplace file is already checked in at `.agents/plugins/marketplace.json`.
-
-From this repository root, validate the plugin metadata:
+From the repo root, validate the plugin first:
 
 ```bash
 python3 "$HOME/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py" plugins/evm-chain-engineering-pro
 ```
 
-Then restart Codex or refresh local plugins and install `evm-chain-engineering-pro` from the `evm-chain-engineering` marketplace.
+Then refresh Codex plugins and install `evm-chain-engineering-pro` from the local `evm-chain-engineering` marketplace.
 
 ## Install In Claude Code
 
-The Claude marketplace file is checked in at `.claude-plugin/marketplace.json`.
-
-Validate the local plugin:
+Validate the plugin with Claude Code:
 
 ```bash
 claude plugin validate plugins/evm-chain-engineering-pro --strict
 ```
 
-Then add or install the plugin from the local marketplace path, depending on your Claude Code plugin setup.
+Then install or add the plugin using the local marketplace file at `.claude-plugin/marketplace.json`.
 
 ## Use The Skills
 
-After installation, ask normally. Codex and Claude can route to the relevant skills by topic, or you can name a skill explicitly in your prompt.
+Once the plugin is installed, you can just ask for the work you want. The agent should route to the right skill from the topic.
 
-Example prompts:
+For more control, name the skills directly:
 
 ```text
-Use blockchain-architect and chain-security-reviewer to compare OP Stack and Arbitrum Orbit for a public testnet.
+Use blockchain-architect to compare OP Stack and Arbitrum Orbit for a public testnet.
 ```
 
 ```text
-Use bridge-interop-engineer to review the trust assumptions for this bridge plan, then hand off to chain-security-reviewer.
+Use bridge-interop-engineer and chain-security-reviewer to review this bridge plan.
 ```
 
 ```text
-Use chain-launch-manager to produce launch gates for a dry-run testnet only.
+Use chain-launch-manager to draft dry-run launch gates for a testnet.
 ```
 
-Available skills:
+The plugin includes these skills:
 
-- `blockchain-architect`
-- `evm-l1-builder`
-- `op-stack-engineer`
-- `arbitrum-orbit-engineer`
-- `polygon-cdk-engineer`
-- `zksync-zk-stack-engineer`
-- `modular-rollup-engineer`
-- `data-availability-engineer`
-- `bridge-interop-engineer`
-- `chain-infra-ops`
-- `observability-sre`
-- `chain-security-reviewer`
-- `chain-launch-manager`
-- `explorer-indexer-engineer`
+- `blockchain-architect`: stack selection, ADRs, trust assumptions, and chain design tradeoffs.
+- `evm-l1-builder`: EVM L1 and appchain planning.
+- `op-stack-engineer`: OP Stack planning and review.
+- `arbitrum-orbit-engineer`: Arbitrum Orbit and L3 planning.
+- `polygon-cdk-engineer`: Polygon CDK planning.
+- `zksync-zk-stack-engineer`: ZKsync ZK Stack planning.
+- `modular-rollup-engineer`: modular rollup and sovereign rollup planning.
+- `data-availability-engineer`: DA selection and risk review.
+- `bridge-interop-engineer`: bridge, relayer, token mapping, and cross-chain assumptions.
+- `chain-infra-ops`: servers, networking, systemd, Kubernetes, Terraform, and runbooks.
+- `observability-sre`: metrics, logs, alerts, dashboards, and incident readiness.
+- `chain-security-reviewer`: threat modeling, unsafe-pattern review, admin-risk review, and security handoff.
+- `chain-launch-manager`: launch gates, testnet phases, release readiness, and post-launch operations.
+- `explorer-indexer-engineer`: explorer, indexer, faucet, and public metadata planning.
 
-For production, mainnet, bridge, admin, sequencer, or prover paths, include `chain-security-reviewer` in the workflow.
+If the request mentions production, mainnet, bridges, admins, sequencers, provers, or real operators, include `chain-security-reviewer`. That is the skill that slows the answer down in the places where slow is useful.
+
+## Safety model
+
+Treat this plugin like a careful planning partner, not an operator with keys.
+
+Good uses are questions like "what are we missing?", "which stack fits this constraint?", "what should the launch gates be?", and "where are the trust assumptions?" Bad uses are requests to paste secrets, bypass review, broadcast transactions, or turn a draft into a real deployment.
+
+Keep real credentials out of the repo. Keep live deployment work in a separate, human-controlled process. When the answer depends on exact versions, bridge instructions, production settings, or mainnet procedures, verify the current upstream docs before using the plan.
 
 ## Release validation
 
-Run the standard validation gate before sharing changes:
+For normal repo changes, run:
 
 ```bash
 make validate
 ```
 
-Run the v0.2 workflow acceptance layer:
+For the full workflow acceptance and live QA checks, maintainers can also run:
 
 ```bash
 make validate-v02
-```
-
-Run the v0.3 live QA evidence gate:
-
-```bash
 make validate-v03
-```
-
-Render and validate a planning artifact bundle:
-
-```bash
-python3 scripts/render_artifact_bundle.py --workflow op-stack-public-testnet --stack op-stack --chain-type l2 --environment public-testnet --settlement sepolia --output generated/op-stack-public-testnet --overwrite
-python3 scripts/validate_artifact_bundle.py --strict --path generated/op-stack-public-testnet
-```
-
-Scan for unsafe output patterns:
-
-```bash
-python3 scripts/check_bad_output_patterns.py --path dogfood/live-runs --strict
-```
-
-Build release evidence:
-
-```bash
-python3 scripts/build_release_evidence.py --version v0.3.0-beta --strict
 ```
 
 ## Dogfood workflow
 
-Dogfood prompts and live-run evidence live under `dogfood/`. Use them to check whether Codex and Claude route to the expected skills, refuse unsafe requests, and produce artifact-shaped planning output without using real secrets or live deployment commands.
+`dogfood/` contains prompts and redacted live-run notes used to check whether Codex and Claude actually use the right skills. Most users can ignore it; it is here so maintainers can prove the plugin still behaves like the README claims.
 
 ## Behavior evals
 
-Behavior evals check expected and forbidden skill routing against `evals/skill-trigger-matrix.yaml`:
+Behavior evals check skill routing from fixed prompts:
 
 ```bash
 python3 scripts/run_behavior_evals.py --evals evals/skill-trigger-matrix.yaml --strict
@@ -151,20 +132,4 @@ python3 scripts/run_behavior_evals.py --evals evals/skill-trigger-matrix.yaml --
 
 ## Golden demos
 
-Golden demos live under `examples/golden-demos/`. Each demo gives a safe prompt, expected skills, expected output shape, validation notes, and security review expectations for repeatable plugin QA.
-
-## Safety model
-
-- Keep all outputs planning-only unless a human operator explicitly moves them into a separate deployment process.
-- Do not put real private keys, mnemonics, API keys, RPC credentials, or `.env` files in this repository.
-- Treat exact stack commands, client versions, bridge procedures, and production launch steps as version-sensitive.
-- Use `VERIFY_CURRENT_DOCS` guidance before any production-like action.
-- Do not create `.agent-approvals/mainnet-action-approved.json` unless a separate human approval process requires it.
-
-## Development Notes
-
-Root-level scripts are for repository validation and release hardening. Plugin-local scripts under `plugins/evm-chain-engineering-pro/scripts/` are the portable helpers shipped with the plugin.
-
-Generated local outputs belong under `generated/` and should not be committed unless they are intentional fixtures or release evidence.
-
-The current beta evidence is planning-only. The `v0.3.0-beta` tag records live Codex and Claude smoke coverage, hook observations, and release evidence for this repository; it is not a production deployment certification.
+`examples/golden-demos/` contains safe example prompts and expected outputs. They are useful when changing a skill and wanting a quick feel for the shape of a good answer.
