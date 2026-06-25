@@ -25,7 +25,7 @@ The evidence-closure pass classified the Claude failure as a noninteractive Clau
 
 Latest command results recorded during the strict evidence pass:
 
-- `python3 -m pytest`: PASS, 55 tests passed.
+- `python3 -m pytest`: PASS, 57 tests passed.
 - `make validate`: PASS.
 - `make validate-v03-bootstrap`: PASS.
 - `make validate-v03 || true`: expected strict failure at `validate_dogfood_transcripts.py --strict`.
@@ -54,7 +54,10 @@ Bootstrap evidence:
 - Strict evidence preflight commit: `7d68dac`
 - Smoke evidence commit: `3bbaeec`
 - Bootstrap evidence report commit: `a9f88f9`
-- Latest generated-evidence refresh before this report update: `c0d02a9`
+- Strict evidence report update: `a6ce400`
+- Claude auth blocker classification: `67ec145`
+- Bootstrap evidence after auth triage: `73c7158`
+- Latest generated-evidence refresh before this report update: `bc7920b`
 - Push/publish/deploy: not performed
 
 ## Known Limitations
