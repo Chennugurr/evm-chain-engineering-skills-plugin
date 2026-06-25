@@ -48,7 +48,14 @@ def git_value(args: list[str], default: str) -> str:
 
 def non_release_tree_clean() -> bool:
     status = git_value(["status", "--short"], "")
-    return not [line for line in status.splitlines() if not (line[3:] if len(line) > 3 else line).startswith("release/")]
+    dirty = []
+    for line in status.splitlines():
+        if not line:
+            continue
+        path = line[3:] if len(line) > 3 and line[2] == " " else line.split(maxsplit=1)[-1]
+        if not path.startswith("release/"):
+            dirty.append(line)
+    return not dirty
 
 
 def is_v03(version: str) -> bool:
