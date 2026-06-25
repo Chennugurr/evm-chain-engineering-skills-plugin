@@ -6,7 +6,7 @@
   "skipped": [],
   "summary": {
     "findings": 0,
-    "live_hook_observations": "pending",
+    "live_hook_observations": "recorded",
     "mode": "bootstrap",
     "observations_checked": 2
   },

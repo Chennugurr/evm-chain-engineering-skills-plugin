@@ -3,7 +3,7 @@
 - Version: v0.3.0-beta
 - Mode: bootstrap
 - Git branch: v0.3-beta-strict-live-evidence
-- Git commit: 873a02f
+- Git commit: 727fb3a
 - Git tag status: not created
 - Validation summary: PASS
 - Release ready: false
@@ -27,7 +27,7 @@
 
 - Codex transcripts: 1
 - Claude transcripts: 2
-- Hook observations: pending
+- Hook observations: recorded
 - Skill routing score: 100
 
 ## Known Limitations

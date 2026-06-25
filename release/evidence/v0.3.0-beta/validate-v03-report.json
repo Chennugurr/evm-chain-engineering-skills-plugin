@@ -21,7 +21,7 @@
     },
     "git": {
       "branch": "v0.3-beta-strict-live-evidence",
-      "commit": "873a02f",
+      "commit": "727fb3a",
       "tag": "not created",
       "working_tree_clean": false
     },
@@ -33,7 +33,7 @@
     ],
     "live_claude_transcripts": 2,
     "live_codex_transcripts": 1,
-    "live_hook_observations": "pending",
+    "live_hook_observations": "recorded",
     "mode": "bootstrap",
     "ok": true,
     "release_ready": false,

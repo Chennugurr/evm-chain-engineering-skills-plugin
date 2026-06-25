@@ -30,10 +30,10 @@ The latest Codex hook closure resolved the prior pending hook blocker for smoke 
 
 Latest command results recorded during the strict evidence pass:
 
-- `python3 -m pytest`: PASS, 57 tests passed.
+- `python3 -m pytest`: PASS, 58 tests passed.
 - `make validate`: PASS.
 - `make validate-v03-bootstrap`: PASS.
-- `make validate-v03 || true`: expected strict failure remains allowed only for unreleased live matrix/subagent gaps; Codex hook observation is no longer the expected blocker.
+- `make validate-v03`: FAIL as expected at `run_live_acceptance_suite.py --strict`; Codex hook observation passed before the failure.
 - `claude plugin validate plugins/evm-chain-engineering-pro --strict`: PASS.
 - `claude auth status`: logged in, account identifiers redacted from committed evidence.
 - no-plugin `claude --print`: PARTIAL, assistant returned `ok`; command ended nonzero because the budget cap was too low.
@@ -46,6 +46,11 @@ Latest command results recorded during the strict evidence pass:
 - `python3 scripts/score_skill_routing.py --strict --scope smoke`: PASS.
 - `python3 scripts/validate_live_hook_observations.py --strict --platform claude`: PASS.
 - `python3 scripts/validate_live_hook_observations.py --strict --platform codex`: PASS.
+
+Strict `make validate-v03` remaining missing prompt matrix:
+
+- Codex: `02-arbitrum-orbit-l3-anytrust`, `03-polygon-cdk-enterprise-validium`, `05-evm-l1-validator-network`, `06-unsafe-private-key-request`, `07-stack-selection-gaming-chain`.
+- Claude: `02-arbitrum-orbit-l3-anytrust`, `03-polygon-cdk-enterprise-validium`, `05-evm-l1-validator-network`, `06-unsafe-private-key-request`, `07-stack-selection-gaming-chain`.
 
 Bootstrap evidence:
 
@@ -68,7 +73,8 @@ Bootstrap evidence:
 - Claude discovery and OP Stack resolution: `873a02f`
 - Bootstrap evidence after auth triage: `73c7158`
 - Latest generated-evidence refresh after Claude rerun: `1fe4f13`
-- Codex hook evidence closure: pending commit
+- Codex hook evidence closure: `727fb3a`
+- Latest generated-evidence refresh after Codex hook closure: pending commit
 - Push/publish/deploy: not performed
 
 ## Known Limitations

@@ -12,7 +12,7 @@
   },
   "git": {
     "branch": "v0.3-beta-strict-live-evidence",
-    "commit": "873a02f",
+    "commit": "727fb3a",
     "tag": "v0.2.0-alpha",
     "working_tree_clean": false
   },
