@@ -21,13 +21,13 @@ Official platform docs were refreshed on 2026-06-25. Docs freshness is not relea
 | Artifact generation | verified for required artifact prompts | `dogfood/live-runs/codex/{01,02,03,05}-*/GENERATED_ARTIFACTS/` | verified for required artifact prompts | `dogfood/live-runs/claude/{01,02,03,05}-*/GENERATED_ARTIFACTS/` |
 | Artifact validation | verified for required artifact prompts | `dogfood/live-runs/codex/*/GENERATED_ARTIFACTS/evidence/artifact-validation-report.json` | verified for required artifact prompts | `dogfood/live-runs/claude/*/GENERATED_ARTIFACTS/evidence/artifact-validation-report.json` |
 | Clean install | verified | `release/evidence/v0.3.0-beta/clean-install-report.json` | verified for plugin package validation and discovery | `claude plugin validate` and `dogfood/live-runs/claude/00-plugin-discovery/` |
-| Strict release evidence | pending final gate | Prompt matrix captured; full status comes from `make validate-v03` | pending final gate | Prompt matrix captured; full status comes from `make validate-v03` |
+| Strict release evidence | verified | `make validate-v03`; `release/evidence/v0.3.0-beta/summary.json` reports `release_ready: true` | verified | `make validate-v03`; `release/evidence/v0.3.0-beta/summary.json` reports `release_ready: true` |
 
 ## Release Impact
 
 The original Claude Code noninteractive `401 authentication_failed` blocker, the Claude OP Stack artifact smoke, the Codex live hook observation, and the required prompt matrix are resolved for the v0.3.0-beta closure scope.
 
-Do not create `v0.3.0-beta` until:
+`v0.3.0-beta` may be created when:
 
 - `make validate-v03` passes,
 - release evidence reports `release_ready: true`,

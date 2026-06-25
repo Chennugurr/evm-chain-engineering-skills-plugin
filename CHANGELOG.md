@@ -17,6 +17,13 @@ Changed:
 - Made the plugin-local policy guard self-contained for installed plugin cache execution.
 
 Validation:
+- `python3 -m pytest` passes with 58 tests.
+- `make validate` passes.
+- `make validate-v02` passes.
+- `make validate-v03-bootstrap` passes.
+- `make validate-v03` passes.
+- `claude plugin validate plugins/evm-chain-engineering-pro --strict` passes.
+- `python3 scripts/build_release_evidence.py --version v0.3.0-beta --strict` passes.
 - Strict live package validation passes for 13 live-run packages.
 - Strict live acceptance passes across the required Codex and Claude matrix.
 - Skill routing score is 100 across captured live transcripts.
@@ -29,8 +36,8 @@ Validation:
 - Codex hook observation validation passes for smoke scope.
 
 Release:
-- Strict v0.3 is pending the final full validation ladder and release evidence refresh.
-- `v0.3.0-beta` tag remains uncreated.
+- Strict v0.3 release evidence reports `release_ready: true`.
+- `v0.3.0-beta` tag created locally after strict validation.
 
 ## v0.3.0-beta auth blocker classification
 

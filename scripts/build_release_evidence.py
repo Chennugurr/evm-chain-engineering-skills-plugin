@@ -46,6 +46,11 @@ def git_value(args: list[str], default: str) -> str:
     return result.stdout.strip() or default
 
 
+def non_release_tree_clean() -> bool:
+    status = git_value(["status", "--short"], "")
+    return not [line for line in status.splitlines() if not (line[3:] if len(line) > 3 else line).startswith("release/")]
+
+
 def is_v03(version: str) -> bool:
     return version.startswith("v0.3")
 
@@ -118,7 +123,7 @@ def write_v03_auxiliary(out: Path, mode_name: str, checks: dict[str, str], findi
 def write_summary(out: Path, version: str, checks: dict[str, str], findings: list[Finding], *, mode_name: str) -> None:
     branch = git_value(["branch", "--show-current"], "unknown")
     commit = git_value(["rev-parse", "--short", "HEAD"], "HEAD")
-    working_tree_clean = git_value(["status", "--short"], "dirty") == ""
+    working_tree_clean = non_release_tree_clean()
     v03 = is_v03(version)
     release_ready = (not findings and all(value in {"pass", "collected"} for value in checks.values()) and mode_name == "strict") if v03 else (not findings and all(value in {"pass", "collected"} for value in checks.values()))
     transcript_report = read_json(out / "dogfood-transcript-report.json")

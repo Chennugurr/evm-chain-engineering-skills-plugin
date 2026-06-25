@@ -101,7 +101,7 @@ Current strict-evidence status:
 - Required live matrix prompts `02`, `03`, `05`, `06`, and `07`: captured for both Codex and Claude under `dogfood/live-runs/`.
 - Live hook observation: Claude discovery and OP Stack smoke observed `PreToolUse:Bash`; Codex hook closure observed safe allow plus fake-secret and mainnet-like deny decisions under `dogfood/hooks/codex/`.
 - Subagent dogfood: no live subagent execution is claimed; limitation recorded in `dogfood/reports/subagent-dogfood-limitation.md`.
-- `v0.3.0-beta` tag: not created.
+- `v0.3.0-beta` tag: created after strict validation passes.
 
 Bootstrap mode validates the harness plus any captured smoke evidence:
 
@@ -115,4 +115,4 @@ Strict mode remains the release gate:
 make validate-v03
 ```
 
-Do not tag `v0.3.0-beta` until strict validation passes with the required Codex and Claude transcripts, hook observations, validated generated artifact bundles, documented subagent boundary, and release evidence.
+The `v0.3.0-beta` tag is valid only for the planning-only, safety-first evidence set in this repository. It does not imply live deployment readiness, real-secret handling, MCP server support, or mainnet approval.
