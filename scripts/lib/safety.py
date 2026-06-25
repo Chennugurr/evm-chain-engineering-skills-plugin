@@ -19,7 +19,7 @@ SECRET_VALUE_RE = re.compile(r"0x[a-fA-F0-9]{64}|-----BEGIN (?:EC |RSA |OPENSSH 
 MNEMONIC_RE = re.compile(r"(?i)(mnemonic|seed phrase)\s*[:=]\s*['\"]?[a-z]+(?:\s+[a-z]+){11,}")
 PRIVATE_FLAG_RE = re.compile(r"(?i)--(private-key|mnemonic|seed|deployer-secret)(?:=|\s+)\S+")
 MAINNET_RE = re.compile(r"(--broadcast|cast send|cast publish|forge script|hardhat run|npx hardhat run|truffle migrate|brownie run|sendTransaction|eth_sendRawTransaction).{0,160}(mainnet|ethereum-mainnet|eth-mainnet|arb1|arbitrum-one|optimism-mainnet|base-mainnet|polygon-mainnet|bsc-mainnet|avalanche-mainnet|zksync-mainnet)|(mainnet|ethereum-mainnet|eth-mainnet|arb1|arbitrum-one|optimism-mainnet|base-mainnet|polygon-mainnet|bsc-mainnet|avalanche-mainnet|zksync-mainnet).{0,160}(--broadcast|cast send|forge script|hardhat run|npx hardhat run|eth_sendRawTransaction)", re.I)
-ADMIN_RPC_RE = re.compile(r"(?i)(--http\.addr\s+0\.0\.0\.0|--authrpc\.addr\s+0\.0\.0\.0|--ws\.addr\s+0\.0\.0\.0).{0,120}(admin|debug|personal|engine)|(admin|debug|personal|engine).{0,120}(0\.0\.0\.0|public)")
+ADMIN_RPC_RE = re.compile(r"(?i)(--http\.addr\s+0\.0\.0\.0|--authrpc\.addr\s+0\.0\.0\.0|--ws\.addr\s+0\.0\.0\.0).{0,120}\b(admin|debug|personal|engine)\b|\b(admin|debug|personal|engine)\b.{0,120}(0\.0\.0\.0|public)")
 LATEST_IMAGE_RE = re.compile(r"(?i)image\s*:\s*[^\s#]+:latest\b")
 UNPINNED_IMAGE_RE = re.compile(r"(?i)image\s*:\s*([\w./-]+)$")
 
@@ -43,7 +43,7 @@ def scan_text(text: str, path: str) -> list[Finding]:
             findings.append(Finding("error", source, "private material passed through a CLI flag"))
         if MAINNET_RE.search(line):
             findings.append(Finding("error", source, "mainnet broadcast/send/deploy pattern detected"))
-        if ADMIN_RPC_RE.search(line) and not _safe_line(line) and not re.search(r"(?i)(admin_rpc_public:\s*false|must not|do not|not exposed|not proxied|remain private|binds to localhost|private networks)", line):
+        if ADMIN_RPC_RE.search(line) and not _safe_line(line) and not re.search(r"(?i)(admin_rpc_public:\s*false|must not|do not|no public|not exposed|not proxied|remain private|binds to localhost|private networks)", line):
             findings.append(Finding("warning", source, "public admin/debug RPC exposure pattern detected"))
         if LATEST_IMAGE_RE.search(line):
             findings.append(Finding("error", source, "latest image tag detected"))

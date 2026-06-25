@@ -6,8 +6,11 @@ Current strict-evidence pass status:
 
 - Codex `01-op-stack-public-testnet`: captured and validated.
 - Claude `01-op-stack-public-testnet`: blocked by `401 authentication_failed` after plugin discovery.
+- Claude blocker details: `dogfood/issues/open/CLAUDE-AUTH-401.md` and `docs/claude-auth-blocker-triage.md`.
 - Hook observations: pending.
 - `v0.3.0-beta` tag: not created.
+
+Do not run the remaining Claude prompt matrix until the Claude 401 is resolved and `dogfood/live-runs/claude/00-plugin-discovery/` passes bootstrap validation.
 
 Use one prompt from `dogfood/prompts/`, run it in the target platform with the local plugin installed, and capture a live-run package with `scripts/create_live_run_package.py`. Redact secrets before committing any transcript.
 

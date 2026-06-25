@@ -6,6 +6,8 @@ Implemented the v0.3.0-beta bootstrap harness on branch `v0.3-beta-live-agent-qa
 
 This is not a strict v0.3 release yet. One Codex smoke run is captured and validated. Claude plugin discovery is captured, but the live agent turn is blocked by `401 authentication_failed`. Live hook observations and the remaining required prompt matrix remain pending.
 
+The evidence-closure pass classified the Claude failure as a noninteractive Claude auth/session blocker rather than a plugin-specific failure: `claude auth status` reports logged in with account identifiers redacted, `claude plugin validate` passes, and a no-plugin `claude --print` request still returns `401 authentication_failed`.
+
 ## Files Added or Changed
 
 - Added v0.3 dogfood structure under `dogfood/`.
@@ -15,6 +17,9 @@ This is not a strict v0.3 release yet. One Codex smoke run is captured and valid
 - Added Codex smoke evidence under `dogfood/live-runs/codex/01-op-stack-public-testnet/`.
 - Added Claude blocked smoke evidence under `dogfood/live-runs/claude/01-op-stack-public-testnet/`.
 - Updated validators to allow blocked packages in bootstrap while rejecting them in strict mode.
+- Added canonical blocker issue `dogfood/issues/open/CLAUDE-AUTH-401.md`.
+- Added triage doc `docs/claude-auth-blocker-triage.md`.
+- Rebuilt `docs/platform-compatibility-matrix.md` with evidence paths and strict status labels.
 
 ## Validation Results
 
@@ -25,6 +30,8 @@ Latest command results recorded during the strict evidence pass:
 - `make validate-v03-bootstrap`: PASS.
 - `make validate-v03 || true`: expected strict failure at `validate_dogfood_transcripts.py --strict`.
 - `claude plugin validate plugins/evm-chain-engineering-pro --strict`: PASS.
+- `claude auth status`: logged in, account identifiers redacted from committed evidence.
+- no-plugin `claude --print`: FAIL, `401 authentication_failed`.
 - Codex smoke bundle validation: PASS for artifact validation, generated-config validation, known-bad output scan, and strict secret scan.
 - Claude smoke run: BLOCKED by `401 authentication_failed` after plugin discovery.
 - `python3 scripts/check_bad_output_patterns.py --path dogfood/live-runs --strict`: PASS.

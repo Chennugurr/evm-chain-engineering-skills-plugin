@@ -27,13 +27,16 @@ def term_present(corpus: str, term: str) -> bool:
     return any(option.lower() in corpus for option in options)
 
 
-def transcript_records(platform: str | None) -> list[tuple[Path, dict]]:
+def transcript_records(platform: str | None, scope: str = "all") -> list[tuple[Path, dict]]:
     records: list[tuple[Path, dict]] = []
     for path in transcript_paths(ROOT, platform):
         try:
-            records.append((path, load_json_file(path)))
+            data = load_json_file(path)
         except Exception:
             continue
+        if scope == "smoke" and data.get("prompt_id") != "01-op-stack-public-testnet":
+            continue
+        records.append((path, data))
     return records
 
 
@@ -82,19 +85,21 @@ def main(argv: list[str] | None = None) -> int:
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--strict", action="store_true")
     mode.add_argument("--bootstrap", action="store_true")
+    parser.add_argument("--scope", choices=["all", "smoke"], default="all")
     parser.add_argument("--platform", choices=["codex", "claude"])
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--json-out")
     parser.add_argument("--markdown-report")
     args = parser.parse_args(argv)
     strict = args.strict and not args.bootstrap
-    records = transcript_records(args.platform)
+    records = transcript_records(args.platform, args.scope)
     findings: list[Finding] = []
     if strict:
         platforms = [args.platform] if args.platform else ["codex", "claude"]
+        required_prompts = ("01-op-stack-public-testnet",) if args.scope == "smoke" else STRICT_REQUIRED_PROMPTS
         for platform in platforms:
-            seen = {str(data.get("prompt_id")) for _, data in transcript_records(platform)}
-            missing = [prompt for prompt in STRICT_REQUIRED_PROMPTS if prompt not in seen]
+            seen = {str(data.get("prompt_id")) for _, data in transcript_records(platform, args.scope)}
+            missing = [prompt for prompt in required_prompts if prompt not in seen]
             for prompt in missing:
                 findings.append(Finding("error", f"dogfood/transcripts/{platform}", f"missing required strict live prompt: {prompt}"))
     for path, data in records:
@@ -104,7 +109,7 @@ def main(argv: list[str] | None = None) -> int:
             findings.append(Finding("error", rel(path, ROOT), "strict mode does not accept live records with unresolved failures"))
             continue
         findings.extend(validate_record(path, data))
-    report = Report(ok=not [f for f in findings if f.level == "error" or (strict and f.level == "warning")], script="scripts/run_live_acceptance_suite.py", target=args.platform or "dogfood", summary={"mode": "strict" if strict else "bootstrap", "transcripts_checked": len(records), "live_run_packages": len(live_run_paths(ROOT, args.platform)), "findings": len(findings)}, findings=findings)
+    report = Report(ok=not [f for f in findings if f.level == "error" or (strict and f.level == "warning")], script="scripts/run_live_acceptance_suite.py", target=args.platform or "dogfood", summary={"mode": "strict" if strict else "bootstrap", "scope": args.scope, "transcripts_checked": len(records), "live_run_packages": len(live_run_paths(ROOT, args.platform)), "findings": len(findings)}, findings=findings)
     if args.json_out:
         write_json_report(args.json_out, report)
     if args.markdown_report:

@@ -3,6 +3,10 @@ import subprocess
 import sys
 from conftest import ROOT
 
+sys.path.insert(0, str(ROOT / "scripts"))
+
+from lib.safety import scan_text  # noqa: E402
+
 SCRIPT = ROOT / "scripts" / "policy_guard.py"
 
 
@@ -50,3 +54,8 @@ def test_private_material_flag_blocked_even_when_redacted():
     result = run_guard("--command", "forge script Deploy --private-key <REDACTED>", "--json", "--strict")
     assert result.returncode == 2
     assert any(f["rule_id"] == "private-key-flag" for f in payload(result)["findings"])
+
+
+def test_engineering_public_testnet_text_is_not_admin_rpc_warning():
+    findings = scan_text("Use the EVM Chain Engineering plugin for a public testnet RPC plan.", "test.md")
+    assert findings == []

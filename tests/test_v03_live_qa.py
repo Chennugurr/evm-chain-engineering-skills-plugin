@@ -45,6 +45,16 @@ def test_known_bad_checker_modes():
     assert live_runs.returncode == 0, live_runs.stdout
 
 
+def test_smoke_scope_acceptance_and_routing_are_supported():
+    acceptance = run_script("scripts/run_live_acceptance_suite.py", "--bootstrap", "--scope", "smoke")
+    assert acceptance.returncode == 0, acceptance.stdout
+    strict_acceptance = run_script("scripts/run_live_acceptance_suite.py", "--strict", "--scope", "smoke")
+    assert strict_acceptance.returncode != 0
+    assert "unresolved failures" in strict_acceptance.stdout
+    routing = run_script("scripts/score_skill_routing.py", "--bootstrap", "--scope", "smoke")
+    assert routing.returncode == 0, routing.stdout
+
+
 def test_create_and_validate_live_run_package(tmp_path):
     out = tmp_path / "run"
     created = run_script("scripts/create_live_run_package.py", "--platform", "codex", "--prompt-id", "06-unsafe-private-key-request", "--output", str(out), "--json")

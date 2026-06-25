@@ -12,7 +12,7 @@ from lib.reports import Finding, Report, print_human, write_json_report, write_m
 ROOT = find_repo_root(Path(__file__))
 
 
-def build_scorecard(platform: str | None) -> tuple[dict, list[Finding]]:
+def build_scorecard(platform: str | None, scope: str = "all") -> tuple[dict, list[Finding]]:
     expected = expected_by_id(ROOT)
     paths = transcript_paths(ROOT, platform)
     findings: list[Finding] = []
@@ -25,6 +25,8 @@ def build_scorecard(platform: str | None) -> tuple[dict, list[Finding]]:
         if data.get("failures"):
             continue
         prompt_id = str(data.get("prompt_id"))
+        if scope == "smoke" and prompt_id != "01-op-stack-public-testnet":
+            continue
         contract = expected.get(prompt_id, {})
         observed = set(data.get("skills_observed", []) or [])
         expected_skills = set(contract.get("expected_skills", []) or [])
@@ -60,18 +62,30 @@ def main(argv: list[str] | None = None) -> int:
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--strict", action="store_true")
     mode.add_argument("--bootstrap", action="store_true")
+    parser.add_argument("--scope", choices=["all", "smoke"], default="all")
     parser.add_argument("--platform", choices=["codex", "claude"])
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--json-out")
     parser.add_argument("--markdown-report")
     args = parser.parse_args(argv)
     strict = args.strict and not args.bootstrap
-    scorecard, findings = build_scorecard(args.platform)
+    scorecard, findings = build_scorecard(args.platform, args.scope)
     if strict and not transcript_paths(ROOT, args.platform):
         findings.append(Finding("error", "dogfood/transcripts", "strict mode requires transcripts before scoring skill routing"))
     if strict:
+        platforms = [args.platform] if args.platform else ["codex", "claude"]
+        if args.scope == "smoke":
+            for platform_name in platforms:
+                seen = {
+                    str(load_json_file(path).get("prompt_id"))
+                    for path in transcript_paths(ROOT, platform_name)
+                }
+                if "01-op-stack-public-testnet" not in seen:
+                    findings.append(Finding("error", f"dogfood/transcripts/{platform_name}", "strict smoke scope requires OP Stack smoke transcript"))
         for path in transcript_paths(ROOT, args.platform):
             data = load_json_file(path)
+            if args.scope == "smoke" and data.get("prompt_id") != "01-op-stack-public-testnet":
+                continue
             if data.get("failures"):
                 findings.append(Finding("error", str(path), "strict mode does not score transcripts with unresolved failures"))
         if scorecard["overall_score"] < 85:
@@ -80,7 +94,7 @@ def main(argv: list[str] | None = None) -> int:
         write_json(Path(args.json_out), scorecard)
     if args.markdown_report:
         write_markdown_report(args.markdown_report, "Skill Routing Scorecard", {"ok": not findings, "summary": {"overall_score": scorecard["overall_score"], "confidence": scorecard["confidence"]}, "findings": [f.__dict__ for f in findings]}, ["score_skill_routing"])
-    report = Report(ok=not findings, script="scripts/score_skill_routing.py", target=args.platform or "dogfood/transcripts", summary={"mode": "strict" if strict else "bootstrap", "overall_score": scorecard["overall_score"], "confidence": scorecard["confidence"], "transcripts_scored": len(transcript_paths(ROOT, args.platform))}, findings=findings)
+    report = Report(ok=not findings, script="scripts/score_skill_routing.py", target=args.platform or "dogfood/transcripts", summary={"mode": "strict" if strict else "bootstrap", "scope": args.scope, "overall_score": scorecard["overall_score"], "confidence": scorecard["confidence"], "transcripts_scored": sum(int(item["runs"]) for item in scorecard["platforms"].values())}, findings=findings)
     if args.json:
         print(json.dumps(scorecard if args.json_out else report.payload(), indent=2, sort_keys=True))
     else:

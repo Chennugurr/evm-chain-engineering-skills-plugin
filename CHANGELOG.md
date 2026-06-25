@@ -1,5 +1,22 @@
 # Changelog
 
+## v0.3.0-beta evidence closure
+
+Changed:
+- Added canonical blocker issue `dogfood/issues/open/CLAUDE-AUTH-401.md`.
+- Added `docs/claude-auth-blocker-triage.md` with redacted Claude Code auth diagnostics.
+- Rebuilt `docs/platform-compatibility-matrix.md` with status rows and evidence paths.
+- Updated Claude OP Stack smoke manual notes with the auth-only classification.
+
+Validation:
+- `claude auth status` reports logged in with account identifiers redacted.
+- A no-plugin `claude --print` request still fails with `401 authentication_failed`.
+- `claude plugin validate plugins/evm-chain-engineering-pro --strict` still passes.
+
+Release:
+- Strict v0.3 remains blocked.
+- `v0.3.0-beta` tag remains uncreated.
+
 ## v0.3.0-beta strict evidence pass
 
 Added:
