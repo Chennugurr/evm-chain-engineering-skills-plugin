@@ -3,7 +3,7 @@
 - Platform: claude
 - Prompt ID: 05-evm-l1-validator-network
 - Capture date: 2026-06-25
-- Raw stream retained outside repo: /tmp/v03-claude-05.raw.jsonl
+- Raw stream retained outside repo: <TMP>/v03-claude-05.raw.jsonl
 - Committed stream: CLAUDE_STREAM_REDACTED.jsonl
 
 ## Assistant Response

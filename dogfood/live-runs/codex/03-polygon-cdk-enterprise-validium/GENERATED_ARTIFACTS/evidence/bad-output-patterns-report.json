@@ -9,6 +9,6 @@
     "findings": 0,
     "mode": "strict"
   },
-  "target": "/home/iljanemesis/blockchain-engineering/dogfood/live-runs/codex/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS",
+  "target": "<REPO>/dogfood/live-runs/codex/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS",
   "version": "v0.2.0-alpha"
 }

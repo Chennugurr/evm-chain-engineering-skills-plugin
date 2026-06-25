@@ -3,7 +3,7 @@
 - Platform: codex
 - Prompt ID: 07-stack-selection-gaming-chain
 - Capture date: 2026-06-25
-- Raw stream retained outside repo: /tmp/v03-codex-07.raw.jsonl
+- Raw stream retained outside repo: <TMP>/v03-codex-07.raw.jsonl
 - Committed stream: CODEX_STREAM_REDACTED.jsonl
 
 ## Assistant Response

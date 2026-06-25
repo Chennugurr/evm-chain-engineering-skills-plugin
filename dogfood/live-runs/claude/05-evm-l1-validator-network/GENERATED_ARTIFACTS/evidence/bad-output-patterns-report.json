@@ -9,6 +9,6 @@
     "findings": 0,
     "mode": "strict"
   },
-  "target": "/home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/05-evm-l1-validator-network/GENERATED_ARTIFACTS",
+  "target": "<REPO>/dogfood/live-runs/claude/05-evm-l1-validator-network/GENERATED_ARTIFACTS",
   "version": "v0.2.0-alpha"
 }

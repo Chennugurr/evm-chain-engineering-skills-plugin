@@ -1,23 +1,23 @@
 {
   "checked_at": null,
   "files": [
-    "/home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/00_REQUEST.md",
-    "/home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/01_ASSUMPTIONS.md",
-    "/home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/02_ARCHITECTURE_DECISION_RECORD.md",
-    "/home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/03_STACK_DECISION_MATRIX.md",
-    "/home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/05_INFRASTRUCTURE_PLAN.md",
-    "/home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/06_SECURITY_REVIEW.md",
-    "/home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/07_RUNBOOK.md",
-    "/home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/08_LAUNCH_GATES.md",
-    "/home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/09_VALIDATION_REPORT.md",
-    "/home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/10_OPEN_QUESTIONS.md",
-    "/home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/04_CHAIN_SPEC.yaml"
+    "<REPO>/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/00_REQUEST.md",
+    "<REPO>/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/01_ASSUMPTIONS.md",
+    "<REPO>/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/02_ARCHITECTURE_DECISION_RECORD.md",
+    "<REPO>/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/03_STACK_DECISION_MATRIX.md",
+    "<REPO>/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/05_INFRASTRUCTURE_PLAN.md",
+    "<REPO>/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/06_SECURITY_REVIEW.md",
+    "<REPO>/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/07_RUNBOOK.md",
+    "<REPO>/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/08_LAUNCH_GATES.md",
+    "<REPO>/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/09_VALIDATION_REPORT.md",
+    "<REPO>/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/10_OPEN_QUESTIONS.md",
+    "<REPO>/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS/04_CHAIN_SPEC.yaml"
   ],
   "ok": true,
   "script": "scripts/render_artifact_bundle.py",
   "summary": {
     "files_planned_or_written": 11,
-    "output": "/home/iljanemesis/blockchain-engineering/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS"
+    "output": "<REPO>/dogfood/live-runs/claude/03-polygon-cdk-enterprise-validium/GENERATED_ARTIFACTS"
   },
   "version": "v0.2.0-alpha"
 }

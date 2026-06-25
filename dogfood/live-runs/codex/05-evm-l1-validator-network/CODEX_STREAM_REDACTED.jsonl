@@ -1,2 +1,2 @@
-{"platform": "codex", "prompt_id": "05-evm-l1-validator-network", "raw_events": 6, "raw_stream_retained_outside_repo": "/tmp/v03-codex-05.raw.jsonl", "skill_injection_observed": true, "type": "capture_summary"}
+{"platform": "codex", "prompt_id": "05-evm-l1-validator-network", "raw_events": 6, "raw_stream_retained_outside_repo": "<TMP>/v03-codex-05.raw.jsonl", "skill_injection_observed": true, "type": "capture_summary"}
 {"characters": 5111, "status": "captured_in_transcript_md", "type": "agent_message_summary"}
